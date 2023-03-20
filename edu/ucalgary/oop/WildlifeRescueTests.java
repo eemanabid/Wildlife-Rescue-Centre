@@ -20,6 +20,7 @@ public class WildlifeRescueTests {
         
     }
 
+    @Test
     public void setTaskIDTest() {
         Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
 
