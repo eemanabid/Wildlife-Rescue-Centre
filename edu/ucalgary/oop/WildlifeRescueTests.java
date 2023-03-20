@@ -159,6 +159,39 @@ public class WildlifeRescueTests {
        assertEquals(expectedResult, taskGetAnimalSpecies);
         
     }
+    
+    @Test
+    public void testAnimalCollectionEnumValueOf() {
+        // Arrange
+        String coyote = "COYOTE";
+        String beaver = "BEAVER";
+        String fox = "FOX";
+        String porcupine = "PORCUPINE";
+        String racoon = "RACOON";
 
+        // Act
+        AnimalCollection value1 = AnimalCollection.valueOf(coyote);
+        AnimalCollection value2 = AnimalCollection.valueOf(beaver);
+        AnimalCollection value3 = AnimalCollection.valueOf(fox);
+        AnimalCollection value4 = AnimalCollection.valueOf(porcupine);
+        AnimalCollection value5 = AnimalCollection.valueOf(racoon);
+
+        // Assert
+        assertEquals(AnimalCollection.COYOTE, value1);
+        assertEquals(AnimalCollection.BEAVER, value2);
+        assertEquals(AnimalCollection.FOX, value3);
+        assertEquals(AnimalCollection.PORCUPINE, value4);
+        assertEquals(AnimalCollection.RACOON, value5);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+        public void testEnumValueOfWithInvalidValue() {
+            // Arrange
+            String invalid = "INVALID";
+
+            // Act
+            AnimalCollection value = AnimalCollection.valueOf(invalid);
+
+        }
 
 }
