@@ -58,7 +58,7 @@ public class WildlifeRescueTests {
     public void testClone() throws CloneNotSupportedException {
     // Create an object to be cloned
     Animal obj1 = new Animal();
-    obj1.setProperty("value");
+    obj1.setAnimalNickname("Eraser");
 
     // Clone the object
     Animal obj2 = (Animal) obj1.clone();
@@ -67,13 +67,13 @@ public class WildlifeRescueTests {
     assertNotSame(obj1, obj2);
 
     // Verify that the properties of the cloned object match those of the original
-    assertEquals(obj1.getProperty(), obj2.getProperty());
+    assertEquals(obj1.getAnimalNickname(), obj2.getAnimalNickname());
 
     // Modify the cloned object
-    obj2.setProperty("new value");
+    obj2.setAnimalNickname("Gatekeeper");
 
     // Verify that the modification of the cloned object did not affect the original
-    assertNotEquals(obj1.getProperty(), obj2.getProperty());
+    assertNotEquals(obj1.getAnimalNickname(), obj2.getAnimalNickname());
     }
 
 }
