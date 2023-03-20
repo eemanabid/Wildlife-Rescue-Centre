@@ -15,7 +15,7 @@ public class WildlifeRescueTests {
     public void getTaskIDTest() {
         Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
 
-        int taskGetID = newTask.getTaskID;
+        int taskGetID = newTask.getTaskID();
         int expectedResult = 1;
         assertEquals(expectedResult, taskGetID);
         
@@ -26,7 +26,7 @@ public class WildlifeRescueTests {
         Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
 
         newTask.setTaskID(2);
-        int getTaskID =  newTask.getTaskID;
+        int getTaskID =  newTask.getTaskID();
         int expectedResult = 2;
         assertEquals(expectedResult, getTaskID);
         
@@ -37,7 +37,7 @@ public class WildlifeRescueTests {
     public void getStartHourTest() {
         Treatment newTreatment = new Treatment(1, 2, 3, 1);
 
-        int getStartHour =  newTreatment.getStartHour;
+        int getStartHour =  newTreatment.getStartHour();
         int expectedResult = 1;
         assertEquals(expectedResult, getStartHour);
         
@@ -48,7 +48,7 @@ public class WildlifeRescueTests {
         Treatment newTreatment = new Treatment(1, 2, 3, 1);
 
         newTreatment.setStartHour(2);
-        int getStartHour =  newTreatment.getStartHour;
+        int getStartHour =  newTreatment.getStartHour();
         int expectedResult = 2;
         assertEquals(expectedResult, getStartHour);
         
