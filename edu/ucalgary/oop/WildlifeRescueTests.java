@@ -10,6 +10,7 @@ public class WildlifeRescueTests {
 
     public WildlifeRescueTests() {}
 
+    //Task Tests
     @Test
     public void getTaskIDTest() {
         Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
@@ -30,6 +31,19 @@ public class WildlifeRescueTests {
         assertEquals(expectedResult, getTaskID);
         
     }
+
+    //Treatment Tasks
+    @Test
+    public void getStartHourTest() {
+        Treatment newTreatment = new Treatment(1, 2, 3, 1);
+
+        int getStartHour =  newTreatment.getStartHour;
+        int expectedResult = 1;
+        assertEquals(expectedResult, getStartHour);
+        
+    }
+
+
 
 
 
