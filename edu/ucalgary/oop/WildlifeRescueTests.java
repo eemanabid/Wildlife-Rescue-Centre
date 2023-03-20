@@ -2,9 +2,11 @@ package edu.ucalgary.oop;
 
 import org.junit.Test;
 import org.junit.validator.PublicClassValidator;
+import java.util.regex.Matcher;
 
 import static org.junit.Assert.*;
 import org.junit.*;
+
 
 public class WildlifeRescueTests {
 
@@ -74,6 +76,25 @@ public class WildlifeRescueTests {
 
     // Verify that the modification of the cloned object did not affect the original
     assertNotEquals(obj1.getAnimalNickname(), obj2.getAnimalNickname());
+    }
+
+    //Schedule Tests
+    @Test
+    public void ScheduleTest() {
+        boolean correctException = false;
+
+        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+        Animal newAnimal = new Animal(1, "Gatekeeper", "fox", true, false, true);
+
+        try {
+            Schedule newSchedule = new Schedule(newTask, newAnimal, "abc", true);
+
+        } catch (IllegalArgumentException e) {
+            correctException = true;
+        }
+
+        assertEquals(true, correctException);
+        
     }
 
 }
