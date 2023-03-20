@@ -54,6 +54,26 @@ public class WildlifeRescueTests {
         
     }
 
+    @Test
+    public void testClone() throws CloneNotSupportedException {
+    // Create an object to be cloned
+    Animal obj1 = new Animal();
+    obj1.setProperty("value");
 
+    // Clone the object
+    Animal obj2 = (Animal) obj1.clone();
+
+    // Verify that the cloned object is a separate object from the original
+    assertNotSame(obj1, obj2);
+
+    // Verify that the properties of the cloned object match those of the original
+    assertEquals(obj1.getProperty(), obj2.getProperty());
+
+    // Modify the cloned object
+    obj2.setProperty("new value");
+
+    // Verify that the modification of the cloned object did not affect the original
+    assertNotEquals(obj1.getProperty(), obj2.getProperty());
+    }
 
 }
