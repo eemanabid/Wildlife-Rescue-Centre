@@ -32,7 +32,7 @@ public class WildlifeRescueTests {
         
     }
 
-    //Treatment Tasks
+    //Treatment Tests
     @Test
     public void getStartHourTest() {
         Treatment newTreatment = new Treatment(1, 2, 3, 1);
@@ -44,7 +44,7 @@ public class WildlifeRescueTests {
     }
 
     @Test
-    public void gsetStartHourTest() {
+    public void setStartHourTest() {
         Treatment newTreatment = new Treatment(1, 2, 3, 1);
 
         newTreatment.setStartHour(2);
@@ -53,14 +53,6 @@ public class WildlifeRescueTests {
         assertEquals(expectedResult, getStartHour);
         
     }
-
-
-
-
-
-
-
-
 
 
 
