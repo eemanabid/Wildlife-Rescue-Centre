@@ -97,4 +97,68 @@ public class WildlifeRescueTests {
         
     }
 
+//ANIMAL TESTS
+    @Test
+    public void getAnimalIDTest() {
+     Animal newAnimal = new Animal (1, "Eraser", "Fox" );
+
+     int taskGetAnimalID = newAnimal.getAnimalID();
+     int expectedResult = 1;
+    assertEquals(expectedResult, taskGetAnimalID);
+    }
+
+    @Test
+    public void setAnimalIDTest() {
+        Animal newAnimal = new Animal(1, "Eraser", "Fox" );
+
+        newAnimal.setAnimalID(2);
+        int taskGetAnimalID =  newAnimal.getAnimalID();
+        int expectedResult = 2;
+        assertEquals(expectedResult, taskGetAnimalID);
+        
+    }
+
+    @Test
+    public void getAnimalNicknameTest() {
+        Animal newAnimal = new Animal (1, "Eraser", "Fox" );
+
+        String taskGetAnimalNickname = newAnimal.getAnimalNickname();
+        String expectedResult = "Eraser";
+       assertEquals(expectedResult, taskGetAnimalNickname);
+        
+    }
+
+    @Test
+    public void setAnimalNicknameTest() {
+        Animal newAnimal = new Animal (1, "Eraser", "Fox" );
+
+        newAnimal.setAnimalNickName("Slinky");
+        String taskGetAnimalNickname = newAnimal.getAnimalNickname();
+        String expectedResult = "Slinky";
+       assertEquals(expectedResult, taskGetAnimalNickname);
+        
+    }
+
+    @Test
+    public void getAnimalSpeciesTest() {
+        Animal newAnimal = new Animal (1, "Eraser", "Fox" );
+
+        String taskGetAnimalSpecies = newAnimal.getAnimalSpecies();
+        String expectedResult = "Fox";
+       assertEquals(expectedResult, taskGetAnimalSpecies);
+        
+    }
+
+    @Test
+    public void setAnimalSpeciesTest() {
+        Animal newAnimal = new Animal (1, "Eraser", "Fox" );
+
+        newAnimal.setAnimalSpecies("Coyote");
+        String taskGetAnimalSpecies = newAnimal.getAnimalSpecies();
+        String expectedResult = "Coyote";
+       assertEquals(expectedResult, taskGetAnimalSpecies);
+        
+    }
+
+
 }
