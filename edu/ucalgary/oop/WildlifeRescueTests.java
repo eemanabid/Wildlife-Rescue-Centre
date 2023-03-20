@@ -43,6 +43,17 @@ public class WildlifeRescueTests {
         
     }
 
+    @Test
+    public void gsetStartHourTest() {
+        Treatment newTreatment = new Treatment(1, 2, 3, 1);
+
+        newTreatment.setStartHour(2);
+        int getStartHour =  newTreatment.getStartHour;
+        int expectedResult = 2;
+        assertEquals(expectedResult, getStartHour);
+        
+    }
+
 
 
 
