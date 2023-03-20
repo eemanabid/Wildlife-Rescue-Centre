@@ -21,7 +21,12 @@ public class WildlifeRescueTests {
     }
 
     public void setTaskIDTest() {
-        
+        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+
+        newTask.setTaskID(2);
+        int getTaskID =  newTask.getTaskID;
+        int expectedResult = 2;
+        assertEquals(expectedResult, getTaskID);
         
     }
 
