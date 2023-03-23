@@ -33,6 +33,66 @@ public class WildlifeRescueTests {
         assertEquals(expectedResult, getTaskID);
         
     }
+    @Test
+    public void getDurationTest() {
+        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+
+        int taskGetDuration = newTask.getDuration();
+        int expectedResult = 20;
+        assertEquals(expectedResult, taskGetDuration);
+        
+    }
+
+    @Test
+    public void setDurationTest() {
+        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+
+        newTask.setDuration(30);
+        int getTaskDuration =  newTask.getDuration();
+        int expectedResult = 30;
+        assertEquals(expectedResult, getTaskDuration);
+        
+    }
+    @Test
+    public void getDescriptionTest() {
+        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+
+        String taskGetDescription = newTask.getDescription();
+        String expectedResult = "Rebandage fox leg wound";
+        assertEquals(expectedResult, taskGetDescription);
+        
+    }
+
+    @Test
+    public void setDescriptionTest() {
+        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+
+        newTask.setDescription("Feed kits");
+        String getTaskDescription =  newTask.getDescription();
+        String expectedResult = "Feed kits";
+        assertEquals(expectedResult, getTaskDescription);
+        
+    }
+    @Test
+    public void getMaxWindow() {
+        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+
+        int taskGetMaxWindow = newTask.getMaxWindow();
+        int expectedResult = 40;
+        assertEquals(expectedResult, taskGetMaxWindow);
+        
+    }
+
+    @Test
+    public void setMaxWindow() {
+        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+
+        newTask.setMaxWindow(50);
+        int getMaxWindow =  newTask.getMaxWindow();
+        int expectedResult = 50;
+        assertEquals(expectedResult, getMaxWindow);
+        
+    }
 
     //Treatment Tests
     @Test
@@ -97,7 +157,21 @@ public class WildlifeRescueTests {
         
     }
 
+
 //ANIMAL TESTS
+    @Test
+    public void testAnimalConstructor() {
+        int animalID = 1;
+        String animalNickname = "Eraser";
+        String animalSpecies = "Fox";
+    
+        Animal animal = new Animal(animalID, animalNickname, animalSpecies);
+    
+        assertEquals(animalID, animal.getAnimalID());
+        assertEquals(animalNickname, animal.getAnimalNickname());
+        assertEquals(animalSpecies, animal.getAnimalSpecies());
+}
+
     @Test
     public void getAnimalIDTest() {
      Animal newAnimal = new Animal (1, "Eraser", "Fox" );
@@ -193,5 +267,4 @@ public class WildlifeRescueTests {
             AnimalCollection value = AnimalCollection.valueOf(invalid);
 
         }
-
 }
