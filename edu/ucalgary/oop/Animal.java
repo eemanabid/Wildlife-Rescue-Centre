@@ -17,8 +17,10 @@ public class Animal {
     private int prepTime;
     private int cleanCageTime;
 
-    public Animal(){
-
+    public Animal(int animalID, String animalNickname, String animalSpecies){
+        this.animalID = animalID;
+        this.animalNickname = animalNickname;
+        this.animalSpecies = animalSpecies;
     }
 
     public void createConnection(){

@@ -31,7 +31,7 @@ public class RescueCenter {
             results = myStmt.executeQuery();
 
             while (results.next()){
-                Task task = new Animal(results.getInt("TaskID"), results.getString("Description"), results.getInt("Duration"), results.getInt("MaxWindow"));
+                Task task = new Task(results.getInt("TaskID"), results.getString("Description"), results.getInt("Duration"), results.getInt("MaxWindow"));
                 tasks.add(task);
             }
 
