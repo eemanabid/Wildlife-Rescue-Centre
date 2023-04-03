@@ -13,5 +13,20 @@ public class Volunteer {
         this.phoneNumber = phoneNumber;
     }
 
-    
+    public String getVolunteerID(){
+        return this.volunteerID;
+    }
+
+    public String firstName(){
+        return this.firstName;
+    }
+
+    public String lastName(){
+        return this.lastName;
+    }
+
+    public String phoneNumber(){
+        return this.phoneNumber;
+    }
+
 }

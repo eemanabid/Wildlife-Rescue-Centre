@@ -9,11 +9,11 @@ public enum AnimalCollection {
 
     public String toString(){
         switch (this){
-            case COYOTE: return "Coyote";
-            case BEAVER: return "Beaver";
-            case FOX: return "Fox";
-            case PORCUPINE: return "Porcupine";
-            case RACCOON: return "Raccoon";
+            case COYOTE: return "coyote";
+            case BEAVER: return "beaver";
+            case FOX: return "fox";
+            case PORCUPINE: return "porcupine";
+            case RACCOON: return "raccoon";
             default: return "";
         }
     }

@@ -23,7 +23,7 @@ public class Animal {
 
     public void createConnection(){
         try{
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/treatments", "root", "Mano804007503!");
+            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/treatments", "mano", "804007503");
         } catch (SQLException e) {
             e.printStackTrace();
         }
