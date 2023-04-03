@@ -21,6 +21,7 @@ public class Animal {
         this.animalID = animalID;
         this.animalNickname = animalNickname;
         this.animalSpecies = animalSpecies;
+        setTimings();
     }
 
     public void createConnection(){
@@ -48,11 +49,6 @@ public class Animal {
             ex.printStackTrace();
         }
         return animalID;
-        this.animalID = animalID;
-        this.animalNickname = animalNickname;
-        this.animalSpecies = animalSpecies;
-        this.task = false;
-        setTimings();
     }
 
     //task timings for each animal species
