@@ -13,6 +13,7 @@ public class Volunteer {
         this.phoneNumber = phoneNumber;
     }
 
+    // getters
     public String getVolunteerID(){
         return this.volunteerID;
     }
@@ -29,6 +30,7 @@ public class Volunteer {
         return this.phoneNumber;
     }
 
+    // setters
     public void setVolunteerID(String ID){
         this.volunteerID = ID;
     }
