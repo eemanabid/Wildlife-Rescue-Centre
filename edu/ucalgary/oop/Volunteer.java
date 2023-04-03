@@ -29,4 +29,20 @@ public class Volunteer {
         return this.phoneNumber;
     }
 
+    public void setVolunteerID(String ID){
+        this.volunteerID = ID;
+    }
+
+    public void setFirstName(String firstName){
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName){
+        this.lastName = lastName;
+    }
+
+    public void setPhoneNumber(String number){
+        this.phoneNumber = number;
+    }
+
 }
