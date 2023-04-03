@@ -93,21 +93,15 @@ public class Animal {
         return this.animalID;
     }
 
-
-    //public void setAnimalID(int animalID){
-        //this.animalID = animalID;
-    //}
-
     public String getAnimalNickname(){
-<<<<<<< HEAD
-        return "";
+        return this.animalNickname;
     }
 
     //public void setAnimalNickname(String animalNickname){
        // this.animalNickname = animalNickname;
     //}
-        return this.animalNickname;
-    }
+        //return this.animalNickname;
+    //}
 
 
     public String getAnimalSpecies(){
@@ -147,6 +141,9 @@ public class Animal {
         this.animalID = animalID;
     }
 
+    //public void setAnimalID(int animalID){
+        //this.animalID = animalID;
+    //}
     
 
     
