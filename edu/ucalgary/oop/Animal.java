@@ -1,6 +1,5 @@
 package edu.ucalgary.oop;
 
-import java.sql.*;
 
 public class Animal {
     private int animalID;
@@ -9,8 +8,6 @@ public class Animal {
     private boolean isNocturnal;
     private boolean isDiurnal;
     private boolean isCrepuscular;
-    private Connection dbConnect;
-    private ResultSet results;
 
     private boolean task; //need relationship between task and animal
     private int feedTime; //added in feedTime, prepTime and cleanCageTime for setTimings()
@@ -24,30 +21,8 @@ public class Animal {
         setTimings();
     }
 
-    public void createConnection(){
-        try{
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/treatments", "mano", "804007503");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public int getAnimalID(String animalNickname){
         this.animalID = -1;
-
-        try {
-            PreparedStatement myStmt = dbConnect.prepareStatement("SELECT AnimalID FROM Animals WHERE AnimalNickname = ?");
-            myStmt.setString(1, animalNickname);
-            results = myStmt.executeQuery();
-
-            while (results.next()){
-                animalID = results.getInt("AnimalID");
-            }
-
-            myStmt.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
         return animalID;
     }
 

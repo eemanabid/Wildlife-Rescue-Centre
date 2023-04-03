@@ -11,6 +11,14 @@ public class RescueCenter {
     private Connection dbConnect;
     private ResultSet results;
 
+    public void createConnection(){
+        try{
+            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/treatments", "mano", "804007503");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public RescueCenter(){
         try {
             PreparedStatement myStmt = dbConnect.prepareStatement("SELECT * FROM Animals");
@@ -36,52 +44,6 @@ public class RescueCenter {
             }
 
             myStmt.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-
-    public void createConnection(){
-        try{
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/treatments", "mano", "804007503");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void addAnimal(int animalID, String animalNickname, String animalSpecies){
-        try {
-
-            String query = "INSERT INTO Animals (animalID, animalNickname, animalSpecies) VALUES (?,?,?)";
-            PreparedStatement myStmt = dbConnect.prepareStatement(query);
-
-            myStmt.setString(1, String.valueOf(animalID));
-            myStmt.setString(2, animalNickname);
-            myStmt.setString(3, animalSpecies);
-
-            int rowCount = myStmt.executeUpdate();
-            System.out.println("Rows affected: " + rowCount);
-
-            myStmt.close();
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public void removeAnimal(String deleteAnimal){
-        try {
-            String query = "DELETE FROM Animals WHERE name = ?";
-            PreparedStatement myStmt = dbConnect.prepareStatement(query);
-
-            myStmt.setString(1, deleteAnimal);
-
-            int rowCount = myStmt.executeUpdate();
-            System.out.println("Rows affected: " + rowCount);
-
-            myStmt.close();
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
