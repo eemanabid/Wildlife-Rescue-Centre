@@ -24,3 +24,10 @@ volunteer for the necessary time(s). If it is not possible to create a schedule,
 the problem so that Sara can contact the staff vet to request a change of requirements. As the staff vet
 may not be on site, Sara needs to be able to modify the start hour of one or more of the treatments
 based on the advice she receives. The new schedule should be created after the database is updated.
+
+The program should not exit without generating a schedule and getting confirmation for all backup volunteers (i.e., all errors should be caught before they are thrown by the JVM).
+o Usersshouldbeprovidedwithmeaningfulerrormessagesappropriatetotheaudience (end user, rather than programmer). Error messages must explain what was wrong and how it can be corrected (e.g., "It was impossible to complete the schedule due to too many events scheduled at 11 AM. Please shift some of the following activities: rebandage head wound (Spike), administer antibiotics (Spike, Shadow)."
+o Usersshouldbegiventheopportunitytocorrecttheirmistakes,andopportunitiesfor mistakes should be limited. Some techniques for reducing user error are:
+§ Providing instructions prior to data entry 
+§ Normalization of input
+§ Limiting choices to only valid options
