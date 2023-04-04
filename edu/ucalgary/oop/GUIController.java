@@ -28,7 +28,7 @@ public class GUIController {
             @Override
             public void actionPerformed( ActionEvent e ) {
                 mainMenu.setVisible(false);
-                //about();
+                about();
             }
         });
 
@@ -50,7 +50,37 @@ public class GUIController {
     }
 
     public void about(){
-       
+        FRM.setSize(500, 125);
+        FRM.setResizable(false);
+        FRM.setVisible(true);
+        FRM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel menu = new JPanel();
+
+        JLabel label1 = new JLabel("Made by: Eeman Abid, Hareem Khan, Hooriya Amjad, Sahiti Akella");
+        //JLabel label2 = new JLabel("Instructions for use: Follow the menus and enter the data which is required");
+
+        JButton back = new JButton( new AbstractAction("Go Back") {
+            @Override
+            public void actionPerformed( ActionEvent e ){
+                menu.setVisible(false);
+                mainMenu();
+            }
+        });
+
+        JButton quit = new JButton( new AbstractAction("Quit") {
+            @Override
+            public void actionPerformed( ActionEvent e ){
+                System.exit(0);
+            }
+        });
+
+        menu.add(label1);
+        //menu.add(label2);
+        menu.add(back);
+        menu.add(quit);
+
+        FRM.add(menu);
     }
 
     public static void main (String [] args){
