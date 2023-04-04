@@ -48,4 +48,9 @@ public class GUIController {
         FRM.setSize(500, 100);
         FRM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+    public static void main (String [] args){
+        GUIController gui = new GUIController();
+        gui.mainMenu();
+    }
 }
