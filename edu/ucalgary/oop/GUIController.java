@@ -20,7 +20,8 @@ public class GUIController {
             @Override
             public void actionPerformed( ActionEvent e ) {
                 mainMenu.setVisible(false);
-                //menuForCategory();
+                // menuForCategory();
+                // add function which generates the EWR schedule?
             }
         });
 
@@ -32,10 +33,16 @@ public class GUIController {
             }
         });
 
+        /*
+         * update this function so that user cannot quit until 
+         * user has confirmed that a backup volunteer has been called
+         * if a backup volunteer was needed
+         */
         JButton quit = new JButton( new AbstractAction("Quit") {
             @Override
             public void actionPerformed( ActionEvent e ){
                 System.exit(0);
+                
             }
         });
 
@@ -58,8 +65,7 @@ public class GUIController {
         JPanel menu = new JPanel();
 
         JLabel label1 = new JLabel("Made by: Eeman Abid, Hareem Khan, Hooriya Amjad, Sahiti Akella");
-        //JLabel label2 = new JLabel("Instructions for use: Follow the menus and enter the data which is required");
-
+        
         JButton back = new JButton( new AbstractAction("Go Back") {
             @Override
             public void actionPerformed( ActionEvent e ){
@@ -76,7 +82,6 @@ public class GUIController {
         });
 
         menu.add(label1);
-        //menu.add(label2);
         menu.add(back);
         menu.add(quit);
 
