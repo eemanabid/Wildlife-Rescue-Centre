@@ -5,9 +5,9 @@ import java.sql.*;
 
 public class RescueCenter {
 
-    private ArrayList<Animal> animals; 
-    private ArrayList<Task> tasks; 
-    private ArrayList<Treatment> treatments;
+    private ArrayList<Animal> animals = new ArrayList<Animal>(); 
+    private ArrayList<Task> tasks = new ArrayList<Task>(); 
+    private ArrayList<Treatment> treatments = new ArrayList<Treatment>();
     private Connection dbConnect;
     private ResultSet results;
 
@@ -20,6 +20,8 @@ public class RescueCenter {
     }
 
     public RescueCenter(){
+        createConnection();
+        
         try {
             PreparedStatement myStmt = dbConnect.prepareStatement("SELECT * FROM Animals");
             results = myStmt.executeQuery();
@@ -60,4 +62,20 @@ public class RescueCenter {
     public ArrayList<Treatment> getFurnitureList() {
         return this.treatments;
     }
+
+    public static void main(String[] args) {
+        RescueCenter rescueCenter = new RescueCenter();
+        //rescueCenter.createConnection();
+    
+        ArrayList<Animal> animals = rescueCenter.getAnimalList();
+        for (Animal animal : animals) {
+            System.out.println(animal.toString());
+        }
+    
+        ArrayList<Task> tasks = rescueCenter.getTaskList();
+        for (Task task : tasks) {
+            System.out.println(task.toString());
+        }
+    }
+    
 }
