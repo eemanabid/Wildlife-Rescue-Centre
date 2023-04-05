@@ -10,14 +10,9 @@ public class RescueCenter {
     private ArrayList<Treatment> treatments = new ArrayList<Treatment>();
     private Connection dbConnect;
     private ResultSet results;
-
-    public void createConnection(){
-        try{
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/ewr", "mano", "804007503");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    private final String DBURL = "jdbc:mysql://localhost/EWR";
+    private final String USERNAME = "root";
+    private final String PASSWORD = "Mano804007503!";
 
     public RescueCenter(){
         createConnection();
@@ -51,6 +46,14 @@ public class RescueCenter {
         }
     }
 
+    public void createConnection(){
+        try{
+            dbConnect = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<Animal> getAnimalList() {
         return this.animals;
     }
@@ -65,11 +68,11 @@ public class RescueCenter {
 
     public static void main(String[] args) {
         RescueCenter rescueCenter = new RescueCenter();
-        rescueCenter.createConnection();
+        //rescueCenter.createConnection();
     
         ArrayList<Animal> animals = rescueCenter.getAnimalList();
         for (Animal animal : animals) {
-            System.out.println(animal.toString());
+            System.out.println(animal.getAnimalID());
         }
     
         ArrayList<Task> tasks = rescueCenter.getTaskList();
