@@ -6,8 +6,10 @@ public class Treatment {
     private int taskID; 
     private int startHour;  
 
-    public Treatment(){
-
+    public Treatment(int animalID, int taskID, int startHour){
+        this.animalID = animalID;
+        this.taskID = taskID;
+        this.startHour = startHour;
     }
 
     public int getTreatmentID(){
@@ -19,7 +21,7 @@ public class Treatment {
     }
 
     public int getAnimalID(){
-        return 1;
+        return this.animalID;
     }
 
     public void setAnimalID(int animalID){

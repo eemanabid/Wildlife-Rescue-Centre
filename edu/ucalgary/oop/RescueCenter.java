@@ -44,6 +44,20 @@ public class RescueCenter {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
+        try {
+            PreparedStatement myStmt = dbConnect.prepareStatement("SELECT * FROM Treatments");
+            results = myStmt.executeQuery();
+
+            while (results.next()){
+                Treatment treatment = new Treatment(results.getInt("AnimalID"), results.getInt("TaskID"), results.getInt("StartHour"));
+                treatments.add(treatment);
+            }
+
+            myStmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void createConnection(){
@@ -62,7 +76,7 @@ public class RescueCenter {
         return this.tasks;
     }
 
-    public ArrayList<Treatment> getFurnitureList() {
+    public ArrayList<Treatment> getTreatmentList() {
         return this.treatments;
     }
 
@@ -78,6 +92,11 @@ public class RescueCenter {
         ArrayList<Task> tasks = rescueCenter.getTaskList();
         for (Task task : tasks) {
             System.out.println(task.toString());
+        }
+
+        ArrayList<Treatment> treatments = rescueCenter.getTreatmentList();
+        for (Treatment treatment : treatments) {
+            System.out.println(treatment.getAnimalID());
         }
     }
     
