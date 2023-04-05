@@ -7,7 +7,7 @@ private int duration;
 private String description;
 private int maxWindow;
 
-public Task(int taskID, String description, int duration, int maxWindow){
+public Task(int taskID, int duration, String description, int maxWindow){
     this.taskID = taskID;
     this.description = description;
     this.duration = duration;
@@ -15,7 +15,7 @@ public Task(int taskID, String description, int duration, int maxWindow){
 }
 
 public int getTaskID(){
-    return 1;
+    return taskID;
 }
 
 public void setTaskID(int taskID){
