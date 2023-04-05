@@ -7,7 +7,7 @@ private int duration;
 private String description;
 private int maxWindow;
 
-public Task(int taskID, int duration, String description, int maxWindow){
+public Task(int taskID, String description, int duration,  int maxWindow){
     this.taskID = taskID;
     this.description = description;
     this.duration = duration;
