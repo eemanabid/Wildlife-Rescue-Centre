@@ -39,7 +39,7 @@ public class GUIController {
             @Override
             public void actionPerformed( ActionEvent e ) {
                 mainMenu.setVisible(false);
-                
+                // add a start page: GenerateSchedule()
             }
         });
 
@@ -51,11 +51,6 @@ public class GUIController {
             }
         });
 
-        /*
-         * update this function so that user cannot quit until 
-         * user has confirmed that a backup volunteer has been called
-         * if a backup volunteer was needed
-         */
         JButton quit = new JButton( new AbstractAction("Quit") {
             @Override
             public void actionPerformed( ActionEvent e ){
@@ -104,6 +99,23 @@ public class GUIController {
         menu.add(quit);
 
         FRM.add(menu);
+    }
+
+    public void generateSchedule(){
+        // call modify start hour if error message
+        // use get confirmation button so that if a volunteer was needed it can be confirmed
+    }
+
+    public void modifyStartHour(){
+        // csll generate schedule for new schedule
+    }
+
+    public void getConfirmation(){
+        // add save schdeule button so that after confirming the schedule file can be generated
+    }
+
+    public void saveSchedule(){
+        // gives message to quit and try again if schedule does not save message 
     }
 
     public static void main (String [] args){
