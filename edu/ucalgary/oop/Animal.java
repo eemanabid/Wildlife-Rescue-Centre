@@ -5,10 +5,6 @@ public class Animal {
     private int animalID;
     private String animalNickname;
     private String animalSpecies;
-    private boolean isNocturnal;
-    private boolean isDiurnal;
-    private boolean isCrepuscular;
-
     private boolean task; //need relationship between task and animal
     private int feedTime; //added in feedTime, prepTime and cleanCageTime for setTimings()
     private int prepTime;
@@ -19,11 +15,6 @@ public class Animal {
         this.animalNickname = animalNickname;
         this.animalSpecies = animalSpecies;
         setTimings();
-    }
-
-    public int getAnimalID(String animalNickname){
-        this.animalID = -1;
-        return animalID;
     }
 
     //task timings for each animal species
@@ -57,7 +48,6 @@ public class Animal {
             default:
                 System.out.println("Error: Animal species not found");
                 break;
-
         }
     }
 
@@ -69,13 +59,6 @@ public class Animal {
     public String getAnimalNickname(){
         return this.animalNickname;
     }
-
-    //public void setAnimalNickname(String animalNickname){
-       // this.animalNickname = animalNickname;
-    //}
-        //return this.animalNickname;
-    //}
-
 
     public String getAnimalSpecies(){
         return this.animalSpecies;
@@ -96,28 +79,4 @@ public class Animal {
     public int getCageCleanTime() {
         return this.cleanCageTime;
     }
-
-    //setters
-    public void setAnimalNickname(String animalNickname){
-        this.animalNickname = animalNickname;
-    }
-
-    //public void setAnimalSpecies(String animalSpecies){
-        //this.animalSpecies = animalSpecies;
-    //}
-
-    public void setTask(boolean task) {
-        this.task = task;
-    }
-
-    public void setAnimalID(int animalID){
-        this.animalID = animalID;
-    }
-
-    //public void setAnimalID(int animalID){
-        //this.animalID = animalID;
-    //}
-    
-
-    
 }
