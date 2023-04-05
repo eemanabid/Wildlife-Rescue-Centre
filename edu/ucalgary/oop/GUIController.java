@@ -5,6 +5,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class GUIController {
     /*
@@ -27,6 +29,9 @@ public class GUIController {
 
 
     private final JFrame FRM = new JFrame();
+    LocalDate currentDate = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    String formattedDate = currentDate.format(formatter);
 
     //empty constructor atm: 
     public GUIController(){
@@ -106,6 +111,11 @@ public class GUIController {
         // use get confirmation button so that if a volunteer was needed it can be confirmed
         // if next is pressed when confirmation for backup is needed give error message
         // go to save schedule if backup volunteer is not needed
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Schedule for" + formattedDate);
+
+        // Do we make this System.out.println? or change return type
     }
 
     public void modifyStartHour(){
