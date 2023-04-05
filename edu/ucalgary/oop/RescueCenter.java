@@ -49,7 +49,15 @@ public class RescueCenter {
         }
     }
 
-    public void changeTask(Task newTask){
-        
+    public ArrayList<Animal> getAnimalList() {
+        return this.animals;
+    }
+
+    public ArrayList<Task> getTaskList() {
+        return this.tasks;
+    }
+
+    public ArrayList<Treatment> getFurnitureList() {
+        return this.treatments;
     }
 }
