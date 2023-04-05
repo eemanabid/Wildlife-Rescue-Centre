@@ -102,12 +102,14 @@ public class GUIController {
     }
 
     public void generateSchedule(){
-        // call modify start hour if error message
+        // call modify start hour if the desired schedule does not genertae 
         // use get confirmation button so that if a volunteer was needed it can be confirmed
+        // if next is pressed when confirmation for backup is needed give error message
+        // go to save schedule if backup volunteer is not needed
     }
 
     public void modifyStartHour(){
-        // csll generate schedule for new schedule
+        // modify start hours and call generate schedule for new schedule
     }
 
     public void getConfirmation(){
@@ -115,7 +117,7 @@ public class GUIController {
     }
 
     public void saveSchedule(){
-        // gives message to quit and try again if schedule does not save message 
+        // gives message to quit and try again if schedule does not save as a file
     }
 
     public static void main (String [] args){
