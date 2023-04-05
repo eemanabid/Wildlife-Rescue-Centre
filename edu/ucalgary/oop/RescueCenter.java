@@ -13,7 +13,7 @@ public class RescueCenter {
 
     public void createConnection(){
         try{
-            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/treatments", "mano", "804007503");
+            dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/ewr", "mano", "804007503");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -65,7 +65,7 @@ public class RescueCenter {
 
     public static void main(String[] args) {
         RescueCenter rescueCenter = new RescueCenter();
-        //rescueCenter.createConnection();
+        rescueCenter.createConnection();
     
         ArrayList<Animal> animals = rescueCenter.getAnimalList();
         for (Animal animal : animals) {
