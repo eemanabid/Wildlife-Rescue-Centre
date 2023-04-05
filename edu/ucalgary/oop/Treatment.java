@@ -13,36 +13,18 @@ public class Treatment {
     }
 
     public int getTreatmentID(){
-        return 1;
-    }
-
-    public void setTreatmentID(int treatmentID){
-        this.treatmentID = treatmentID;
+        return this.treatmentID;
     }
 
     public int getAnimalID(){
         return this.animalID;
     }
 
-    public void setAnimalID(int animalID){
-        this.animalID = animalID;
-    }
-
     public int getTaskID(){
-        return 1;
-    }
-
-    public void setTaskID(int taskID){
-        this.taskID = taskID;
+        return this.taskID;
     }
 
     public int getStartHour(){
-        return 1;
+        return this.startHour;
     }
-
-    public void setStartHour(int startHour){
-        this.startHour = startHour;
-    }
-
-
 }
