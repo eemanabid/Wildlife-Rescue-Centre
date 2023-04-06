@@ -32,9 +32,11 @@ public class GUIController {
     LocalDate currentDate = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     String formattedDate = currentDate.format(formatter);
+    private RescueCenter rescueCenter;
 
     //empty constructor atm: 
     public GUIController(){
+        this.rescueCenter = new RescueCenter();
     }
 
     public void mainMenu(){
@@ -45,6 +47,7 @@ public class GUIController {
             public void actionPerformed( ActionEvent e ) {
                 mainMenu.setVisible(false);
                 // add a start page: GenerateSchedule()
+                generateSchedule();
             }
         });
 
@@ -113,9 +116,19 @@ public class GUIController {
         // go to save schedule if backup volunteer is not needed
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Schedule for" + formattedDate);
+        sb.append("Schedule for " + formattedDate + "\n\n");
 
-        // Do we make this System.out.println? or change return type
+        for (Animal animal : rescueCenter.getAnimalList()) {
+            sb.append("Animal #" + animal.getAnimalID() + "\n");
+
+            for (Task task : rescueCenter.getTaskList()) {
+                sb.append("\tTask #" + task.getTaskID() + ": " + task.getDescription() + "\n");
+                sb.append("\t\tStart Time: " + ":00\n");
+            }
+
+            sb.append("\n");
+        }
+    JOptionPane.showMessageDialog(FRM, sb.toString(), "Generated Schedule", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void modifyStartHour(){
