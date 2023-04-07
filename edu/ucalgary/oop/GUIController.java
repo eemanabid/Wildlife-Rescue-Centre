@@ -11,32 +11,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class GUIController {
-    /*
-     * When the user clicks the "Generate Schedule" button, 
-     * the program will attempt to generate a schedule based on the animal and medical task data
-     * If the schedule cannot be generated, an error message will be displayed in the status bar.
-     * needs to be able to modify the start hour of one or more of the treatments 
-     * based on the error received?
-     * 
-     * When the user clicks the "Save Schedule" button, 
-     * the program will save the current schedule to a file on disk. 
-     * If an error occurs while saving the file, 
-     * an error message will be displayed in the status bar.
-     * 
-     * When the user clicks the "Get Confirmation" button, 
-     * the program will confirm that a backup volunteer is needed. 
-     * If the backup volunteer cannot be reached, 
-     * an error message will be displayed in the status bar.
-     */
-
-
+   
     private final JFrame FRM = new JFrame();
     LocalDate currentDate = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     String formattedDate = currentDate.format(formatter);
     private RescueCenter rescueCenter;
     JTextArea scheduleArea = new JTextArea();
-
+  
     //empty constructor atm: 
     public GUIController(){
         this.rescueCenter = new RescueCenter();
@@ -112,6 +94,12 @@ public class GUIController {
         FRM.add(menu);
     }
 
+    /* When the user clicks the "Generate Schedule" button, 
+     * the program will attempt to generate a schedule based on the animal and medical task data
+     * If the schedule cannot be generated, an error message will be displayed in the status bar.
+     * needs to be able to modify the start hour of one or more of the treatments 
+     * based on the error received?
+     */
     public void generateSchedule(){
         // call modify start hour if the desired schedule does not genertae 
         // use get confirmation button so that if a volunteer was needed it can be confirmed
@@ -125,14 +113,15 @@ public class GUIController {
 
         JPanel menu = new JPanel(new BorderLayout());
 
-        // this is just testing code: the schedule will be here
+        // this is just testing code: the schedule will be called here
         scheduleArea.setLineWrap(true);
         scheduleArea.setText("Schedule for " + formattedDate + "\n\n");
         for (Animal animal : rescueCenter.getAnimalList()) {
-            scheduleArea.append("Animal #" + animal.getAnimalID() + "\n");
-        }
+            scheduleArea.append("Animal #" + animal.getAnimalNickname() + "\n");
+        }    
         menu.add(scheduleArea);
 
+        // get schedule page buttons 
         JButton save = new JButton( new AbstractAction("Save this Schedule") {
             @Override
             public void actionPerformed( ActionEvent e ) {
@@ -167,12 +156,21 @@ public class GUIController {
         // modify start hours and call generate schedule for new schedule
     }
 
+    /* When the user clicks the "Get Confirmation" button, 
+    * the program will confirm that a backup volunteer is needed. 
+    * If the backup volunteer cannot be reached, 
+    * an error message will be displayed in the status bar.
+    */
     public void getConfirmation(){
         // add save schdeule button so that after confirming the schedule file can be generated
     }
 
+    /* When the user clicks the "Save Schedule" button, 
+     * the program will save the current schedule to a file on disk. 
+     * If an error occurs while saving the file, 
+     * an error message will be displayed in the status bar.
+     */
     public void saveSchedule(){
-        // gives message to quit and try again if schedule does not save as a file
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showSaveDialog(FRM);
         if (result == JFileChooser.APPROVE_OPTION) {
