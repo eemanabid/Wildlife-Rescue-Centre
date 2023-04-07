@@ -43,7 +43,7 @@ public class GUIController {
     public void mainMenu(){
         JPanel mainMenu = new JPanel();
 
-        JButton begin = new JButton( new AbstractAction("Begin") {
+        JButton begin = new JButton( new AbstractAction("Get Schedule") {
             @Override
             public void actionPerformed( ActionEvent e ) {
                 mainMenu.setVisible(false);
