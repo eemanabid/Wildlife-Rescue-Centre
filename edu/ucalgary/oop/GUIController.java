@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class GUIController {
    
@@ -106,38 +107,39 @@ public class GUIController {
         // if save schedule is pressed when confirmation for backup is needed give error message
         // go to save schedule if backup volunteer is not needed
 
-        FRM.setSize(500, 500);
+        FRM.setSize(600, 500);
         FRM.setResizable(false);
         FRM.setVisible(true);
         FRM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel menu = new JPanel(new BorderLayout());
 
+        
         // this is just testing code: the schedule will be called here
         scheduleArea.setLineWrap(true);
         scheduleArea.setText("Schedule for " + formattedDate + "\n\n");
         for (Animal animal : rescueCenter.getAnimalList()) {
-            scheduleArea.append("Animal #" + animal.getAnimalNickname() + "\n");
+            scheduleArea.append("Animal name: " + animal.getAnimalNickname() + "\n");
         }    
+        scheduleArea.append("\n\n" + "If a backup volunteer is needed, please get confirmation before saving schedule." + "\n\n");
         menu.add(scheduleArea);
 
         // get schedule page buttons 
-        JButton save = new JButton( new AbstractAction("Save this Schedule") {
+        JButton save = new JButton( new AbstractAction("Save") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                // add a start page: GenerateSchedule()
                 saveSchedule();
             }
         });
 
-        JButton modify = new JButton( new AbstractAction("Modify") {
+        JButton modify = new JButton( new AbstractAction("Modify Schedule") {
             @Override
             public void actionPerformed( ActionEvent e ){
                 menu.setVisible(false);
             }
         });
 
-        JButton confirm = new JButton( new AbstractAction("Volunteer Confirmation") {
+        JButton confirm = new JButton( new AbstractAction("Get Confirmation") {
             @Override
             public void actionPerformed( ActionEvent e ){
                 menu.setVisible(false);
