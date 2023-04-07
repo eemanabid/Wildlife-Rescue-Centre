@@ -1,5 +1,6 @@
 package edu.ucalgary.oop;
 
+import java.io.*;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -34,6 +35,7 @@ public class GUIController {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     String formattedDate = currentDate.format(formatter);
     private RescueCenter rescueCenter;
+    JTextArea scheduleArea = new JTextArea();
 
     //empty constructor atm: 
     public GUIController(){
@@ -124,7 +126,6 @@ public class GUIController {
         JPanel menu = new JPanel(new BorderLayout());
 
         // this is just testing code: the schedule will be here
-        JTextArea scheduleArea = new JTextArea();
         scheduleArea.setLineWrap(true);
         scheduleArea.setText("Schedule for " + formattedDate + "\n\n");
         for (Animal animal : rescueCenter.getAnimalList()) {
@@ -172,6 +173,19 @@ public class GUIController {
 
     public void saveSchedule(){
         // gives message to quit and try again if schedule does not save as a file
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showSaveDialog(FRM);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            try {
+                FileWriter writer = new FileWriter(selectedFile);
+                writer.write(scheduleArea.getText());
+                writer.close();
+                JOptionPane.showMessageDialog(FRM, "Schedule saved successfully!", "Save Schedule", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(FRM, "Error saving schedule. Please try again.", "Save Schedule", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
     public static void main (String [] args){
