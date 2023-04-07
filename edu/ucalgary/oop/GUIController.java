@@ -5,6 +5,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -112,23 +113,56 @@ public class GUIController {
     public void generateSchedule(){
         // call modify start hour if the desired schedule does not genertae 
         // use get confirmation button so that if a volunteer was needed it can be confirmed
-        // if next is pressed when confirmation for backup is needed give error message
+        // if save schedule is pressed when confirmation for backup is needed give error message
         // go to save schedule if backup volunteer is not needed
+
+        FRM.setSize(500, 500);
+        FRM.setResizable(false);
+        FRM.setVisible(true);
+        FRM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel menu = new JPanel(new BorderLayout());
 
         StringBuilder sb = new StringBuilder();
         sb.append("Schedule for " + formattedDate + "\n\n");
 
+        // this is just testing code: the schedule will be here
+        JTextArea scheduleArea = new JTextArea();
+        scheduleArea.setLineWrap(true);
+        scheduleArea.setText("Schedule for " + formattedDate + "\n\n");
         for (Animal animal : rescueCenter.getAnimalList()) {
-            sb.append("Animal #" + animal.getAnimalID() + "\n");
-
-            for (Task task : rescueCenter.getTaskList()) {
-                sb.append("\tTask #" + task.getTaskID() + ": " + task.getDescription() + "\n");
-                sb.append("\t\tStart Time: " + ":00\n");
-            }
-
-            sb.append("\n");
+            scheduleArea.append("Animal #" + animal.getAnimalID() + "\n");
         }
-    JOptionPane.showMessageDialog(FRM, sb.toString(), "Generated Schedule", JOptionPane.INFORMATION_MESSAGE);
+        menu.add(scheduleArea);
+
+        JButton save = new JButton( new AbstractAction("Save this Schedule") {
+            @Override
+            public void actionPerformed( ActionEvent e ) {
+                // add a start page: GenerateSchedule()
+                saveSchedule();
+            }
+        });
+
+        JButton modify = new JButton( new AbstractAction("Modify") {
+            @Override
+            public void actionPerformed( ActionEvent e ){
+                menu.setVisible(false);
+            }
+        });
+
+        JButton confirm = new JButton( new AbstractAction("Volunteer Confirmation") {
+            @Override
+            public void actionPerformed( ActionEvent e ){
+                menu.setVisible(false);
+            }
+        });
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(save);
+        buttonPanel.add(modify);
+        buttonPanel.add(confirm);
+        menu.add(buttonPanel, BorderLayout.SOUTH);
+        FRM.add(menu);
     }
 
     public void modifyStartHour(){
