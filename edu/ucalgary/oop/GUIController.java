@@ -123,9 +123,6 @@ public class GUIController {
 
         JPanel menu = new JPanel(new BorderLayout());
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Schedule for " + formattedDate + "\n\n");
-
         // this is just testing code: the schedule will be here
         JTextArea scheduleArea = new JTextArea();
         scheduleArea.setLineWrap(true);
