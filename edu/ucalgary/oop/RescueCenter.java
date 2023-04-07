@@ -12,7 +12,7 @@ public class RescueCenter {
     private ResultSet results;
     private final String DBURL = "jdbc:mysql://localhost/EWR";
     private final String USERNAME = "root";
-    private final String PASSWORD = "Mano804007503!";
+    private final String PASSWORD = "";
 
     public RescueCenter(){
         createConnection();
