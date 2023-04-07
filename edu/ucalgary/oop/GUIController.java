@@ -182,6 +182,7 @@ public class GUIController {
                 writer.write(scheduleArea.getText());
                 writer.close();
                 JOptionPane.showMessageDialog(FRM, "Schedule saved successfully!", "Save Schedule", JOptionPane.INFORMATION_MESSAGE);
+                FRM.dispose();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(FRM, "Error saving schedule. Please try again.", "Save Schedule", JOptionPane.ERROR_MESSAGE);
             }
