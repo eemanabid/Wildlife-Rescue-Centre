@@ -19,6 +19,8 @@ public class GUIController {
     String formattedDate = currentDate.format(formatter);
     private RescueCenter rescueCenter;
     JTextArea scheduleArea = new JTextArea();
+
+    
   
     public GUIController(){
         this.rescueCenter = new RescueCenter();
@@ -111,11 +113,14 @@ public class GUIController {
         FRM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel menu = new JPanel(new BorderLayout());
-
         
         // this is just testing code: the schedule will be called here
         scheduleArea.setLineWrap(true);
         scheduleArea.setText("Schedule for " + formattedDate + "\n\n");
+
+        JPanel scrollPanel = new JPanel();
+        scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
+    
     
         for (int hour = 0; hour <= 23; hour++) {
             StringBuilder hourSchedule = new StringBuilder();
@@ -136,12 +141,18 @@ public class GUIController {
             }
         
             if (hasTasks) {
-                scheduleArea.append(hourSchedule.toString() + "\n");
+                JTextArea hourTextArea = new JTextArea(hourSchedule.toString());
+                hourTextArea.setEditable(false);
+                scrollPanel.add(hourTextArea);
             }
         }
+        JScrollPane scrollPane = new JScrollPane(scrollPanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        menu.add(scrollPane, BorderLayout.CENTER);
         
         scheduleArea.append("\n\n" + "If a backup volunteer is needed, please get confirmation before saving schedule." + "\n\n");
-        menu.add(scheduleArea);
+        menu.add(scheduleArea, BorderLayout.SOUTH);
 
         // get schedule page buttons 
         JButton save = new JButton( new AbstractAction("Save") {
