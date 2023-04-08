@@ -19,7 +19,9 @@ public class GUIController {
     String formattedDate = currentDate.format(formatter);
     private RescueCenter rescueCenter;
     JTextArea scheduleArea = new JTextArea();
+    JTextArea hourTextArea = new JTextArea();
     private boolean backup; 
+    JPanel scrollPanel = new JPanel();
   
     public GUIController(){
         this.rescueCenter = new RescueCenter();
@@ -117,7 +119,6 @@ public class GUIController {
         scheduleArea.setLineWrap(true);
         scheduleArea.setText("Schedule for " + formattedDate + "\n");
 
-        JPanel scrollPanel = new JPanel();
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
 
         scrollPanel.add(scheduleArea, BorderLayout.NORTH);
@@ -186,26 +187,25 @@ public class GUIController {
             }
  
             if (duration > 60) {
+                backup = true; 
                 hourSchedule.append(" [ + backup volunteer]\n");
             }
        
             if (hasTasks) {
-                JTextArea hourTextArea = new JTextArea(hourSchedule.toString());
+                hourTextArea.append(hourSchedule.toString());
                 hourTextArea.setEditable(false);
                 scrollPanel.add(hourTextArea);
             }
         }
- 
-        JScrollPane scrollPane = new JScrollPane(scrollPanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        menu.add(scrollPane, BorderLayout.CENTER);
-        
+
         JPanel messagePanel = new JPanel();
         messagePanel.add(new JLabel("If a backup volunteer is needed, please get confirmation before saving schedule."));
     
         scrollPanel.add(messagePanel, BorderLayout.SOUTH);
-
+ 
+        JScrollPane scrollPane = new JScrollPane(scrollPanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         menu.add(scrollPane, BorderLayout.CENTER);
 
         // get schedule page buttons 
@@ -300,6 +300,26 @@ public class GUIController {
 
         JPanel menu = new JPanel(new BorderLayout());
 
+        JPanel confirmationPanel = new JPanel(new BorderLayout());
+        confirmationPanel.setPreferredSize(new Dimension(600, 500));
+
+        // Create scrollPane to display the schedule
+        JScrollPane scrollPane = new JScrollPane(scrollPanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        confirmationPanel.add(scrollPane, BorderLayout.CENTER);
+
+        // Add a label at the bottom of the screen
+        JPanel messagePanel = new JPanel();
+        messagePanel.add(new JLabel("Volunteers confirmed!"));
+
+        // Remove the previous messagePanel from scrollPanel and add the new one
+        scrollPanel.remove(scrollPanel.getComponentCount() - 1);
+        scrollPanel.add(messagePanel, BorderLayout.SOUTH);
+
+        menu.add(confirmationPanel);
+    
         // modify start hour page buttons 
         JButton save = new JButton( new AbstractAction("Save") {
             @Override
@@ -321,6 +341,7 @@ public class GUIController {
         buttonPanel.add(quit);
         menu.add(buttonPanel, BorderLayout.SOUTH);
         FRM.add(menu);
+
     }
 
     /* When the user clicks the "Save Schedule" button, 
@@ -336,6 +357,7 @@ public class GUIController {
             try {
                 FileWriter writer = new FileWriter(selectedFile);
                 writer.write(scheduleArea.getText());
+                writer.write(hourTextArea.getText());
                 writer.close();
                 JOptionPane.showMessageDialog(FRM, "Schedule saved successfully!", "Save Schedule", JOptionPane.INFORMATION_MESSAGE);
                 FRM.dispose();
