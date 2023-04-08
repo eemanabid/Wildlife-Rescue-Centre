@@ -3,49 +3,49 @@ package edu.ucalgary.oop;
 import java.util.regex.Pattern;
 
 public class Schedule {
-
-
-   private Task task;
-   private Animal animal;
-   private int volunteerID;
-   private boolean backupVolunteer;
-   private final String REGEX = "\"([A-Z]+) - ([A-Z]{1,2})"; // CHANGE
-   private final Pattern PATTERN = Pattern.compile(REGEX);
+    private Task task;
+    private Animal animal;
+    private boolean backupVolunteer = false;
+    private int timeSpent;
+    private int timeAvailable = 60;
+    private int startTime;
+    //private final String REGEX = "\"([A-Z]+) - ([A-Z]{1,2})"; // CHANGE
+    //private final Pattern PATTERN = Pattern.compile(REGEX);
  
-   public Schedule(Task task, Animal animal, int volunteerID, boolean backupVolunteer){
-       this.task = task;
-       this.animal = animal;
-       this.volunteerID = volunteerID;
-       this.backupVolunteer = backupVolunteer;
-   }
+    public Schedule(Task task, Animal animal, int startTime, int timeSpent, boolean backupVolunteer){
+        this.task = task;
+        this.animal = animal;
+        this.startTime = startTime;
+        this.timeSpent = timeSpent;
+        this.timeAvailable -= timeSpent;
+        this.backupVolunteer = backupVolunteer;
+    }
 
-
-   public Task getTask(){
+    public Task getTask(){
        return task;
-   }
+    }
 
-
-   public void setTask (Task task){
+    public void setTask (Task task){
        this.task = task;
-   }
+    }
 
-
-   public Animal getAnimal(){
+    public Animal getAnimal(){
        return animal;
-   }
+    }
 
-
-   public void setAnimal(Animal animal){
+    public void setAnimal(Animal animal){
        this.animal = animal;
-   }
+    }
 
+    public void setStartTime(int startTime){
+        this.startTime = startTime;
+    }
 
-   public int getVolunteerID (){
-      return volunteerID;
-   }
+    public void setTimeSpent(int timeSpent){
+        this.timeSpent = timeSpent;
+    }
 
-
-   public void setTask (int volunteerID){
-       this.volunteerID = volunteerID;
-   }
+    public void setTimeAvailable(int timeAvailable){
+        this.timeAvailable = timeAvailable;
+    }
 }
