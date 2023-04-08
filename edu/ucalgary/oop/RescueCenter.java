@@ -80,6 +80,17 @@ public class RescueCenter {
         return this.treatments;
     }
 
+    public ArrayList<Animal> getOrphanedAnimalsList(){
+        ArrayList<Animal> orphanedAnimals = new ArrayList<>();
+        for (Animal animal: animals){
+            if (animal.getAnimalNickname().contains(",")){
+                orphanedAnimals.add(animal);
+            }
+        }
+        return orphanedAnimals;
+    }
+    
+
     public static void main(String[] args) {
         RescueCenter rescueCenter = new RescueCenter();
         //rescueCenter.createConnection();
