@@ -11,8 +11,8 @@ public class RescueCenter {
     private Connection dbConnect;
     private ResultSet results;
     private final String DBURL = "jdbc:mysql://localhost/EWR";
-    private final String USERNAME = "root";
-    private final String PASSWORD = "Hoori503";
+    private final String USERNAME = "oop";
+    private final String PASSWORD = "password";
 
     public RescueCenter(){
         createConnection();
@@ -98,6 +98,24 @@ public class RescueCenter {
         for (Treatment treatment : treatments) {
             System.out.println(treatment.getAnimalID());
         }
+    }
+
+    public Task getTaskByID(int taskID) {
+        for (Task task : tasks) {
+            if (task.getTaskID() == taskID) {
+                return task;
+            }
+        }
+        return null;
+    }
+
+    public Animal getAnimalByID(int animalID) {
+        for (Animal animal : animals) {
+            if (animal.getAnimalID() == animalID) {
+                return animal;
+            }
+        }
+        return null;
     }
     
 }

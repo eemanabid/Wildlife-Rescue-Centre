@@ -116,9 +116,30 @@ public class GUIController {
         // this is just testing code: the schedule will be called here
         scheduleArea.setLineWrap(true);
         scheduleArea.setText("Schedule for " + formattedDate + "\n\n");
-        for (Animal animal : rescueCenter.getAnimalList()) {
-            scheduleArea.append("Animal name: " + animal.getAnimalNickname() + "\n");
-        }    
+    
+        for (int hour = 0; hour <= 23; hour++) {
+            StringBuilder hourSchedule = new StringBuilder();
+            hourSchedule.append(hour + ":00\n");
+        
+            boolean hasTasks = false;
+            for (Treatment treatment : rescueCenter.getTreatmentList()) {
+                if (treatment.getStartHour() == hour) {
+                    int taskID = treatment.getTaskID();
+                    int animalID = treatment.getAnimalID();
+                    Task task = rescueCenter.getTaskByID(taskID);
+                    String taskDescription = task.getDescription();
+                    Animal animal = rescueCenter.getAnimalByID(animalID);
+                    String animalNickname = animal.getAnimalNickname();
+                    hourSchedule.append("* " + taskDescription + " " + "(" + animalNickname + ")" + "\n");
+                    hasTasks = true;
+                }
+            }
+        
+            if (hasTasks) {
+                scheduleArea.append(hourSchedule.toString() + "\n");
+            }
+        }
+        
         scheduleArea.append("\n\n" + "If a backup volunteer is needed, please get confirmation before saving schedule." + "\n\n");
         menu.add(scheduleArea);
 
