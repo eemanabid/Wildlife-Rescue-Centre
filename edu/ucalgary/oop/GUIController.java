@@ -151,8 +151,8 @@ public class GUIController {
                     String taskDescription = task.getDescription();
                     Animal animal = rescueCenter.getAnimalByID(animalID);
                     String animalNickname = animal.getAnimalNickname();
-                    duration += task.getDuration();
-                    hourSchedule.append("* " + taskDescription + " " + "(" + animalNickname + ")" + "\n");
+                    //duration += task.getDuration();
+                    hourSchedule.append("* " + taskDescription + " " + "(" + animalNickname + ")" + task.getDuration() + "\n");
                     hasTasks = true;
                 }
             }
@@ -163,7 +163,8 @@ public class GUIController {
                     if (hour >= 0 && hour < 3) {
                         String animalNickname = animal.getAnimalNickname();
                         String animalSpecies = animal.getAnimalSpecies();
-                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "es"+ " " + "(" + animalNickname + ")" + "\n");
+                        duration += animal.getFeedTime() + animal.getPrepTime();
+                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "es"+ " " + "(" + animalNickname + ")" + duration + "\n");
                         hasTasks = true;
                     }
                 }
@@ -171,7 +172,8 @@ public class GUIController {
                     if (hour >= 8 && hour < 11) {
                         String animalNickname = animal.getAnimalNickname();
                         String animalSpecies = animal.getAnimalSpecies();
-                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + "\n");
+                        duration += animal.getFeedTime() + animal.getPrepTime();
+                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration + "\n");
                         hasTasks = true;
                     }
                 }
@@ -180,7 +182,8 @@ public class GUIController {
                     if (hour >= 19 && hour < 22) {
                         String animalNickname = animal.getAnimalNickname();
                         String animalSpecies = animal.getAnimalSpecies();
-                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + "\n");
+                        duration += animal.getFeedTime() + animal.getPrepTime();
+                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration +"\n");
                         hasTasks = true;
                     }
                 }
