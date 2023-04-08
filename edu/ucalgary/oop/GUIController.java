@@ -156,6 +156,35 @@ public class GUIController {
                     hasTasks = true;
                 }
             }
+
+            for (Animal animal : rescueCenter.getAnimalList()) {
+            
+                if (animal.getActiveType() == "nocturnal") {
+                    if (hour >= 0 && hour < 3) {
+                        String animalNickname = animal.getAnimalNickname();
+                        String animalSpecies = animal.getAnimalSpecies();
+                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "es"+ " " + "(" + animalNickname + ")" + "\n");
+                        hasTasks = true;
+                    }
+                }
+                if (animal.getActiveType() == "diurnal") {
+                    if (hour >= 8 && hour < 11) {
+                        String animalNickname = animal.getAnimalNickname();
+                        String animalSpecies = animal.getAnimalSpecies();
+                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + "\n");
+                        hasTasks = true;
+                    }
+                }
+
+                if (animal.getActiveType() == "crepuscular" ) {
+                    if (hour >= 19 && hour < 22) {
+                        String animalNickname = animal.getAnimalNickname();
+                        String animalSpecies = animal.getAnimalSpecies();
+                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + "\n");
+                        hasTasks = true;
+                    }
+                }
+            }
         
             if (hasTasks) {
                 JTextArea hourTextArea = new JTextArea(hourSchedule.toString());

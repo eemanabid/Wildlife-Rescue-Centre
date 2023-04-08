@@ -85,4 +85,8 @@ public class Animal {
     public int getCageCleanTime() {
         return this.cleanCageTime;
     }
+
+    public String getActiveType() {
+        return this.activeType;
+    }
 }
