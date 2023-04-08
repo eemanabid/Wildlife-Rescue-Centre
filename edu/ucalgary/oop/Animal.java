@@ -8,6 +8,7 @@ public class Animal {
     private boolean task; //need relationship between task and animal
     private int feedTime; //added in feedTime, prepTime and cleanCageTime for setTimings()
     private int prepTime;
+    private String activeType;
     private int cleanCageTime;
 
     public Animal(int animalID, String animalNickname, String animalSpecies){
@@ -24,26 +25,31 @@ public class Animal {
                 this.feedTime = 5;
                 this.prepTime = 5;
                 this.cleanCageTime = 5;
+                this.activeType = "nocturnal";
                 break;
             case "porcupine":
                 this.feedTime = 5;
                 this.prepTime = 0;
                 this.cleanCageTime = 10;
+                this.activeType = "crepuscular";
                 break;
             case "coyote":
                 this.feedTime = 5;
                 this.prepTime = 10;
                 this.cleanCageTime = 5;
+                this.activeType = "crepuscular";
                 break;
             case "beaver":
                 this.feedTime = 5;
                 this.prepTime = 0;
                 this.cleanCageTime = 5;
+                this.activeType = "diurnal";
                 break;
             case "raccoon":
                 this.feedTime = 5;
                 this.prepTime = 0;
                 this.cleanCageTime = 5;
+                this.activeType = "nocturnal";
                 break;
             default:
                 System.out.println("Error: Animal species not found");
