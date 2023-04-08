@@ -15,7 +15,7 @@ public class GUIController {
    
     private final JFrame FRM = new JFrame();
     LocalDate currentDate = LocalDate.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     String formattedDate = currentDate.format(formatter);
     private RescueCenter rescueCenter;
     JTextArea scheduleArea = new JTextArea();
