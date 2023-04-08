@@ -121,29 +121,23 @@ public class GUIController {
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
 
         scrollPanel.add(scheduleArea, BorderLayout.NORTH);
-    
+
         for (int hour = 0; hour <= 23; hour++) {
             StringBuilder hourSchedule = new StringBuilder();
             hourSchedule.append(hour + ":00");
-        
+       
             boolean hasTasks = false;
             int duration = 0;
             for (Treatment treatment : rescueCenter.getTreatmentList()) {
                 if (treatment.getStartHour() == hour) {
                     int taskID = treatment.getTaskID();
                     Task task = rescueCenter.getTaskByID(taskID);
-                    duration += task.getDuration();
+                    //duration += task.getDuration();
                 }
             }
-
-            if (duration > 60) {
-                backup = true;
-                hourSchedule.append(" [ + backup volunteer]\n");
-            }
-            else {
+ 
                 hourSchedule.append("\n");
-            }
-
+           
             for (Treatment treatment : rescueCenter.getTreatmentList()) {
                 if (treatment.getStartHour() == hour) {
                     int taskID = treatment.getTaskID();
@@ -152,14 +146,14 @@ public class GUIController {
                     String taskDescription = task.getDescription();
                     Animal animal = rescueCenter.getAnimalByID(animalID);
                     String animalNickname = animal.getAnimalNickname();
-                    //duration += task.getDuration();
-                    hourSchedule.append("* " + taskDescription + " " + "(" + animalNickname + ")" + task.getDuration() + "\n");
+                    duration += task.getDuration();
+                    hourSchedule.append("* " + taskDescription + " " + "(" + animalNickname + ")" + duration + "\n");
                     hasTasks = true;
                 }
             }
-
+ 
             for (Animal animal : rescueCenter.getAnimalList()) {
-            
+           
                 if (animal.getActiveType() == "nocturnal") {
                     if (hour >= 0 && hour < 3) {
                         String animalNickname = animal.getAnimalNickname();
@@ -178,7 +172,8 @@ public class GUIController {
                         hasTasks = true;
                     }
                 }
-
+ 
+ 
                 if (animal.getActiveType() == "crepuscular" ) {
                     if (hour >= 19 && hour < 22) {
                         String animalNickname = animal.getAnimalNickname();
@@ -189,13 +184,18 @@ public class GUIController {
                     }
                 }
             }
-        
+ 
+            if (duration > 60) {
+                hourSchedule.append(" [ + backup volunteer]\n");
+            }
+       
             if (hasTasks) {
                 JTextArea hourTextArea = new JTextArea(hourSchedule.toString());
                 hourTextArea.setEditable(false);
                 scrollPanel.add(hourTextArea);
             }
         }
+ 
         JScrollPane scrollPane = new JScrollPane(scrollPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
