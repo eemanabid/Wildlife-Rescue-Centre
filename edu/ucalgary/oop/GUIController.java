@@ -108,7 +108,7 @@ public class GUIController {
         // go to save schedule if backup volunteer is not needed
 
         FRM.setSize(600, 500);
-        FRM.setResizable(false);
+        FRM.setResizable(true);
         FRM.setVisible(true);
         FRM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -124,9 +124,25 @@ public class GUIController {
     
         for (int hour = 0; hour <= 23; hour++) {
             StringBuilder hourSchedule = new StringBuilder();
-            hourSchedule.append(hour + ":00\n");
+            hourSchedule.append(hour + ":00");
         
             boolean hasTasks = false;
+            int duration = 0;
+            for (Treatment treatment : rescueCenter.getTreatmentList()) {
+                if (treatment.getStartHour() == hour) {
+                    int taskID = treatment.getTaskID();
+                    Task task = rescueCenter.getTaskByID(taskID);
+                    duration += task.getDuration();
+                }
+            }
+
+            if (duration > 60) {
+                hourSchedule.append(" [ + backup volunteer]\n");
+            }
+            else {
+                hourSchedule.append("\n");
+            }
+
             for (Treatment treatment : rescueCenter.getTreatmentList()) {
                 if (treatment.getStartHour() == hour) {
                     int taskID = treatment.getTaskID();
@@ -135,6 +151,7 @@ public class GUIController {
                     String taskDescription = task.getDescription();
                     Animal animal = rescueCenter.getAnimalByID(animalID);
                     String animalNickname = animal.getAnimalNickname();
+                    duration += task.getDuration();
                     hourSchedule.append("* " + taskDescription + " " + "(" + animalNickname + ")" + "\n");
                     hasTasks = true;
                 }
