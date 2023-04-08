@@ -19,8 +19,7 @@ public class GUIController {
     String formattedDate = currentDate.format(formatter);
     private RescueCenter rescueCenter;
     JTextArea scheduleArea = new JTextArea();
-
-    
+    private boolean backup; 
   
     public GUIController(){
         this.rescueCenter = new RescueCenter();
@@ -116,11 +115,12 @@ public class GUIController {
         
         // this is just testing code: the schedule will be called here
         scheduleArea.setLineWrap(true);
-        scheduleArea.setText("Schedule for " + formattedDate + "\n\n");
+        scheduleArea.setText("Schedule for " + formattedDate + "\n");
 
         JPanel scrollPanel = new JPanel();
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
-    
+
+        scrollPanel.add(scheduleArea, BorderLayout.NORTH);
     
         for (int hour = 0; hour <= 23; hour++) {
             StringBuilder hourSchedule = new StringBuilder();
@@ -137,6 +137,7 @@ public class GUIController {
             }
 
             if (duration > 60) {
+                backup = true;
                 hourSchedule.append(" [ + backup volunteer]\n");
             }
             else {
@@ -197,14 +198,22 @@ public class GUIController {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         menu.add(scrollPane, BorderLayout.CENTER);
         
-        scheduleArea.append("\n\n" + "If a backup volunteer is needed, please get confirmation before saving schedule." + "\n\n");
-        menu.add(scheduleArea, BorderLayout.SOUTH);
+        JPanel messagePanel = new JPanel();
+        messagePanel.add(new JLabel("If a backup volunteer is needed, please get confirmation before saving schedule."));
+    
+        scrollPanel.add(messagePanel, BorderLayout.SOUTH);
+
+        menu.add(scrollPane, BorderLayout.CENTER);
 
         // get schedule page buttons 
         JButton save = new JButton( new AbstractAction("Save") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                saveSchedule();
+                if (backup) {
+                    JOptionPane.showMessageDialog(FRM, "Please confirm volunteers before saving the schedule.");
+                } else {
+                    saveSchedule();
+                }
             }
         });
 
