@@ -15,12 +15,11 @@ public class GUIController {
    
     private final JFrame FRM = new JFrame();
     LocalDate currentDate = LocalDate.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     String formattedDate = currentDate.format(formatter);
     private RescueCenter rescueCenter;
     JTextArea scheduleArea = new JTextArea();
   
-    //empty constructor atm: 
     public GUIController(){
         this.rescueCenter = new RescueCenter();
     }
@@ -32,7 +31,6 @@ public class GUIController {
             @Override
             public void actionPerformed( ActionEvent e ) {
                 mainMenu.setVisible(false);
-                // add a start page: GenerateSchedule()
                 generateSchedule();
             }
         });
@@ -136,6 +134,7 @@ public class GUIController {
             @Override
             public void actionPerformed( ActionEvent e ){
                 menu.setVisible(false);
+                modifyStartHour();
             }
         });
 
@@ -143,6 +142,7 @@ public class GUIController {
             @Override
             public void actionPerformed( ActionEvent e ){
                 menu.setVisible(false);
+                getConfirmation();
             }
         });
 
@@ -156,6 +156,44 @@ public class GUIController {
 
     public void modifyStartHour(){
         // modify start hours and call generate schedule for new schedule
+        FRM.setSize(600, 500);
+        FRM.setResizable(false);
+        FRM.setVisible(true);
+        FRM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel menu = new JPanel(new BorderLayout());
+
+        // modify start hour page buttons 
+        JButton begin = new JButton( new AbstractAction("Get Schedule") {
+            @Override
+            public void actionPerformed( ActionEvent e ) {
+                menu.setVisible(false);
+                generateSchedule();
+            }
+        });
+
+        JButton modify = new JButton( new AbstractAction("Modify Schedule") {
+            @Override
+            public void actionPerformed( ActionEvent e ){
+                menu.setVisible(false);
+                modifyStartHour();
+            }
+        });
+
+        JButton confirm = new JButton( new AbstractAction("Get Confirmation") {
+            @Override
+            public void actionPerformed( ActionEvent e ){
+                menu.setVisible(false);
+                getConfirmation();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(begin);
+        buttonPanel.add(modify);
+        buttonPanel.add(confirm);
+        menu.add(buttonPanel, BorderLayout.SOUTH);
+        FRM.add(menu);
     }
 
     /* When the user clicks the "Get Confirmation" button, 
@@ -165,6 +203,34 @@ public class GUIController {
     */
     public void getConfirmation(){
         // add save schdeule button so that after confirming the schedule file can be generated
+        FRM.setSize(600, 500);
+        FRM.setResizable(false);
+        FRM.setVisible(true);
+        FRM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel menu = new JPanel(new BorderLayout());
+
+        // modify start hour page buttons 
+        JButton save = new JButton( new AbstractAction("Save") {
+            @Override
+            public void actionPerformed( ActionEvent e ) {
+                saveSchedule();
+            }
+        });
+
+        JButton quit = new JButton( new AbstractAction("Quit") {
+            @Override
+            public void actionPerformed( ActionEvent e ){
+                System.exit(0);
+                
+            }
+        });
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(save);
+        buttonPanel.add(quit);
+        menu.add(buttonPanel, BorderLayout.SOUTH);
+        FRM.add(menu);
     }
 
     /* When the user clicks the "Save Schedule" button, 
