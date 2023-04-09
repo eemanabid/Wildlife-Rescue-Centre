@@ -117,7 +117,7 @@ public class GUIController {
         
         // this is just testing code: the schedule will be called here
         scheduleArea.setLineWrap(true);
-        scheduleArea.setText("Schedule for " + formattedDate + "\n");
+        scheduleArea.setText("Schedule for " + formattedDate);
 
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
 
@@ -125,7 +125,7 @@ public class GUIController {
 
         for (int hour = 0; hour <= 23; hour++) {
             StringBuilder hourSchedule = new StringBuilder();
-            hourSchedule.append(hour + ":00");
+            hourSchedule.append("\n" + hour + ":00");
        
             boolean hasTasks = false;
             int duration = 0;
