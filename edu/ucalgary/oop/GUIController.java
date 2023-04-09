@@ -125,19 +125,10 @@ public class GUIController {
 
         for (int hour = 0; hour <= 23; hour++) {
             StringBuilder hourSchedule = new StringBuilder();
-            hourSchedule.append("\n" + hour + ":00");
+            hourSchedule.append("\n" + hour + ":00" + "\n");
        
             boolean hasTasks = false;
             int duration = 0;
-            for (Treatment treatment : rescueCenter.getTreatmentList()) {
-                if (treatment.getStartHour() == hour) {
-                    int taskID = treatment.getTaskID();
-                    Task task = rescueCenter.getTaskByID(taskID);
-                    //duration += task.getDuration();
-                }
-            }
- 
-                hourSchedule.append("\n");
            
             for (Treatment treatment : rescueCenter.getTreatmentList()) {
                 if (treatment.getStartHour() == hour) {
