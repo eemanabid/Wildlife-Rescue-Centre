@@ -17,6 +17,7 @@ public class Task {
     private String description;
     private int maxWindow;
 
+    // constructor
     public Task(int taskID, String description, int duration,  int maxWindow){
         this.taskID = taskID;
         this.description = description;
@@ -24,6 +25,7 @@ public class Task {
         this.maxWindow = maxWindow;
     }
 
+    // getters
     public int getTaskID(){
         return taskID;
     }

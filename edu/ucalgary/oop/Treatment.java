@@ -17,6 +17,7 @@ public class Treatment {
     private int taskID; 
     private int startHour;  
 
+    // constructor
     public Treatment(int animalID, int taskID, int startHour){
         this.treatmentID = nextTreatmentID++;
         this.animalID = animalID;
@@ -24,6 +25,7 @@ public class Treatment {
         this.startHour = startHour;
     }
 
+    // getters
     public int getTreatmentID(){
         return this.treatmentID;
     }

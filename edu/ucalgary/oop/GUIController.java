@@ -45,10 +45,12 @@ public class GUIController implements ScheduleFormatter{
         }
     }
     
+    // constructor
     public GUIController(){
         this.rescueCenter = new RescueCenter();
     }
 
+    // main menu displaying get schedule, about, and quit buttons
     public void mainMenu(){
         JPanel mainMenu = new JPanel();
 
@@ -86,6 +88,7 @@ public class GUIController implements ScheduleFormatter{
         FRM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    // about page displaying team member names
     public void about(){
         FRM.setSize(500, 125);
         FRM.setResizable(false);
@@ -122,13 +125,9 @@ public class GUIController implements ScheduleFormatter{
      * the program will attempt to generate a schedule based on the animal and medical task data
      * If the schedule cannot be generated, an error message will be displayed in the status bar.
      * needs to be able to modify the start hour of one or more of the treatments 
-     * based on the error received?
+     * based on the error received. 
      */
     public void generateSchedule(){
-        // call modify start hour if the desired schedule does not genertae 
-        // use get confirmation button so that if a volunteer was needed it can be confirmed
-        // if save schedule is pressed when confirmation for backup is needed give error message
-        // go to save schedule if backup volunteer is not needed
         FRM.setSize(600, 500);
         FRM.setResizable(true);
         FRM.setVisible(true);
@@ -193,6 +192,7 @@ public class GUIController implements ScheduleFormatter{
         FRM.add(menu);
     }
 
+    // make the schedule for the user 
     @Override
     public void scheduleFormatter(){
         for (int hour = 0; hour <= 23; hour++) {
@@ -499,6 +499,8 @@ public class GUIController implements ScheduleFormatter{
      * the program will save the current schedule to a file on disk. 
      * If an error occurs while saving the file, 
      * an error message will be displayed in the status bar.
+     * If the user needs confirmation first, 
+     * it will display a message.
      */
     public void saveSchedule(){
         JFileChooser fileChooser = new JFileChooser();

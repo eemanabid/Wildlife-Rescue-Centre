@@ -22,6 +22,7 @@ public class Schedule {
     //private final String REGEX = "\"([A-Z]+) - ([A-Z]{1,2})"; // CHANGE
     //private final Pattern PATTERN = Pattern.compile(REGEX);
  
+    // constructor
     public Schedule(Task task, Animal animal, int startTime, int timeSpent, boolean backupVolunteer){
         this.task = task;
         this.animal = animal;
@@ -31,16 +32,18 @@ public class Schedule {
         this.backupVolunteer = backupVolunteer;
     }
 
+    // getters
     public Task getTask(){
        return task;
     }
 
+    public Animal getAnimal(){
+        return animal;
+     }
+
+    // setters
     public void setTask (Task task){
        this.task = task;
-    }
-
-    public Animal getAnimal(){
-       return animal;
     }
 
     public void setAnimal(Animal animal){
