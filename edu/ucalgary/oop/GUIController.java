@@ -25,7 +25,16 @@ public class GUIController implements ScheduleFormatter{
     JTextArea hourTextArea = new JTextArea();
     private boolean backup; 
     JPanel scrollPanel = new JPanel();
-  
+
+    int CAGE_CLEANING_HOUR = 1; // Set the cleaning hour to 1am
+    private int cleanCages(String animal) {
+        if (animal.equals("porcupine")) {
+            return 10;
+        } else {
+            return 5;
+        }
+    }
+    
     public GUIController(){
         this.rescueCenter = new RescueCenter();
     }
@@ -138,7 +147,7 @@ public class GUIController implements ScheduleFormatter{
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         menu.add(scrollPane, BorderLayout.CENTER);
 
-        // get schedule page buttons 
+        // get schedule page buttons
         JButton save = new JButton( new AbstractAction("Save") {
             @Override
             public void actionPerformed( ActionEvent e ) {
@@ -177,23 +186,35 @@ public class GUIController implements ScheduleFormatter{
     @Override
     public void scheduleFormatter(){
         for (int hour = 0; hour <= 23; hour++) {
-            StringBuilder hourSchedule = new StringBuilder();
-            hourSchedule.append("\n" + hour + ":00" + "\n");
-       
-            boolean hasTasks = false;
-            int duration = 0;
-            int remainingTime = 60;
-           
-            for (Treatment treatment : rescueCenter.getTreatmentList()) {
-                if (treatment.getStartHour() == hour) {
-                    int taskID = treatment.getTaskID();
-                    int animalID = treatment.getAnimalID();
-                    Task task = rescueCenter.getTaskByID(taskID);
-                    String taskDescription = task.getDescription();
-                    Animal animal = rescueCenter.getAnimalByID(animalID);
-                    String animalNickname = animal.getAnimalNickname();
-                    duration += task.getDuration();
-                    remainingTime -= duration;
+        StringBuilder hourSchedule = new StringBuilder();
+        hourSchedule.append("\n" + hour + ":00" + "\n");
+
+        boolean hasTasks = false;
+        int duration = 0;
+        int remainingTime = 60;
+
+        // check if cage cleaning is required
+        // check if cage cleaning is required
+        if (hour == CAGE_CLEANING_HOUR) {
+            // clean cages for coyotes, raccoons, and beavers
+            duration += 5 * cleanCages("coyote");
+            duration += 5 * cleanCages("raccoon");
+            duration += 5 * cleanCages("beaver");
+            // clean cages for porcupines
+            duration += 10 * cleanCages("porcupine");
+            hourSchedule.append("* Cage cleaning (" + duration + ")\n");
+        }
+
+        for (Treatment treatment : rescueCenter.getTreatmentList()) {
+            if (treatment.getStartHour() == hour) {
+                int taskID = treatment.getTaskID();
+                int animalID = treatment.getAnimalID();
+                Task task = rescueCenter.getTaskByID(taskID);
+                String taskDescription = task.getDescription();
+                Animal animal = rescueCenter.getAnimalByID(animalID);
+                String animalNickname = animal.getAnimalNickname();
+                duration += task.getDuration();
+                remainingTime -= duration;
                     hourSchedule.append("* " + taskDescription + " " + "(" + animalNickname + ")" + duration + "\n");
                     hasTasks = true;
                 }
@@ -232,6 +253,13 @@ public class GUIController implements ScheduleFormatter{
                         hasTasks = true;
                     }
                 }
+
+                /*
+                if (!hasTasks && hour != CAGE_CLEANING_HOUR) {
+                    hourSchedule.append("- No tasks scheduled\n");
+                }
+                */
+                
                 if (animal.getActiveType() == "diurnal") {
                     if (hour >= 8 && hour < 11) {
                         if (!printed){
