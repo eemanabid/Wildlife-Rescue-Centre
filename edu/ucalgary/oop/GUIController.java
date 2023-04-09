@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class GUIController {
+public class GUIController implements ScheduleFormatter{
    
     private final JFrame FRM = new JFrame();
     LocalDate currentDate = LocalDate.now();
@@ -123,6 +123,55 @@ public class GUIController {
 
         scrollPanel.add(scheduleArea, BorderLayout.NORTH);
 
+        scheduleFormatter();
+
+        JPanel messagePanel = new JPanel();
+        messagePanel.add(new JLabel("If backup volunteer(s) is needed, please get confirmation before saving schedule."));
+        scrollPanel.add(messagePanel, BorderLayout.SOUTH);
+ 
+        JScrollPane scrollPane = new JScrollPane(scrollPanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        menu.add(scrollPane, BorderLayout.CENTER);
+
+        // get schedule page buttons 
+        JButton save = new JButton( new AbstractAction("Save") {
+            @Override
+            public void actionPerformed( ActionEvent e ) {
+                if (backup) {
+                    JOptionPane.showMessageDialog(FRM, "Please confirm that the backup(s) have been called before saving the schedule.");
+                } else {
+                    saveSchedule();
+                }
+            }
+        });
+
+        JButton modify = new JButton( new AbstractAction("Modify Schedule") {
+            @Override
+            public void actionPerformed( ActionEvent e ){
+                menu.setVisible(false);
+                modifyStartHour();
+            }
+        });
+
+        JButton confirm = new JButton( new AbstractAction("Confirm Backup(s)") {
+            @Override
+            public void actionPerformed( ActionEvent e ){
+                menu.setVisible(false);
+                getConfirmation();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(save);
+        buttonPanel.add(modify);
+        buttonPanel.add(confirm);
+        menu.add(buttonPanel, BorderLayout.SOUTH);
+        FRM.add(menu);
+    }
+
+    @Override
+    public void scheduleFormatter(){
         for (int hour = 0; hour <= 23; hour++) {
             StringBuilder hourSchedule = new StringBuilder();
             hourSchedule.append("\n" + hour + ":00" + "\n");
@@ -260,50 +309,6 @@ public class GUIController {
                 scrollPanel.add(hourTextArea);
             }
         }
-
-        JPanel messagePanel = new JPanel();
-        messagePanel.add(new JLabel("If backup volunteer(s) is needed, please get confirmation before saving schedule."));
-        scrollPanel.add(messagePanel, BorderLayout.SOUTH);
- 
-        JScrollPane scrollPane = new JScrollPane(scrollPanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        menu.add(scrollPane, BorderLayout.CENTER);
-
-        // get schedule page buttons 
-        JButton save = new JButton( new AbstractAction("Save") {
-            @Override
-            public void actionPerformed( ActionEvent e ) {
-                if (backup) {
-                    JOptionPane.showMessageDialog(FRM, "Please confirm that the backup(s) have been called before saving the schedule.");
-                } else {
-                    saveSchedule();
-                }
-            }
-        });
-
-        JButton modify = new JButton( new AbstractAction("Modify Schedule") {
-            @Override
-            public void actionPerformed( ActionEvent e ){
-                menu.setVisible(false);
-                modifyStartHour();
-            }
-        });
-
-        JButton confirm = new JButton( new AbstractAction("Confirm Backup(s)") {
-            @Override
-            public void actionPerformed( ActionEvent e ){
-                menu.setVisible(false);
-                getConfirmation();
-            }
-        });
-
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        buttonPanel.add(save);
-        buttonPanel.add(modify);
-        buttonPanel.add(confirm);
-        menu.add(buttonPanel, BorderLayout.SOUTH);
-        FRM.add(menu);
     }
 
     public void modifyStartHour(){
