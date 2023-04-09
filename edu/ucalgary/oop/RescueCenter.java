@@ -3,6 +3,16 @@ package edu.ucalgary.oop;
 import java.util.*;
 import java.sql.*;
 
+/**
+ * Class RescueCenter: 
+ * @since 1.0
+ * @author Hooriya Amjad <a href="mailto:hooriya.amjad@ucalgary.ca">hooriya.amjad@ucalgary.ca</a>
+ * @author Sahiti Akella <a href="mailto:sahiti.akella@ucalgary.ca">sahiti.akella@ucalgary.ca</a>
+ * @author Eeman Abid <a href="mailto:eeman.abid@ucalgary.ca">eeman.abid@ucalgary.ca</a>
+ * @author Hareem Khan <a href="mailto:hareem.khan@ucalgary.ca">hareem.khan@ucalgary.ca</a>
+ * @version 1.2
+ */
+
 public class RescueCenter {
 
     private ArrayList<Animal> animals = new ArrayList<Animal>(); 
@@ -11,8 +21,8 @@ public class RescueCenter {
     private Connection dbConnect;
     private ResultSet results;
     private final String DBURL = "jdbc:mysql://localhost/EWR";
-    private final String USERNAME = "oop";
-    private final String PASSWORD = "password";
+    private final String USERNAME = "root";
+    private final String PASSWORD = "Hoori503";
 
     public RescueCenter(){
         createConnection();
