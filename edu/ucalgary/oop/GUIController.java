@@ -357,6 +357,7 @@ public class GUIController {
             try {
                 FileWriter writer = new FileWriter(selectedFile);
                 writer.write(scheduleArea.getText());
+                writer.write("\n");
                 writer.write(hourTextArea.getText());
                 writer.close();
                 JOptionPane.showMessageDialog(FRM, "Schedule saved successfully!", "Save Schedule", JOptionPane.INFORMATION_MESSAGE);
