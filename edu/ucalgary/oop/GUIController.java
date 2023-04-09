@@ -199,7 +199,7 @@ public class GUIController {
         }
 
         JPanel messagePanel = new JPanel();
-        messagePanel.add(new JLabel("If a backup volunteer is needed, please get confirmation before saving schedule."));
+        messagePanel.add(new JLabel("If a backup volunteer(s) is needed, please get confirmation before saving schedule."));
     
         scrollPanel.add(messagePanel, BorderLayout.SOUTH);
  
@@ -213,7 +213,7 @@ public class GUIController {
             @Override
             public void actionPerformed( ActionEvent e ) {
                 if (backup) {
-                    JOptionPane.showMessageDialog(FRM, "Please confirm volunteers before saving the schedule.");
+                    JOptionPane.showMessageDialog(FRM, "Please confirm that the backup(s) have been called before saving the schedule.");
                 } else {
                     saveSchedule();
                 }
@@ -228,7 +228,7 @@ public class GUIController {
             }
         });
 
-        JButton confirm = new JButton( new AbstractAction("Get Confirmation") {
+        JButton confirm = new JButton( new AbstractAction("Confirm Backup(s)") {
             @Override
             public void actionPerformed( ActionEvent e ){
                 menu.setVisible(false);
@@ -270,7 +270,7 @@ public class GUIController {
             }
         });
 
-        JButton confirm = new JButton( new AbstractAction("Get Confirmation") {
+        JButton confirm = new JButton( new AbstractAction("Confirm Backup(s)") {
             @Override
             public void actionPerformed( ActionEvent e ){
                 menu.setVisible(false);
