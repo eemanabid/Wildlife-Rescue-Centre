@@ -155,15 +155,18 @@ public class GUIController {
                 boolean printed = animal.isFeedingPrinted();
                 if (animal.getActiveType() == "nocturnal") {
                     if (hour >= 0 && hour < 3) {
-                        String animalNickname = animal.getAnimalNickname();
-                        String animalSpecies = animal.getAnimalSpecies();
-                        duration += animal.getFeedTime() + animal.getPrepTime();
-                        remainingTime -= duration;
-                        if (animalSpecies.equals("fox")){
-                            foxesFed.add(animalNickname);
-                        }
-                        if (animalSpecies.equals("raccoon")){
-                            raccoonsFed.add(animalNickname);
+                        if (!printed){
+                            String animalNickname = animal.getAnimalNickname();
+                            String animalSpecies = animal.getAnimalSpecies();
+                            duration += animal.getFeedTime() + animal.getPrepTime();
+                            remainingTime -= duration;
+                            if (animalSpecies.equals("fox")){
+                                foxesFed.add(animalNickname);
+                            }
+                            if (animalSpecies.equals("raccoon")){
+                                raccoonsFed.add(animalNickname);
+                            }
+                            animal.setFeedingPrinted(true);
                         }
                         /* 
                         if(!printed){
@@ -178,12 +181,15 @@ public class GUIController {
                 }
                 if (animal.getActiveType() == "diurnal") {
                     if (hour >= 8 && hour < 11) {
-                        String animalNickname = animal.getAnimalNickname();
-                        String animalSpecies = animal.getAnimalSpecies();
-                        duration += animal.getFeedTime() + animal.getPrepTime();
-                        remainingTime -= duration;
-                        if (animalSpecies.equals("beaver")){
-                            beaversFed.add(animalNickname);
+                        if (!printed){
+                            String animalNickname = animal.getAnimalNickname();
+                            String animalSpecies = animal.getAnimalSpecies();
+                            duration += animal.getFeedTime() + animal.getPrepTime();
+                            remainingTime -= duration;
+                            if (animalSpecies.equals("beaver")){
+                                beaversFed.add(animalNickname);
+                            }
+                            animal.setFeedingPrinted(true);
                         }
                         /* 
                         if(!printed){
@@ -201,15 +207,18 @@ public class GUIController {
  
                 if (animal.getActiveType() == "crepuscular" ) {
                     if (hour >= 19 && hour < 22) {
-                        String animalNickname = animal.getAnimalNickname();
-                        String animalSpecies = animal.getAnimalSpecies();
-                        duration += animal.getFeedTime() + animal.getPrepTime();
-                        remainingTime -= duration;
-                        if (animalSpecies.equals("coyote")){
-                            coyotesFed.add(animalNickname);
-                        }
-                        if (animalSpecies.equals("porcupine")){
-                            porcupinesFed.add(animalNickname);
+                        if (!printed){
+                            String animalNickname = animal.getAnimalNickname();
+                            String animalSpecies = animal.getAnimalSpecies();
+                            duration += animal.getFeedTime() + animal.getPrepTime();
+                            remainingTime -= duration;
+                            if (animalSpecies.equals("coyote")){
+                                coyotesFed.add(animalNickname);
+                            }
+                            if (animalSpecies.equals("porcupine")){
+                                porcupinesFed.add(animalNickname);
+                            }
+                            animal.setFeedingPrinted(true);
                         }
                         /* 
                         if(!printed){
