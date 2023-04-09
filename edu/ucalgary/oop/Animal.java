@@ -13,8 +13,8 @@ public class Animal {
     private int animalID;
     private String animalNickname;
     private String animalSpecies;
-    private boolean task; //need relationship between task and animal
-    private int feedTime; //added in feedTime, prepTime and cleanCageTime for setTimings()
+    private boolean task; // need relationship between task and animal
+    private int feedTime; // added in feedTime, prepTime and cleanCageTime for setTimings()
     private int prepTime;
     private String activeType;
     private boolean feedingPrinted;
@@ -27,7 +27,7 @@ public class Animal {
         setTimings();
     }
 
-    //task timings for each animal species
+    // task timings for each animal species
     public void setTimings() {
         switch (animalSpecies) {
             case "fox":
@@ -66,7 +66,7 @@ public class Animal {
         }
     }
 
-    //getters
+    // getters
     public int getAnimalID(){
         return this.animalID;
     }
@@ -99,11 +99,13 @@ public class Animal {
         return this.activeType;
     }
 
-    public boolean isFeedingPrinted() {
-        return this.feedingPrinted;
-    }
-
+    // setters
     public void setFeedingPrinted(boolean printed) {
         this.feedingPrinted = printed;
+    }
+
+    // helper functions
+    public boolean isFeedingPrinted() {
+        return this.feedingPrinted;
     }
 }

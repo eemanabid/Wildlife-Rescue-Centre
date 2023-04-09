@@ -24,6 +24,7 @@ public class RescueCenter {
     private final String USERNAME = "root";
     private final String PASSWORD = "Hoori503";
 
+    // constructor
     public RescueCenter(){
         createConnection();
         
@@ -70,6 +71,7 @@ public class RescueCenter {
         }
     }
 
+    // create sql connection 
     public void createConnection(){
         try{
             dbConnect = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
@@ -78,6 +80,7 @@ public class RescueCenter {
         }
     }
 
+    // getters
     public Connection getConnection() {
         return dbConnect;
     }    
@@ -104,7 +107,7 @@ public class RescueCenter {
         return orphanedAnimals;
     }
     
-
+    // main 
     public static void main(String[] args) {
         RescueCenter rescueCenter = new RescueCenter();
         //rescueCenter.createConnection();
