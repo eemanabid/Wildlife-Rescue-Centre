@@ -414,9 +414,8 @@ public class GUIController implements ScheduleFormatter{
         JButton generateButton = new JButton("Generate Schedule");
         generateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                FRM.getContentPane().removeAll();
-                FRM.repaint();
-                generateSchedule();
+                FRM.dispose(); // close the current GUI
+                main(new String[0]);
             }
         });
         JButton goBack = new JButton( new AbstractAction("Go Back") {
