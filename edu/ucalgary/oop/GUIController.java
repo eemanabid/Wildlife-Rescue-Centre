@@ -199,8 +199,7 @@ public class GUIController {
         }
 
         JPanel messagePanel = new JPanel();
-        messagePanel.add(new JLabel("If a backup volunteer(s) is needed, please get confirmation before saving schedule."));
-    
+        messagePanel.add(new JLabel("If backup volunteer(s) is needed, please get confirmation before saving schedule."));
         scrollPanel.add(messagePanel, BorderLayout.SOUTH);
  
         JScrollPane scrollPane = new JScrollPane(scrollPanel);
@@ -303,21 +302,21 @@ public class GUIController {
         JPanel confirmationPanel = new JPanel(new BorderLayout());
         confirmationPanel.setPreferredSize(new Dimension(600, 500));
 
+        // Add a label at the top of the screen
+        JPanel messagePanel = new JPanel();
+        messagePanel.add(new JLabel("Backup volunteer(s) confirmed!"));
+
         // Create scrollPane to display the schedule
         JScrollPane scrollPane = new JScrollPane(scrollPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
+        confirmationPanel.add(messagePanel, BorderLayout.NORTH);
         confirmationPanel.add(scrollPane, BorderLayout.CENTER);
-
-        // Add a label at the bottom of the screen
-        JPanel messagePanel = new JPanel();
-        messagePanel.add(new JLabel("Volunteers confirmed!"));
 
         // Remove the previous messagePanel from scrollPanel and add the new one
         scrollPanel.remove(scrollPanel.getComponentCount() - 1);
-        scrollPanel.add(messagePanel, BorderLayout.SOUTH);
-
+        
         menu.add(confirmationPanel);
     
         // modify start hour page buttons 
