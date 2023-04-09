@@ -380,16 +380,16 @@ public class GUIController implements ScheduleFormatter{
                 generateSchedule();
             }
         });
-        JButton cancelButton = new JButton("Cancel");
-        cancelButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                FRM.getContentPane().removeAll();
-                FRM.repaint();
+        JButton goBack = new JButton( new AbstractAction("Go Back") {
+            @Override
+            public void actionPerformed( ActionEvent e ){
+                menu.setVisible(false);
+                generateSchedule();
             }
         });
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(generateButton);
-        buttonPanel.add(cancelButton);
+        buttonPanel.add(goBack);
         menu.add(buttonPanel, BorderLayout.SOUTH);
     
         // add menu to JFrame
