@@ -350,12 +350,13 @@ public class GUIController implements ScheduleFormatter{
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2 && table.getSelectedRow() != -1) {
+                if (e.getClickCount() == 1 && table.getSelectedRow() != -1) {
                     int treatmentID = (int) model.getValueAt(table.getSelectedRow(), 0);
                     int currentStartHour = (int) model.getValueAt(table.getSelectedRow(), 3);
                     int newStartHour = Integer.parseInt(JOptionPane.showInputDialog(FRM, "Enter new start hour for Treatment " + treatmentID + ":", currentStartHour));
                     try {
-                        PreparedStatement pstmt = rescueCenter.getConnection().prepareStatement("UPDATE TREATMENTS SET StartHour = ? WHERE TreatmentID = ?");
+                        String sql = "UPDATE TREATMENTS SET StartHour = ? WHERE TreatmentID = ?";
+                        PreparedStatement pstmt = rescueCenter.getConnection().prepareStatement(sql);
                         pstmt.setInt(1, newStartHour);
                         pstmt.setInt(2, treatmentID);
                         pstmt.executeUpdate();
