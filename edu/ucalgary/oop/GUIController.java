@@ -129,6 +129,7 @@ public class GUIController {
        
             boolean hasTasks = false;
             int duration = 0;
+            int remainingTime = 60;
            
             for (Treatment treatment : rescueCenter.getTreatmentList()) {
                 if (treatment.getStartHour() == hour) {
@@ -139,11 +140,17 @@ public class GUIController {
                     Animal animal = rescueCenter.getAnimalByID(animalID);
                     String animalNickname = animal.getAnimalNickname();
                     duration += task.getDuration();
+                    remainingTime -= duration;
                     hourSchedule.append("* " + taskDescription + " " + "(" + animalNickname + ")" + duration + "\n");
                     hasTasks = true;
                 }
             }
  
+            ArrayList<String> foxesFed = new ArrayList<>();
+            ArrayList<String> raccoonsFed = new ArrayList<>();
+            ArrayList<String> beaversFed = new ArrayList<>();
+            ArrayList<String> porcupinesFed = new ArrayList<>();
+            ArrayList<String> coyotesFed = new ArrayList<>();
             for (Animal animal : rescueCenter.getAnimalList()) {
            
                 if (animal.getActiveType() == "nocturnal") {
@@ -151,7 +158,14 @@ public class GUIController {
                         String animalNickname = animal.getAnimalNickname();
                         String animalSpecies = animal.getAnimalSpecies();
                         duration += animal.getFeedTime() + animal.getPrepTime();
-                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "es"+ " " + "(" + animalNickname + ")" + duration + "\n");
+                        remainingTime -= duration;
+                        if (animalSpecies.equals("fox")){
+                            foxesFed.add(animalNickname);
+                        }
+                        if (animalSpecies.equals("raccoon")){
+                            raccoonsFed.add(animalNickname);
+                        }
+                        //hourSchedule.append("* " + "Feeding - " + animalSpecies + "es"+ " " + "(" + animalNickname + ")" + duration + "\n");
                         hasTasks = true;
                     }
                 }
@@ -160,7 +174,11 @@ public class GUIController {
                         String animalNickname = animal.getAnimalNickname();
                         String animalSpecies = animal.getAnimalSpecies();
                         duration += animal.getFeedTime() + animal.getPrepTime();
-                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration + "\n");
+                        remainingTime -= duration;
+                        if (animalSpecies.equals("beaver")){
+                            beaversFed.add(animalNickname);
+                        }
+                        //hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration + "\n");
                         hasTasks = true;
                     }
                 }
@@ -171,12 +189,35 @@ public class GUIController {
                         String animalNickname = animal.getAnimalNickname();
                         String animalSpecies = animal.getAnimalSpecies();
                         duration += animal.getFeedTime() + animal.getPrepTime();
-                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration +"\n");
+                        remainingTime -= duration;
+                        if (animalSpecies.equals("coyote")){
+                            coyotesFed.add(animalNickname);
+                        }
+                        if (animalSpecies.equals("porcupine")){
+                            porcupinesFed.add(animalNickname);
+                        }
+                        //hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration +"\n");
                         hasTasks = true;
                     }
                 }
             }
- 
+
+            if (foxesFed.size() > 0) {
+                hourSchedule.append("* Feeding - foxes (" + foxesFed.size() + ": " + String.join(", ", foxesFed) + ") " + duration + "\n");
+            }
+            if (raccoonsFed.size() > 0) {
+                hourSchedule.append("* Feeding - raccoons (" + raccoonsFed.size() + ": " + String.join(", ", raccoonsFed) + ") " + duration + "\n");
+            }
+            if (beaversFed.size() > 0) {
+                hourSchedule.append("* Feeding - beavers (" + beaversFed.size() + ": " + String.join(", ", beaversFed) + ") " + duration + "\n");
+            }
+            if (coyotesFed.size() > 0) {
+                hourSchedule.append("* Feeding - coyotes (" + coyotesFed.size() + ": " + String.join(", ", coyotesFed) + ") " + duration + "\n");
+            }
+            if (porcupinesFed.size() > 0) {
+                hourSchedule.append("* Feeding - porcupines (" + porcupinesFed.size() + ": " + String.join(", ", porcupinesFed) + ") " + duration + "\n");
+            }
+   
             if (duration > 60) {
                 backup = true; 
                 hourSchedule.append(" [ + backup volunteer]\n");
