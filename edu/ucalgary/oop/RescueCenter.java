@@ -68,6 +68,10 @@ public class RescueCenter {
         }
     }
 
+    public Connection getConnection() {
+        return dbConnect;
+    }    
+
     public ArrayList<Animal> getAnimalList() {
         return this.animals;
     }

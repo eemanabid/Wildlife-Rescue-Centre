@@ -2,6 +2,8 @@ package edu.ucalgary.oop;
 
 import java.io.*;
 import javax.swing.*;
+import javax.swing.table.*;
+import java.awt.event.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
@@ -10,6 +12,7 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.sql.*;
 
 public class GUIController {
    
@@ -107,14 +110,15 @@ public class GUIController {
         // use get confirmation button so that if a volunteer was needed it can be confirmed
         // if save schedule is pressed when confirmation for backup is needed give error message
         // go to save schedule if backup volunteer is not needed
-
         FRM.setSize(600, 500);
         FRM.setResizable(true);
         FRM.setVisible(true);
         FRM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel menu = new JPanel(new BorderLayout());
-        
+        scrollPanel.removeAll();
+        scheduleArea.setText("");
+        hourTextArea.setText("");
         // this is just testing code: the schedule will be called here
         scheduleArea.setLineWrap(true);
         scheduleArea.setText("Schedule for " + formattedDate);
@@ -306,48 +310,89 @@ public class GUIController {
         FRM.add(menu);
     }
 
-    public void modifyStartHour(){
-        // modify start hours and call generate schedule for new schedule
-        FRM.setSize(600, 500);
-        FRM.setResizable(false);
-        FRM.setVisible(true);
-        FRM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+    public void modifyStartHour() {
+        
+        // create new JPanel menu for modifying start hour
         JPanel menu = new JPanel(new BorderLayout());
-
-        // modify start hour page buttons 
-        JButton begin = new JButton( new AbstractAction("Get Schedule") {
+    
+        // create table to display treatments with option to modify start hour
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Treatment ID");
+        model.addColumn("Animal ID");
+        model.addColumn("Task");
+        model.addColumn("Start Hour");
+    
+        // fetch treatments data from SQL database
+        try {
+            Statement stmt = rescueCenter.getConnection().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM TREATMENTS JOIN ANIMALS ON TREATMENTS.AnimalID = ANIMALS.AnimalID JOIN TASKS ON TREATMENTS.TaskID = TASKS.TaskID");
+            while (rs.next()) {
+                int treatmentID = rs.getInt("TreatmentID");
+                int animalID = rs.getInt("AnimalID");
+                String animalNickname = rs.getString("AnimalNickname");
+                String taskDescription = rs.getString("Description");
+                int startHour = rs.getInt("StartHour");
+                model.addRow(new Object[] {treatmentID, animalID + " (" + animalNickname + ")", taskDescription, startHour});
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error fetching treatments data: " + ex.getMessage());
+        }
+    
+        // create JTable to display treatments data
+        JTable table = new JTable(model);
+    
+        // allow user to edit start hour by double-clicking on a cell
+        table.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed( ActionEvent e ) {
-                menu.setVisible(false);
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2 && table.getSelectedRow() != -1) {
+                    int treatmentID = (int) model.getValueAt(table.getSelectedRow(), 0);
+                    int currentStartHour = (int) model.getValueAt(table.getSelectedRow(), 3);
+                    int newStartHour = Integer.parseInt(JOptionPane.showInputDialog(FRM, "Enter new start hour for Treatment " + treatmentID + ":", currentStartHour));
+                    try {
+                        PreparedStatement pstmt = rescueCenter.getConnection().prepareStatement("UPDATE TREATMENTS SET StartHour = ? WHERE TreatmentID = ?");
+                        pstmt.setInt(1, newStartHour);
+                        pstmt.setInt(2, treatmentID);
+                        pstmt.executeUpdate();
+                        // update model with new start hour value
+                        model.setValueAt(newStartHour, table.getSelectedRow(), 3);
+                    } catch (SQLException ex) {
+                        System.out.println("Error updating start hour for Treatment " + treatmentID + ": " + ex.getMessage());
+                    }            
+                }
+            }
+        });
+    
+        // add table to menu
+        menu.add(new JScrollPane(table), BorderLayout.CENTER);
+    
+        // add buttons to menu
+        JButton generateButton = new JButton("Generate Schedule");
+        generateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                FRM.getContentPane().removeAll();
+                FRM.repaint();
                 generateSchedule();
             }
         });
-
-        JButton modify = new JButton( new AbstractAction("Modify Schedule") {
-            @Override
-            public void actionPerformed( ActionEvent e ){
-                menu.setVisible(false);
-                modifyStartHour();
+        JButton cancelButton = new JButton("Cancel");
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                FRM.getContentPane().removeAll();
+                FRM.repaint();
             }
         });
-
-        JButton confirm = new JButton( new AbstractAction("Confirm Backup(s)") {
-            @Override
-            public void actionPerformed( ActionEvent e ){
-                menu.setVisible(false);
-                getConfirmation();
-            }
-        });
-
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        buttonPanel.add(begin);
-        buttonPanel.add(modify);
-        buttonPanel.add(confirm);
+        buttonPanel.add(generateButton);
+        buttonPanel.add(cancelButton);
         menu.add(buttonPanel, BorderLayout.SOUTH);
-        FRM.add(menu);
+    
+        // add menu to JFrame
+        FRM.getContentPane().add(menu);
+        FRM.pack();
+        FRM.setLocationRelativeTo(null);
     }
-
+    
     /* When the user clicks the "Get Confirmation" button, 
     * the program will confirm that a backup volunteer is needed. 
     * If the backup volunteer cannot be reached, 
