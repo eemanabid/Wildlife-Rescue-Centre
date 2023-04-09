@@ -152,7 +152,7 @@ public class GUIController {
             ArrayList<String> porcupinesFed = new ArrayList<>();
             ArrayList<String> coyotesFed = new ArrayList<>();
             for (Animal animal : rescueCenter.getAnimalList()) {
-           
+                boolean printed = animal.isFeedingPrinted();
                 if (animal.getActiveType() == "nocturnal") {
                     if (hour >= 0 && hour < 3) {
                         String animalNickname = animal.getAnimalNickname();
@@ -165,7 +165,14 @@ public class GUIController {
                         if (animalSpecies.equals("raccoon")){
                             raccoonsFed.add(animalNickname);
                         }
-                        //hourSchedule.append("* " + "Feeding - " + animalSpecies + "es"+ " " + "(" + animalNickname + ")" + duration + "\n");
+                        /* 
+                        if(!printed){
+                            String animalNickname = animal.getAnimalNickname();
+                            String animalSpecies = animal.getAnimalSpecies();
+                            duration += animal.getFeedTime() + animal.getPrepTime();
+                            hourSchedule.append("* " + "Feeding - " + animalSpecies + "es"+ " " + "(" + animalNickname + ")" + duration + "\n");
+                            animal.setFeedingPrinted(true);
+                        }*/
                         hasTasks = true;
                     }
                 }
@@ -178,7 +185,15 @@ public class GUIController {
                         if (animalSpecies.equals("beaver")){
                             beaversFed.add(animalNickname);
                         }
-                        //hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration + "\n");
+                        /* 
+                        if(!printed){
+                            String animalNickname = animal.getAnimalNickname();
+                            String animalSpecies = animal.getAnimalSpecies();
+                            duration += animal.getFeedTime() + animal.getPrepTime();
+                            hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration + "\n");
+                            animal.setFeedingPrinted(true);
+                        }
+                    */
                         hasTasks = true;
                     }
                 }
@@ -196,12 +211,19 @@ public class GUIController {
                         if (animalSpecies.equals("porcupine")){
                             porcupinesFed.add(animalNickname);
                         }
-                        //hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration +"\n");
+                        /* 
+                        if(!printed){
+                            String animalNickname = animal.getAnimalNickname();
+                            String animalSpecies = animal.getAnimalSpecies();
+                            duration += animal.getFeedTime() + animal.getPrepTime();
+                            hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration +"\n");
+                            animal.setFeedingPrinted(true);
+                        }*/
                         hasTasks = true;
                     }
                 }
             }
-
+ 
             if (foxesFed.size() > 0) {
                 hourSchedule.append("* Feeding - foxes (" + foxesFed.size() + ": " + String.join(", ", foxesFed) + ") " + duration + "\n");
             }
@@ -231,8 +253,7 @@ public class GUIController {
         }
 
         JPanel messagePanel = new JPanel();
-        messagePanel.add(new JLabel("If a backup volunteer(s) is needed, please get confirmation before saving schedule."));
-    
+        messagePanel.add(new JLabel("If backup volunteer(s) is needed, please get confirmation before saving schedule."));
         scrollPanel.add(messagePanel, BorderLayout.SOUTH);
  
         JScrollPane scrollPane = new JScrollPane(scrollPanel);
@@ -335,21 +356,21 @@ public class GUIController {
         JPanel confirmationPanel = new JPanel(new BorderLayout());
         confirmationPanel.setPreferredSize(new Dimension(600, 500));
 
+        // Add a label at the top of the screen
+        JPanel messagePanel = new JPanel();
+        messagePanel.add(new JLabel("Backup volunteer(s) confirmed!"));
+
         // Create scrollPane to display the schedule
         JScrollPane scrollPane = new JScrollPane(scrollPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
+        confirmationPanel.add(messagePanel, BorderLayout.NORTH);
         confirmationPanel.add(scrollPane, BorderLayout.CENTER);
-
-        // Add a label at the bottom of the screen
-        JPanel messagePanel = new JPanel();
-        messagePanel.add(new JLabel("Volunteers confirmed!"));
 
         // Remove the previous messagePanel from scrollPanel and add the new one
         scrollPanel.remove(scrollPanel.getComponentCount() - 1);
-        scrollPanel.add(messagePanel, BorderLayout.SOUTH);
-
+        
         menu.add(confirmationPanel);
     
         // modify start hour page buttons 
@@ -389,6 +410,7 @@ public class GUIController {
             try {
                 FileWriter writer = new FileWriter(selectedFile);
                 writer.write(scheduleArea.getText());
+                writer.write("\n");
                 writer.write(hourTextArea.getText());
                 writer.close();
                 JOptionPane.showMessageDialog(FRM, "Schedule saved successfully!", "Save Schedule", JOptionPane.INFORMATION_MESSAGE);
