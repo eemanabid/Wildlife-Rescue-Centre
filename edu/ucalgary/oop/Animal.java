@@ -9,6 +9,7 @@ public class Animal {
     private int feedTime; //added in feedTime, prepTime and cleanCageTime for setTimings()
     private int prepTime;
     private String activeType;
+    private boolean feedingPrinted;
     private int cleanCageTime;
 
     public Animal(int animalID, String animalNickname, String animalSpecies){
@@ -88,5 +89,13 @@ public class Animal {
 
     public String getActiveType() {
         return this.activeType;
+    }
+
+    public boolean isFeedingPrinted() {
+        return this.feedingPrinted;
+    }
+
+    public void setFeedingPrinted(boolean printed) {
+        this.feedingPrinted = printed;
     }
 }
