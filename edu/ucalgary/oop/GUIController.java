@@ -145,22 +145,28 @@ public class GUIController {
             }
  
             for (Animal animal : rescueCenter.getAnimalList()) {
-           
+                boolean printed = animal.isFeedingPrinted();
                 if (animal.getActiveType() == "nocturnal") {
                     if (hour >= 0 && hour < 3) {
-                        String animalNickname = animal.getAnimalNickname();
-                        String animalSpecies = animal.getAnimalSpecies();
-                        duration += animal.getFeedTime() + animal.getPrepTime();
-                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "es"+ " " + "(" + animalNickname + ")" + duration + "\n");
+                        if(!printed){
+                            String animalNickname = animal.getAnimalNickname();
+                            String animalSpecies = animal.getAnimalSpecies();
+                            duration += animal.getFeedTime() + animal.getPrepTime();
+                            hourSchedule.append("* " + "Feeding - " + animalSpecies + "es"+ " " + "(" + animalNickname + ")" + duration + "\n");
+                            animal.setFeedingPrinted(true);
+                        }
                         hasTasks = true;
                     }
                 }
                 if (animal.getActiveType() == "diurnal") {
                     if (hour >= 8 && hour < 11) {
-                        String animalNickname = animal.getAnimalNickname();
-                        String animalSpecies = animal.getAnimalSpecies();
-                        duration += animal.getFeedTime() + animal.getPrepTime();
-                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration + "\n");
+                        if(!printed){
+                            String animalNickname = animal.getAnimalNickname();
+                            String animalSpecies = animal.getAnimalSpecies();
+                            duration += animal.getFeedTime() + animal.getPrepTime();
+                            hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration + "\n");
+                            animal.setFeedingPrinted(true);
+                        }
                         hasTasks = true;
                     }
                 }
@@ -168,10 +174,13 @@ public class GUIController {
  
                 if (animal.getActiveType() == "crepuscular" ) {
                     if (hour >= 19 && hour < 22) {
-                        String animalNickname = animal.getAnimalNickname();
-                        String animalSpecies = animal.getAnimalSpecies();
-                        duration += animal.getFeedTime() + animal.getPrepTime();
-                        hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration +"\n");
+                        if(!printed){
+                            String animalNickname = animal.getAnimalNickname();
+                            String animalSpecies = animal.getAnimalSpecies();
+                            duration += animal.getFeedTime() + animal.getPrepTime();
+                            hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration +"\n");
+                            animal.setFeedingPrinted(true);
+                        }
                         hasTasks = true;
                     }
                 }
