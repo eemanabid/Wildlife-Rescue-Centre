@@ -7,6 +7,15 @@ import java.util.regex.Matcher;
 import static org.junit.Assert.*;
 import org.junit.*;
 
+/**
+ * Class WidlifeRescueTests: 
+ * @since 1.0
+ * @author Hooriya Amjad <a href="mailto:hooriya.amjad@ucalgary.ca">hooriya.amjad@ucalgary.ca</a>
+ * @author Sahiti Akella <a href="mailto:sahiti.akella@ucalgary.ca">sahiti.akella@ucalgary.ca</a>
+ * @author Eeman Abid <a href="mailto:eeman.abid@ucalgary.ca">eeman.abid@ucalgary.ca</a>
+ * @author Hareem Khan <a href="mailto:hareem.khan@ucalgary.ca">hareem.khan@ucalgary.ca</a>
+ * @version 1.2
+ */
 
 public class WildlifeRescueTests {
 
