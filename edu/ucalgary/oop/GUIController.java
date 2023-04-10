@@ -201,7 +201,9 @@ public class GUIController implements ScheduleFormatter{
             boolean hasTasks = false;
             int duration = 0;
             int remainingTime = 60;
-
+            boolean unfedNocturnalAnimals = false;
+            boolean unfedDiurnalAnimals = false;
+            boolean unfedCrepuscularAnimals = false;
 
             for (Treatment treatment : rescueCenter.getTreatmentList()) {
                 if (treatment.getStartHour() == hour) {
@@ -243,18 +245,13 @@ public class GUIController implements ScheduleFormatter{
                             }
                             else {
                                 duration -= animal.getFeedTime() + animal.getPrepTime();
+                                if (hour == 2){
+                                    unfedNocturnalAnimals = true;
+                                }
                                 continue;
                             }
                             
                         }
-                        /* 
-                        if(!printed){
-                            String animalNickname = animal.getAnimalNickname();
-                            String animalSpecies = animal.getAnimalSpecies();
-                            duration += animal.getFeedTime() + animal.getPrepTime();
-                            hourSchedule.append("* " + "Feeding - " + animalSpecies + "es"+ " " + "(" + animalNickname + ")" + duration + "\n");
-                            animal.setFeedingPrinted(true);
-                        }*/
                         hasTasks = true;
                     }
                 }
@@ -274,24 +271,17 @@ public class GUIController implements ScheduleFormatter{
                             }
                             else {
                                 duration -= animal.getFeedTime() + animal.getPrepTime();
+                                if (hour == 10){
+                                    unfedDiurnalAnimals = true;
+                                }
                                 continue;
                             }
                             
                         }
-                        /* 
-                        if(!printed){
-                            String animalNickname = animal.getAnimalNickname();
-                            String animalSpecies = animal.getAnimalSpecies();
-                            duration += animal.getFeedTime() + animal.getPrepTime();
-                            hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration + "\n");
-                            animal.setFeedingPrinted(true);
-                        }
-                    */
                         hasTasks = true;
                     }
                 }
- 
- 
+                
                 if (animal.getActiveType() == "crepuscular" ) {
                     if (hour >= 19 && hour < 22) {
                         if (!printed){
@@ -310,18 +300,12 @@ public class GUIController implements ScheduleFormatter{
                             }
                             else {
                                 duration -= animal.getFeedTime() + animal.getPrepTime();
+                                if (hour == 21){
+                                    unfedCrepuscularAnimals = true;
+                                }
                                 continue;
                             }
-                            
                         }
-                        /* 
-                        if(!printed){
-                            String animalNickname = animal.getAnimalNickname();
-                            String animalSpecies = animal.getAnimalSpecies();
-                            duration += animal.getFeedTime() + animal.getPrepTime();
-                            hourSchedule.append("* " + "Feeding - " + animalSpecies + "s"+ " " + "(" + animalNickname + ")" + duration +"\n");
-                            animal.setFeedingPrinted(true);
-                        }*/
                         hasTasks = true;
                     }
                 }
@@ -341,6 +325,18 @@ public class GUIController implements ScheduleFormatter{
             }
             if (porcupinesFed.size() > 0) {
                 hourSchedule.append("* Feeding - porcupines (" + porcupinesFed.size() + ": " + String.join(", ", porcupinesFed) + ") " + duration + "\n");
+            }
+
+            if (unfedNocturnalAnimals == true){
+                errors.add("Not all nocturnal animals have been fed.\n");
+            }
+
+            if (unfedDiurnalAnimals == true){
+                errors.add("Not all diurnal animals have been fed.\n");
+            }
+
+            if (unfedCrepuscularAnimals == true){
+                errors.add("Not all crepuscular animals have been fed.\n");
             }
 
             
@@ -450,7 +446,7 @@ public class GUIController implements ScheduleFormatter{
                 hourSchedule.append(" [ + backup volunteer]\n");
             }
             if (backup == true && duration > 120){
-                errors.add("Too many tasks at " + hour + ":00. Contact staff vet or modify start hours\n");
+                errors.add("Too many tasks at " + hour + ":00. Contact staff vet or modify start hours.\n");
             }
        
             if (hasTasks) {
