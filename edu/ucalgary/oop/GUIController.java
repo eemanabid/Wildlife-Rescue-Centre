@@ -232,13 +232,20 @@ public class GUIController implements ScheduleFormatter{
                             String animalSpecies = animal.getAnimalSpecies();
                             duration += animal.getFeedTime() + animal.getPrepTime();
                             remainingTime -= duration;
-                            if (animalSpecies.equals("fox")){
-                                foxesFed.add(animalNickname);
+                            if (duration < 60){
+                                if (animalSpecies.equals("fox")){
+                                    foxesFed.add(animalNickname);
+                                }
+                                if (animalSpecies.equals("raccoon")){
+                                    raccoonsFed.add(animalNickname);
+                                }
+                                animal.setFeedingPrinted(true);
                             }
-                            if (animalSpecies.equals("raccoon")){
-                                raccoonsFed.add(animalNickname);
+                            else {
+                                duration -= animal.getFeedTime() + animal.getPrepTime();
+                                continue;
                             }
-                            animal.setFeedingPrinted(true);
+                            
                         }
                         /* 
                         if(!printed){
@@ -259,10 +266,17 @@ public class GUIController implements ScheduleFormatter{
                             String animalSpecies = animal.getAnimalSpecies();
                             duration += animal.getFeedTime() + animal.getPrepTime();
                             remainingTime -= duration;
-                            if (animalSpecies.equals("beaver")){
-                                beaversFed.add(animalNickname);
+                            if (duration < 60){
+                                if (animalSpecies.equals("beaver")){
+                                    beaversFed.add(animalNickname);
+                                }
+                                animal.setFeedingPrinted(true);
                             }
-                            animal.setFeedingPrinted(true);
+                            else {
+                                duration -= animal.getFeedTime() + animal.getPrepTime();
+                                continue;
+                            }
+                            
                         }
                         /* 
                         if(!printed){
@@ -285,13 +299,20 @@ public class GUIController implements ScheduleFormatter{
                             String animalSpecies = animal.getAnimalSpecies();
                             duration += animal.getFeedTime() + animal.getPrepTime();
                             remainingTime -= duration;
-                            if (animalSpecies.equals("coyote")){
-                                coyotesFed.add(animalNickname);
+                            if (duration < 60){
+                                if (animalSpecies.equals("coyote")){
+                                    coyotesFed.add(animalNickname);
+                                }
+                                if (animalSpecies.equals("porcupine")){
+                                    porcupinesFed.add(animalNickname);
+                                }
+                                animal.setFeedingPrinted(true);
                             }
-                            if (animalSpecies.equals("porcupine")){
-                                porcupinesFed.add(animalNickname);
+                            else {
+                                duration -= animal.getFeedTime() + animal.getPrepTime();
+                                continue;
                             }
-                            animal.setFeedingPrinted(true);
+                            
                         }
                         /* 
                         if(!printed){
