@@ -18,6 +18,9 @@ public class Animal {
     private int prepTime;
     private String activeType;
     private boolean feedingPrinted;
+    private boolean nocturnalPrinted;
+    private boolean diurnalPrinted;
+    private boolean crepuscularPrinted;
     private int cleanCageTime;
 
     public Animal(int animalID, String animalNickname, String animalSpecies){
@@ -104,8 +107,32 @@ public class Animal {
         this.feedingPrinted = printed;
     }
 
+    public void setNocturnalPrinted(boolean printed) {
+        this.nocturnalPrinted = printed;
+    }
+
+    public void setDiurnalPrinted(boolean printed) {
+        this.diurnalPrinted = printed;
+    }
+
+    public void setCrepuscularPrinted(boolean printed) {
+        this.crepuscularPrinted = printed;
+    }
+
     // helper functions
     public boolean isFeedingPrinted() {
         return this.feedingPrinted;
+    }
+
+    public boolean isNocturnalPrinted() {
+        return this.nocturnalPrinted;
+    }
+
+    public boolean isDiurnalPrinted() {
+        return this.diurnalPrinted;
+    }
+
+    public boolean isCrepuscularPrinted() {
+        return this.crepuscularPrinted;
     }
 }

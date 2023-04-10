@@ -251,12 +251,6 @@ public class GUIController implements ScheduleFormatter{
                         hasTasks = true;
                     }
                 }
-
-                /*
-                if (!hasTasks && hour != CAGE_CLEANING_HOUR) {
-                    hourSchedule.append("- No tasks scheduled\n");
-                }
-                */
                 
                 if (animal.getActiveType() == "diurnal") {
                     if (hour >= 8 && hour < 11) {
@@ -337,68 +331,77 @@ public class GUIController implements ScheduleFormatter{
             ArrayList<String> coyotesCleaned = new ArrayList<>();
             
             for (Animal animal : rescueCenter.getAnimalList()) {
-        
                 if (animal.getActiveType() == "nocturnal") {
-                    String animalNickname = animal.getAnimalNickname();
-                    String animalSpecies = animal.getAnimalSpecies();
-                    cageCleanTime += animal.getCageCleanTime();
-                    if (hour == 0) {
-                        if (animalSpecies.equals("fox")){
-                            foxesCleaned.add(animalNickname);
+                    boolean printed = animal.isNocturnalPrinted();
+                    if (hour >= 0 && hour < 3) {
+                        if (!printed){
+                            String animalNickname = animal.getAnimalNickname();
+                            String animalSpecies = animal.getAnimalSpecies();
+                            cageCleanTime += animal.getCageCleanTime();
+                            duration += animal.getCageCleanTime();
+                            if (animalSpecies.equals("fox")){
+                                foxesCleaned.add(animalNickname);
+                            }
+                        
+                            if (animalSpecies.equals("raccoon")){
+                                raccoonsCleaned.add(animalNickname);
+                            }
+                            animal.setNocturnalPrinted(true);
                         }
                     }
-                    if (hour == 1) {
-                        if (animalSpecies.equals("raccoon")){
-                            raccoonsCleaned.add(animalNickname);
-                        }
-                    }
-                    //animal.setFeedingPrinted(true);
                 }
 
                 if (animal.getActiveType() == "diurnal") {
-                    if (hour == 21) {
-                        String animalNickname = animal.getAnimalNickname();
-                        String animalSpecies = animal.getAnimalSpecies();
-                        cageCleanTime += animal.getCageCleanTime();
-                        
-                        if (animalSpecies.equals("beaver")){
-                            beaversCleaned.add(animalNickname);
+                    boolean printed = animal.isDiurnalPrinted();
+                    if (hour >= 8 && hour < 11) {
+                        if (!printed){
+                            String animalNickname = animal.getAnimalNickname();
+                            String animalSpecies = animal.getAnimalSpecies();
+                            cageCleanTime += animal.getCageCleanTime();
+                            duration += animal.getCageCleanTime();
+                            if (animalSpecies.equals("beaver")){
+                                beaversCleaned.add(animalNickname);
+                            }
+                            animal.setDiurnalPrinted(true);
                         }
                     }
-                    //animal.setFeedingPrinted(true);
+                    
                 }
-                if (animal.getActiveType() == "nocturnal") {
-                    String animalNickname = animal.getAnimalNickname();
-                    String animalSpecies = animal.getAnimalSpecies();
-                    cageCleanTime += animal.getCageCleanTime();
-                    if (hour == 21) {
-                        if (animalSpecies.equals("coyote")){
-                            coyotesCleaned.add(animalNickname);
+                if (animal.getActiveType() == "crepuscular") {
+                    boolean printed = animal.isCrepuscularPrinted();
+                    if (hour >= 19 && hour < 22) {
+                        if (!printed){
+                            String animalNickname = animal.getAnimalNickname();
+                            String animalSpecies = animal.getAnimalSpecies();
+                            cageCleanTime += animal.getCageCleanTime();
+                            duration += animal.getCageCleanTime();
+                            if (animalSpecies.equals("coyote")){
+                                coyotesCleaned.add(animalNickname);
+                            }
+                            if (animalSpecies.equals("porcupine")){
+                                porcupinesCleaned.add(animalNickname);
+                            }
+                            animal.setCrepuscularPrinted(true);
                         }
                     }
-                    if (hour == 8) {
-                        if (animalSpecies.equals("porcupine")){
-                            porcupinesCleaned.add(animalNickname);
-                        }
-                    }
-                    //animal.setFeedingPrinted(true);
+                    
                 }
             }
             
             if (foxesCleaned.size() > 0) {
-                hourSchedule.append("* Cage Cleaning - foxes (" + foxesCleaned.size() + ": " + String.join(", ", foxesCleaned) + ") " + cageCleanTime + "\n");
+                hourSchedule.append("* Cage Cleaning - foxes (" + foxesCleaned.size() + ": " + String.join(", ", foxesCleaned) + ") " + duration + "\n");
             }
             if (raccoonsCleaned.size() > 0) {
-                hourSchedule.append("* Cage Cleaning - raccoons (" + raccoonsCleaned.size() + ": " + String.join(", ", raccoonsCleaned) + ") " + cageCleanTime + "\n");
+                hourSchedule.append("* Cage Cleaning - raccoons (" + raccoonsCleaned.size() + ": " + String.join(", ", raccoonsCleaned) + ") " + duration + "\n");
             }
             if (beaversCleaned.size() > 0) {
-                hourSchedule.append("* Cage Cleaning - beavers (" + beaversCleaned.size() + ": " + String.join(", ", beaversCleaned) + ") " + cageCleanTime + "\n");
+                hourSchedule.append("* Cage Cleaning - beavers (" + beaversCleaned.size() + ": " + String.join(", ", beaversCleaned) + ") " + duration + "\n");
             }
             if (coyotesCleaned.size() > 0) {
-                hourSchedule.append("* Cage Cleaning - coyotes (" + coyotesCleaned.size() + ": " + String.join(", ", coyotesCleaned) + ") " + cageCleanTime + "\n");
+                hourSchedule.append("* Cage Cleaning - coyotes (" + coyotesCleaned.size() + ": " + String.join(", ", coyotesCleaned) + ") " + duration + "\n");
             }
             if (porcupinesCleaned.size() > 0) {
-                hourSchedule.append("* Cage Cleaning - porcupines (" + porcupinesCleaned.size() + ": " + String.join(", ", porcupinesCleaned) + ") " + cageCleanTime + "\n");
+                hourSchedule.append("* Cage Cleaning - porcupines (" + porcupinesCleaned.size() + ": " + String.join(", ", porcupinesCleaned) + ") " + duration + "\n");
             }
 
    
