@@ -374,6 +374,7 @@ public class GUIController implements ScheduleFormatter{
         model.addColumn("Animal ID");
         model.addColumn("Task");
         model.addColumn("Start Hour");
+        model.addColumn("Max Window");
     
         // fetch treatments data from SQL database
         try {
@@ -385,7 +386,8 @@ public class GUIController implements ScheduleFormatter{
                 String animalNickname = rs.getString("AnimalNickname");
                 String taskDescription = rs.getString("Description");
                 int startHour = rs.getInt("StartHour");
-                model.addRow(new Object[] {treatmentID, animalID + " (" + animalNickname + ")", taskDescription, startHour});
+                int maxWindow = rs.getInt("MaxWindow"); // retrieve the value of MaxWindow from the ResultSet
+                model.addRow(new Object[] {treatmentID, animalID + " (" + animalNickname + ")", taskDescription, startHour, maxWindow}); // add the MaxWindow column to the row
             }
         } catch (SQLException ex) {
             System.out.println("Error fetching treatments data: " + ex.getMessage());
