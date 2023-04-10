@@ -461,18 +461,23 @@ public class GUIController implements ScheduleFormatter{
                 if (e.getClickCount() == 1 && table.getSelectedRow() != -1) {
                     int treatmentID = (int) model.getValueAt(table.getSelectedRow(), 0);
                     int currentStartHour = (int) model.getValueAt(table.getSelectedRow(), 3);
+                    int maxWindow = (int) model.getValueAt(table.getSelectedRow(), 4);
                     int newStartHour = Integer.parseInt(JOptionPane.showInputDialog(FRM, "Enter new start hour for Treatment " + treatmentID + ":", currentStartHour));
-                    try {
-                        String sql = "UPDATE TREATMENTS SET StartHour = ? WHERE TreatmentID = ?";
-                        PreparedStatement pstmt = rescueCenter.getConnection().prepareStatement(sql);
-                        pstmt.setInt(1, newStartHour);
-                        pstmt.setInt(2, treatmentID);
-                        pstmt.executeUpdate();
-                        // update model with new start hour value
-                        model.setValueAt(newStartHour, table.getSelectedRow(), 3);
-                    } catch (SQLException ex) {
-                        System.out.println("Error updating start hour for Treatment " + treatmentID + ": " + ex.getMessage());
-                    }            
+                    if (newStartHour > currentStartHour + maxWindow - 1 || newStartHour < currentStartHour) { // check if the new start hour is outside the max window
+                        JOptionPane.showMessageDialog(FRM, "New start hour is outside the maximum window for Treatment " + treatmentID + " (max window is " + maxWindow + " hours).", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        try {
+                            String sql = "UPDATE TREATMENTS SET StartHour = ? WHERE TreatmentID = ?";
+                            PreparedStatement pstmt = rescueCenter.getConnection().prepareStatement(sql);
+                            pstmt.setInt(1, newStartHour);
+                            pstmt.setInt(2, treatmentID);
+                            pstmt.executeUpdate();
+                            // update model with new start hour value
+                            model.setValueAt(newStartHour, table.getSelectedRow(), 3);
+                        } catch (SQLException ex) {
+                            System.out.println("Error updating start hour for Treatment " + treatmentID + ": " + ex.getMessage());
+                        }  
+                    }          
                 }
             }
         });
