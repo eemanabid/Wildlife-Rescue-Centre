@@ -59,6 +59,13 @@ public class GUIController implements ScheduleFormatter{
             public void actionPerformed( ActionEvent e ) {
                 mainMenu.setVisible(false);
                 generateSchedule();
+                if (errors.size() > 0){
+                    StringBuilder errorMessage = new StringBuilder();
+                    for (String error : errors) {
+                        errorMessage.append(error);
+                    }
+                    JOptionPane.showMessageDialog(FRM, errorMessage.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -191,7 +198,7 @@ public class GUIController implements ScheduleFormatter{
         menu.add(buttonPanel, BorderLayout.SOUTH);
         FRM.add(menu);
     }
-
+    ArrayList<String> errors = new ArrayList<>();
     // make the schedule for the user 
     @Override
     public void scheduleFormatter(){
@@ -202,7 +209,7 @@ public class GUIController implements ScheduleFormatter{
             boolean hasTasks = false;
             int duration = 0;
             int remainingTime = 60;
-
+/* 
             // check if cage cleaning is required
             // check if cage cleaning is required
             if (hour == CAGE_CLEANING_HOUR) {
@@ -213,7 +220,7 @@ public class GUIController implements ScheduleFormatter{
                 // clean cages for porcupines
                 duration += 10 * cleanCages("porcupine");
                 hourSchedule.append("* Cage cleaning (" + duration + ")\n");
-            }
+            }*/
 
             for (Treatment treatment : rescueCenter.getTreatmentList()) {
                 if (treatment.getStartHour() == hour) {
@@ -343,6 +350,9 @@ public class GUIController implements ScheduleFormatter{
             if (duration > 60) {
                 backup = true; 
                 hourSchedule.append(" [ + backup volunteer]\n");
+            }
+            if (backup == true && duration > 120){
+                errors.add("Too many tasks at " + hour + ":00. Contact staff vet or modify start hours\n");
             }
        
             if (hasTasks) {
