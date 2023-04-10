@@ -21,8 +21,8 @@ public class RescueCenter {
     private Connection dbConnect;
     private ResultSet results;
     private final String DBURL = "jdbc:mysql://localhost/EWR";
-    private final String USERNAME = "root";
-    private final String PASSWORD = "_Hakh@8905";
+    private final String USERNAME = "oop";
+    private final String PASSWORD = "password";
 
     // constructor
     public RescueCenter(){
