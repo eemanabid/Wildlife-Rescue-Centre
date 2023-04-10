@@ -333,57 +333,76 @@ public class GUIController implements ScheduleFormatter{
             for (Animal animal : rescueCenter.getAnimalList()) {
                 if (animal.getActiveType() == "nocturnal") {
                     boolean printed = animal.isNocturnalPrinted();
-                    if (hour >= 0 && hour < 3) {
+                    
                         if (!printed){
                             String animalNickname = animal.getAnimalNickname();
                             String animalSpecies = animal.getAnimalSpecies();
                             cageCleanTime += animal.getCageCleanTime();
                             duration += animal.getCageCleanTime();
-                            if (animalSpecies.equals("fox")){
-                                foxesCleaned.add(animalNickname);
+                            if (duration < 60){
+                                if (animalSpecies.equals("fox")){
+                                    foxesCleaned.add(animalNickname);
+                                }
+                            
+                                if (animalSpecies.equals("raccoon")){
+                                    raccoonsCleaned.add(animalNickname);
+                                }
+                                animal.setNocturnalPrinted(true);
                             }
-                        
-                            if (animalSpecies.equals("raccoon")){
-                                raccoonsCleaned.add(animalNickname);
+                            else {
+                                duration -= animal.getCageCleanTime();
+                                continue;
                             }
-                            animal.setNocturnalPrinted(true);
+            
                         }
-                    }
+                    
                 }
 
                 if (animal.getActiveType() == "diurnal") {
                     boolean printed = animal.isDiurnalPrinted();
-                    if (hour >= 8 && hour < 11) {
+                    
                         if (!printed){
                             String animalNickname = animal.getAnimalNickname();
                             String animalSpecies = animal.getAnimalSpecies();
                             cageCleanTime += animal.getCageCleanTime();
                             duration += animal.getCageCleanTime();
-                            if (animalSpecies.equals("beaver")){
-                                beaversCleaned.add(animalNickname);
+                            if (duration < 60){
+                                if (animalSpecies.equals("beaver")){
+                                    beaversCleaned.add(animalNickname);
+                                }
+                                animal.setDiurnalPrinted(true);
                             }
-                            animal.setDiurnalPrinted(true);
+                            else {
+                                duration -= animal.getCageCleanTime();
+                                continue;
+                            }
                         }
-                    }
+                    
                     
                 }
                 if (animal.getActiveType() == "crepuscular") {
                     boolean printed = animal.isCrepuscularPrinted();
-                    if (hour >= 19 && hour < 22) {
+                    
                         if (!printed){
                             String animalNickname = animal.getAnimalNickname();
                             String animalSpecies = animal.getAnimalSpecies();
                             cageCleanTime += animal.getCageCleanTime();
                             duration += animal.getCageCleanTime();
-                            if (animalSpecies.equals("coyote")){
-                                coyotesCleaned.add(animalNickname);
+                            if (duration < 60){
+                                if (animalSpecies.equals("coyote")){
+                                    coyotesCleaned.add(animalNickname);
+                                }
+                                if (animalSpecies.equals("porcupine")){
+                                    porcupinesCleaned.add(animalNickname);
+                                }
+                                animal.setCrepuscularPrinted(true);
                             }
-                            if (animalSpecies.equals("porcupine")){
-                                porcupinesCleaned.add(animalNickname);
+                            else {
+                                duration -= animal.getCageCleanTime();
+                                continue;
                             }
-                            animal.setCrepuscularPrinted(true);
                         }
-                    }
+                    
                     
                 }
             }
