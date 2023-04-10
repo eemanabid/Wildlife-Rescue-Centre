@@ -4,10 +4,6 @@ import java.io.*;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.event.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +21,6 @@ import java.sql.*;
  */
 
 public class GUIController implements ScheduleFormatter{
-   
     private final JFrame FRM = new JFrame();
     LocalDate currentDate = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -35,7 +30,7 @@ public class GUIController implements ScheduleFormatter{
     JTextArea hourTextArea = new JTextArea();
     private boolean backup; 
     JPanel scrollPanel = new JPanel();
-
+    ArrayList<String> errors = new ArrayList<>();
     
     // constructor
     public GUIController(){
@@ -72,8 +67,7 @@ public class GUIController implements ScheduleFormatter{
         JButton quit = new JButton( new AbstractAction("Quit") {
             @Override
             public void actionPerformed( ActionEvent e ){
-                System.exit(0);
-                
+                System.exit(0); 
             }
         });
 
@@ -105,7 +99,6 @@ public class GUIController implements ScheduleFormatter{
                 mainMenu();
             }
         });
-
         JButton quit = new JButton( new AbstractAction("Quit") {
             @Override
             public void actionPerformed( ActionEvent e ){
@@ -116,7 +109,6 @@ public class GUIController implements ScheduleFormatter{
         menu.add(label1);
         menu.add(back);
         menu.add(quit);
-
         FRM.add(menu);
     }
 
@@ -139,9 +131,7 @@ public class GUIController implements ScheduleFormatter{
         // this is just testing code: the schedule will be called here
         scheduleArea.setLineWrap(true);
         scheduleArea.setText("Schedule for " + formattedDate);
-
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
-
         scrollPanel.add(scheduleArea, BorderLayout.NORTH);
 
         scheduleFormatter();
@@ -174,7 +164,6 @@ public class GUIController implements ScheduleFormatter{
                 modifyStartHour();
             }
         });
-
         JButton confirm = new JButton( new AbstractAction("Confirm Backup(s)") {
             @Override
             public void actionPerformed( ActionEvent e ){
@@ -190,7 +179,7 @@ public class GUIController implements ScheduleFormatter{
         menu.add(buttonPanel, BorderLayout.SOUTH);
         FRM.add(menu);
     }
-    ArrayList<String> errors = new ArrayList<>();
+    
     // make the schedule for the user 
     @Override
     public void scheduleFormatter(){
@@ -200,7 +189,6 @@ public class GUIController implements ScheduleFormatter{
 
             boolean hasTasks = false;
             int duration = 0;
-            int remainingTime = 60;
             boolean unfedNocturnalAnimals = false;
             boolean unfedDiurnalAnimals = false;
             boolean unfedCrepuscularAnimals = false;
@@ -214,7 +202,6 @@ public class GUIController implements ScheduleFormatter{
                     Animal animal = rescueCenter.getAnimalByID(animalID);
                     String animalNickname = animal.getAnimalNickname();
                     duration += task.getDuration();
-                    remainingTime -= duration;
                     hourSchedule.append("* " + taskDescription + " " + "(" + animalNickname + ")" + duration + "\n");
                     hasTasks = true;
                 }
@@ -225,6 +212,7 @@ public class GUIController implements ScheduleFormatter{
             ArrayList<String> beaversFed = new ArrayList<>();
             ArrayList<String> porcupinesFed = new ArrayList<>();
             ArrayList<String> coyotesFed = new ArrayList<>();
+
             for (Animal animal : rescueCenter.getAnimalList()) {
                 boolean printed = animal.isFeedingPrinted();
                 if (animal.getActiveType() == "nocturnal") {
@@ -233,7 +221,6 @@ public class GUIController implements ScheduleFormatter{
                             String animalNickname = animal.getAnimalNickname();
                             String animalSpecies = animal.getAnimalSpecies();
                             duration += animal.getFeedTime() + animal.getPrepTime();
-                            remainingTime -= duration;
                             if (duration < 60){
                                 if (animalSpecies.equals("fox")){
                                     foxesFed.add(animalNickname);
@@ -249,8 +236,7 @@ public class GUIController implements ScheduleFormatter{
                                     unfedNocturnalAnimals = true;
                                 }
                                 continue;
-                            }
-                            
+                            }  
                         }
                         hasTasks = true;
                     }
@@ -262,7 +248,6 @@ public class GUIController implements ScheduleFormatter{
                             String animalNickname = animal.getAnimalNickname();
                             String animalSpecies = animal.getAnimalSpecies();
                             duration += animal.getFeedTime() + animal.getPrepTime();
-                            remainingTime -= duration;
                             if (duration < 60){
                                 if (animalSpecies.equals("beaver")){
                                     beaversFed.add(animalNickname);
@@ -276,7 +261,6 @@ public class GUIController implements ScheduleFormatter{
                                 }
                                 continue;
                             }
-                            
                         }
                         hasTasks = true;
                     }
@@ -288,7 +272,6 @@ public class GUIController implements ScheduleFormatter{
                             String animalNickname = animal.getAnimalNickname();
                             String animalSpecies = animal.getAnimalSpecies();
                             duration += animal.getFeedTime() + animal.getPrepTime();
-                            remainingTime -= duration;
                             if (duration < 60){
                                 if (animalSpecies.equals("coyote")){
                                     coyotesFed.add(animalNickname);
@@ -330,17 +313,13 @@ public class GUIController implements ScheduleFormatter{
             if (unfedNocturnalAnimals == true){
                 errors.add("Not all nocturnal animals have been fed.\n");
             }
-
             if (unfedDiurnalAnimals == true){
                 errors.add("Not all diurnal animals have been fed.\n");
             }
-
             if (unfedCrepuscularAnimals == true){
                 errors.add("Not all crepuscular animals have been fed.\n");
             }
 
-            
-            int cageCleanTime = 0;
             ArrayList<String> foxesCleaned = new ArrayList<>();
             ArrayList<String> raccoonsCleaned = new ArrayList<>();
             ArrayList<String> beaversCleaned = new ArrayList<>();
@@ -350,77 +329,65 @@ public class GUIController implements ScheduleFormatter{
             for (Animal animal : rescueCenter.getAnimalList()) {
                 if (animal.getActiveType() == "nocturnal") {
                     boolean printed = animal.isNocturnalPrinted();
-                    
-                        if (!printed){
-                            String animalNickname = animal.getAnimalNickname();
-                            String animalSpecies = animal.getAnimalSpecies();
-                            cageCleanTime += animal.getCageCleanTime();
-                            duration += animal.getCageCleanTime();
-                            if (duration < 60){
-                                if (animalSpecies.equals("fox")){
-                                    foxesCleaned.add(animalNickname);
-                                }
-                            
-                                if (animalSpecies.equals("raccoon")){
-                                    raccoonsCleaned.add(animalNickname);
-                                }
-                                animal.setNocturnalPrinted(true);
+                    if (!printed){
+                        String animalNickname = animal.getAnimalNickname();
+                        String animalSpecies = animal.getAnimalSpecies();
+                        duration += animal.getCageCleanTime();
+                        if (duration < 60){
+                            if (animalSpecies.equals("fox")){
+                                foxesCleaned.add(animalNickname);
                             }
-                            else {
-                                duration -= animal.getCageCleanTime();
-                                continue;
+                            if (animalSpecies.equals("raccoon")){
+                                raccoonsCleaned.add(animalNickname);
                             }
-            
+                            animal.setNocturnalPrinted(true);
                         }
-                    
+                        else {
+                            duration -= animal.getCageCleanTime();
+                            continue;
+                        }
+                    }
                 }
 
                 if (animal.getActiveType() == "diurnal") {
                     boolean printed = animal.isDiurnalPrinted();
-                    
-                        if (!printed){
-                            String animalNickname = animal.getAnimalNickname();
-                            String animalSpecies = animal.getAnimalSpecies();
-                            cageCleanTime += animal.getCageCleanTime();
-                            duration += animal.getCageCleanTime();
-                            if (duration < 60){
-                                if (animalSpecies.equals("beaver")){
-                                    beaversCleaned.add(animalNickname);
-                                }
-                                animal.setDiurnalPrinted(true);
+                    if (!printed){
+                        String animalNickname = animal.getAnimalNickname();
+                        String animalSpecies = animal.getAnimalSpecies();
+                        duration += animal.getCageCleanTime();
+                        if (duration < 60){
+                            if (animalSpecies.equals("beaver")){
+                                beaversCleaned.add(animalNickname);
                             }
-                            else {
-                                duration -= animal.getCageCleanTime();
-                                continue;
-                            }
+                            animal.setDiurnalPrinted(true);
                         }
-                    
-                    
+                        else {
+                            duration -= animal.getCageCleanTime();
+                            continue;
+                        }
+                    }   
                 }
+
                 if (animal.getActiveType() == "crepuscular") {
                     boolean printed = animal.isCrepuscularPrinted();
-                    
-                        if (!printed){
-                            String animalNickname = animal.getAnimalNickname();
-                            String animalSpecies = animal.getAnimalSpecies();
-                            cageCleanTime += animal.getCageCleanTime();
-                            duration += animal.getCageCleanTime();
-                            if (duration < 60){
-                                if (animalSpecies.equals("coyote")){
-                                    coyotesCleaned.add(animalNickname);
-                                }
-                                if (animalSpecies.equals("porcupine")){
-                                    porcupinesCleaned.add(animalNickname);
-                                }
-                                animal.setCrepuscularPrinted(true);
+                    if (!printed){
+                        String animalNickname = animal.getAnimalNickname();
+                        String animalSpecies = animal.getAnimalSpecies();
+                        duration += animal.getCageCleanTime();
+                        if (duration < 60){
+                            if (animalSpecies.equals("coyote")){
+                                coyotesCleaned.add(animalNickname);
                             }
-                            else {
-                                duration -= animal.getCageCleanTime();
-                                continue;
+                            if (animalSpecies.equals("porcupine")){
+                                porcupinesCleaned.add(animalNickname);
                             }
+                            animal.setCrepuscularPrinted(true);
                         }
-                    
-                    
+                        else {
+                            duration -= animal.getCageCleanTime();
+                            continue;
+                        }
+                    }    
                 }
             }
             
@@ -440,7 +407,6 @@ public class GUIController implements ScheduleFormatter{
                 hourSchedule.append("* Cage Cleaning - porcupines (" + porcupinesCleaned.size() + ": " + String.join(", ", porcupinesCleaned) + ") " + duration + "\n");
             }
 
-   
             if (duration > 60) {
                 backup = true; 
                 hourSchedule.append(" [ + backup volunteer]\n");
@@ -448,7 +414,6 @@ public class GUIController implements ScheduleFormatter{
             if (backup == true && duration > 120){
                 errors.add("Too many tasks at " + hour + ":00. Contact staff vet or modify start hours.\n");
             }
-       
             if (hasTasks) {
                 hourTextArea.append(hourSchedule.toString());
                 hourTextArea.setEditable(false);
@@ -458,10 +423,9 @@ public class GUIController implements ScheduleFormatter{
     }
 
     public void modifyStartHour() {
-        
         // create new JPanel menu for modifying start hour
         JPanel menu = new JPanel(new BorderLayout());
-    
+
         // create table to display treatments with option to modify start hour
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Treatment ID");
@@ -597,7 +561,6 @@ public class GUIController implements ScheduleFormatter{
         buttonPanel.add(quit);
         menu.add(buttonPanel, BorderLayout.SOUTH);
         FRM.add(menu);
-
     }
 
     /* When the user clicks the "Save Schedule" button, 
