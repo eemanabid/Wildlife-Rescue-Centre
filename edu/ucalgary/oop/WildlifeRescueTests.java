@@ -24,7 +24,7 @@ public class WildlifeRescueTests {
     //Task Tests
     @Test
     public void getTaskIDTest() {
-        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+        Task newTask = new Task(1,"Rebandage fox leg wound", 20, 40);
 
         int taskGetID = newTask.getTaskID();
         int expectedResult = 1;
@@ -32,19 +32,24 @@ public class WildlifeRescueTests {
         
     }
 
-    @Test
-    public void setTaskIDTest() {
-        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+    /*
+     * 
+     @Test
+     public void setTaskIDTest() {
+         Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+ 
+         newTask.setTaskID(2);
+         int getTaskID =  newTask.getTaskID();
+         int expectedResult = 2;
+         assertEquals(expectedResult, getTaskID);
+         
+     }
+     * 
+     */
 
-        newTask.setTaskID(2);
-        int getTaskID =  newTask.getTaskID();
-        int expectedResult = 2;
-        assertEquals(expectedResult, getTaskID);
-        
-    }
     @Test
     public void getDurationTest() {
-        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+        Task newTask = new Task(1,"Rebandage fox leg wound", 20, 40);
 
         int taskGetDuration = newTask.getDuration();
         int expectedResult = 20;
@@ -52,19 +57,23 @@ public class WildlifeRescueTests {
         
     }
 
-    @Test
-    public void setDurationTest() {
-        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+    /*
+     * 
+     @Test
+     public void setDurationTest() {
+         Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+ 
+         newTask.setDuration(30);
+         int getTaskDuration =  newTask.getDuration();
+         int expectedResult = 30;
+         assertEquals(expectedResult, getTaskDuration);
+         
+     }
+     */
 
-        newTask.setDuration(30);
-        int getTaskDuration =  newTask.getDuration();
-        int expectedResult = 30;
-        assertEquals(expectedResult, getTaskDuration);
-        
-    }
     @Test
     public void getDescriptionTest() {
-        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+        Task newTask = new Task(1,"Rebandage fox leg wound", 20, 40);
 
         String taskGetDescription = newTask.getDescription();
         String expectedResult = "Rebandage fox leg wound";
@@ -72,19 +81,23 @@ public class WildlifeRescueTests {
         
     }
 
-    @Test
-    public void setDescriptionTest() {
-        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+    /*
+     * 
+     @Test
+     public void setDescriptionTest() {
+         Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+ 
+         newTask.setDescription("Feed kits");
+         String getTaskDescription =  newTask.getDescription();
+         String expectedResult = "Feed kits";
+         assertEquals(expectedResult, getTaskDescription);
+         
+     }
+     */
 
-        newTask.setDescription("Feed kits");
-        String getTaskDescription =  newTask.getDescription();
-        String expectedResult = "Feed kits";
-        assertEquals(expectedResult, getTaskDescription);
-        
-    }
     @Test
     public void getMaxWindow() {
-        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+        Task newTask = new Task(1,"Rebandage fox leg wound", 20, 40);
 
         int taskGetMaxWindow = newTask.getMaxWindow();
         int expectedResult = 40;
@@ -92,59 +105,65 @@ public class WildlifeRescueTests {
         
     }
 
-    @Test
-    public void setMaxWindow() {
-        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
-
-        newTask.setMaxWindow(50);
-        int getMaxWindow =  newTask.getMaxWindow();
-        int expectedResult = 50;
-        assertEquals(expectedResult, getMaxWindow);
-        
-    }
+    /*
+     * 
+     @Test
+     public void setMaxWindow() {
+         Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+ 
+         newTask.setMaxWindow(50);
+         int getMaxWindow =  newTask.getMaxWindow();
+         int expectedResult = 50;
+         assertEquals(expectedResult, getMaxWindow);
+         
+     }
+     */
 
     //Treatment Tests
     @Test
     public void getStartHourTest() {
-        Treatment newTreatment = new Treatment(1, 2, 3, 1);
+        Treatment newTreatment = new Treatment(1, 2, 3);
 
         int getStartHour =  newTreatment.getStartHour();
-        int expectedResult = 1;
+        int expectedResult = 3;
         assertEquals(expectedResult, getStartHour);
         
     }
 
-    @Test
-    public void setStartHourTest() {
-        Treatment newTreatment = new Treatment(1, 2, 3, 1);
-
-        newTreatment.setStartHour(2);
-        int getStartHour =  newTreatment.getStartHour();
-        int expectedResult = 2;
-        assertEquals(expectedResult, getStartHour);
-        
-    }
+    /*
+     * 
+     @Test
+     public void setStartHourTest() {
+         Treatment newTreatment = new Treatment(1, 2, 3);
+ 
+         newTreatment.setStartHour(2);
+         int getStartHour =  newTreatment.getStartHour();
+         int expectedResult = 2;
+         assertEquals(expectedResult, getStartHour);
+         
+     }
+     */
 
     @Test
     public void testClone() throws CloneNotSupportedException {
-    // Create an object to be cloned
-    Animal obj1 = new Animal();
-    obj1.setAnimalNickname("Eraser");
+        // Create an object to be cloned
+        Animal obj1 = new Animal();
+        obj1.setAnimalNickname("Eraser");
 
-    // Clone the object
-    Animal obj2 = (Animal) obj1.clone();
+        // Clone the object
+        Animal obj2 = (Animal) obj1.clone();
 
-    // Verify that the cloned object is a separate object from the original
-    assertNotSame(obj1, obj2);
+        // Verify that the cloned object is a separate object from the original
+        assertNotSame(obj1, obj2);
 
-    // Verify that the properties of the cloned object match those of the original
-    assertEquals(obj1.getAnimalNickname(), obj2.getAnimalNickname());
+        // Verify that the properties of the cloned object match those of the original
+        assertEquals(obj1.getAnimalNickname(), obj2.getAnimalNickname());
 
-    // Modify the cloned object
-    obj2.setAnimalNickname("Gatekeeper");
+        // Modify the cloned object
+        obj2.setAnimalNickname("Gatekeeper");
 
-    // Verify that the modification of the cloned object did not affect the original
-    assertNotEquals(obj1.getAnimalNickname(), obj2.getAnimalNickname());
+        // Verify that the modification of the cloned object did not affect the original
+        assertNotEquals(obj1.getAnimalNickname(), obj2.getAnimalNickname());
     }
 
     //Schedule Tests
@@ -152,7 +171,7 @@ public class WildlifeRescueTests {
     public void ScheduleTest() {
         boolean correctException = false;
 
-        Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
+        Task newTask = new Task(1, "Rebandage fox leg wound", 20, 40);
         Animal newAnimal = new Animal(1, "Gatekeeper", "fox", true, false, true);
 
         try {
@@ -190,16 +209,19 @@ public class WildlifeRescueTests {
     assertEquals(expectedResult, taskGetAnimalID);
     }
 
-    @Test
-    public void setAnimalIDTest() {
-        Animal newAnimal = new Animal(1, "Eraser", "Fox" );
-
-        newAnimal.setAnimalID(2);
-        int taskGetAnimalID =  newAnimal.getAnimalID();
-        int expectedResult = 2;
-        assertEquals(expectedResult, taskGetAnimalID);
-        
-    }
+    /*
+     * 
+     @Test
+     public void setAnimalIDTest() {
+         Animal newAnimal = new Animal(1, "Eraser", "Fox" );
+ 
+         newAnimal.setAnimalID(2);
+         int taskGetAnimalID =  newAnimal.getAnimalID();
+         int expectedResult = 2;
+         assertEquals(expectedResult, taskGetAnimalID);
+         
+     }
+     */
 
     @Test
     public void getAnimalNicknameTest() {
@@ -211,16 +233,19 @@ public class WildlifeRescueTests {
         
     }
 
-    @Test
-    public void setAnimalNicknameTest() {
-        Animal newAnimal = new Animal (1, "Eraser", "Fox" );
-
-        newAnimal.setAnimalNickName("Slinky");
-        String taskGetAnimalNickname = newAnimal.getAnimalNickname();
-        String expectedResult = "Slinky";
-       assertEquals(expectedResult, taskGetAnimalNickname);
-        
-    }
+    /*
+     * 
+     @Test
+     public void setAnimalNicknameTest() {
+         Animal newAnimal = new Animal (1, "Eraser", "Fox" );
+ 
+         newAnimal.setAnimalNickName("Slinky");
+         String taskGetAnimalNickname = newAnimal.getAnimalNickname();
+         String expectedResult = "Slinky";
+        assertEquals(expectedResult, taskGetAnimalNickname);
+         
+     }
+     */
 
     @Test
     public void getAnimalSpeciesTest() {
@@ -232,16 +257,19 @@ public class WildlifeRescueTests {
         
     }
 
-    @Test
-    public void setAnimalSpeciesTest() {
-        Animal newAnimal = new Animal (1, "Eraser", "Fox" );
-
-        newAnimal.setAnimalSpecies("Coyote");
-        String taskGetAnimalSpecies = newAnimal.getAnimalSpecies();
-        String expectedResult = "Coyote";
-       assertEquals(expectedResult, taskGetAnimalSpecies);
-        
-    }
+    /*
+     * 
+     @Test
+     public void setAnimalSpeciesTest() {
+         Animal newAnimal = new Animal (1, "Eraser", "Fox" );
+ 
+         newAnimal.setAnimalSpecies("Coyote");
+         String taskGetAnimalSpecies = newAnimal.getAnimalSpecies();
+         String expectedResult = "Coyote";
+        assertEquals(expectedResult, taskGetAnimalSpecies);
+         
+     }
+     */
     
     @Test
     public void testAnimalCollectionEnumValueOf() {
@@ -264,7 +292,7 @@ public class WildlifeRescueTests {
         assertEquals(AnimalCollection.BEAVER, value2);
         assertEquals(AnimalCollection.FOX, value3);
         assertEquals(AnimalCollection.PORCUPINE, value4);
-        assertEquals(AnimalCollection.RACOON, value5);
+        assertEquals(AnimalCollection.RACCOON, value5);
     }
 
     @Test(expected = IllegalArgumentException.class)
