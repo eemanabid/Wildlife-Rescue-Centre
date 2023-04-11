@@ -113,27 +113,5 @@ public class RescueCenter {
             }
         }
         return null;
-    }
-    
-    // main 
-    public static void main(String[] args) {
-        RescueCenter rescueCenter = new RescueCenter();
-        //rescueCenter.createConnection();
-    
-        ArrayList<Animal> animals = rescueCenter.getAnimalList();
-        for (Animal animal : animals) {
-            System.out.println(animal.getAnimalID());
-        }
-    
-        ArrayList<Task> tasks = rescueCenter.getTaskList();
-        for (Task task : tasks) {
-            System.out.println(task.toString());
-        }
-
-        ArrayList<Treatment> treatments = rescueCenter.getTreatmentList();
-        for (Treatment treatment : treatments) {
-            System.out.println(treatment.getAnimalID());
-        }
-    }
-    
+    }  
 }
