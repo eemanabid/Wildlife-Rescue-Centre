@@ -112,10 +112,10 @@ public class GUIController implements ScheduleFormatter{
         FRM.add(menu);
     }
 
-    /* When the user clicks the "Generate Schedule" button, 
-     * user is able to modify the start hour of one or more of the treatments 
-     * based on the error received. 
-     */
+    /* 
+     * Display schedule along with the necessary buttons
+     * Backup confirmstion taken into consideration
+    */
     public void generateSchedule(){
         FRM.setSize(600, 500);
         FRM.setResizable(true);
@@ -423,6 +423,10 @@ public class GUIController implements ScheduleFormatter{
         }
     }
 
+    /*
+     * Displays task data as a table from sql database to allow the user to modify the start hour
+     * Necessary error messages taken into xondiseration
+     */
     public void modifyStartHour() {
         // create new JPanel menu for modifying start hour
         JPanel menu = new JPanel(new BorderLayout());
