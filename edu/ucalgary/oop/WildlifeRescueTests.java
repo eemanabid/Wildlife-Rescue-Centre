@@ -2,8 +2,10 @@ package edu.ucalgary.oop;
 
 import org.junit.Test;
 import org.junit.validator.PublicClassValidator;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
-
 import static org.junit.Assert.*;
 import org.junit.*;
 
@@ -447,6 +449,162 @@ public class WildlifeRescueTests {
     }
 
     //RESCUE CENTER TESTS
+    /*
+     * Tests the constructor of the RescueCenter class.
+     * This test ensures that when a new RescueCenter object is created:
+     * - The connection is created and not null.
+     * - The animal list is populated and not empty.
+     * - The task list is populated and not empty.
+     * - The treatment list is populated and not empty.
+     */
+    @Test
+    public void testRescueCenterConstructor() {
+        RescueCenter rescueCenter = new RescueCenter();
+
+        // Ensure that the connection is created and not null
+        Connection connection = rescueCenter.getConnection();
+        assertNotNull("Connection should not be null", connection);
+
+        // Ensure that the animal list is populated
+        ArrayList<Animal> animals = rescueCenter.getAnimalList();
+        assertFalse("Animal list should not be empty", animals.isEmpty());
+
+        // Ensure that the task list is populated
+        ArrayList<Task> tasks = rescueCenter.getTaskList();
+        assertFalse("Task list should not be empty", tasks.isEmpty());
+
+        // Ensure that the treatment list is populated
+        ArrayList<Treatment> treatments = rescueCenter.getTreatmentList();
+        assertFalse("Treatment list should not be empty", treatments.isEmpty());
+    }
+
+    /*
+     * Tests the createConnection method of the RescueCenter class.
+     * This test ensures that when the createConnection method is called:
+     * - A valid connection is created and not null.
+     * - The created connection is valid and not closed.
+     */
+    @Test
+    public void testCreateConnection() {
+        RescueCenter rescueCenter = new RescueCenter();
+
+        // Ensure that a valid connection is created
+        Connection connection = rescueCenter.getConnection();
+        assertNotNull("Connection should not be null", connection);
+        
+        // Ensure that the connection is valid and not closed
+        try {
+            assertFalse("Connection should not be closed", connection.isClosed());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            fail("Failed to check connection status");
+        }
+    }
+
+    /**
+     * Tests the getConnection method of the RescueCenter class.
+     * This test ensures that when the getConnection method is called:
+     * - A valid connection object is returned and not null.
+     * - The returned connection object can be further tested for additional properties if needed.
+     */
+    @Test
+    public void testGetConnection() {
+        RescueCenter rescueCenter = new RescueCenter();
+
+        Connection connection = rescueCenter.getConnection();
+        assertNotNull("Connection object should not be null", connection);
+        // You can also test further properties of the connection object if needed
+    }
+
+    /**
+     * Tests the getAnimalList method of the RescueCenter class.
+     * This test ensures that when the getAnimalList method is called:
+     * - A valid ArrayList of Animal objects is returned and not null.
+     * - The returned animal list can be further tested for additional properties if needed,
+     *   such as size, contents, or other list-related properties.
+     */
+    @Test
+    public void testGetAnimalList() {
+        RescueCenter rescueCenter = new RescueCenter();
+        assertNotNull("Animal list should not be null", rescueCenter.getAnimalList());
+        // You can also test the size or contents of the animal list if needed
+    }
+
+    /**
+     * Tests the getTaskList method of the RescueCenter class.
+     * This test ensures that when the getTaskList method is called:
+     * - A valid ArrayList of Task objects is returned and not null.
+     * - The returned task list can be further tested for additional properties if needed,
+     *   such as size, contents, or other list-related properties.
+     */
+    @Test
+    public void testGetTaskList() {
+        RescueCenter rescueCenter = new RescueCenter();
+        assertNotNull("Task list should not be null", rescueCenter.getTaskList());
+        // You can also test the size or contents of the task list if needed
+    }
+
+    /**
+     * Tests the getTreatmentList method of the RescueCenter class.
+     * This test ensures that when the getTreatmentList method is called:
+     * - A valid ArrayList of Treatment objects is returned and not null.
+     * - The returned treatment list can be further tested for additional properties if needed,
+     *   such as size, contents, or other list-related properties.
+     */
+    @Test
+    public void testGetTreatmentList() {
+        RescueCenter rescueCenter = new RescueCenter();
+        assertNotNull("Treatment list should not be null", rescueCenter.getTreatmentList());
+        // You can also test the size or contents of the treatment list if needed
+    }
+
+    /*
+     * Tests the getTaskByID method of the RescueCenter class.
+     * This test ensures that when the getTaskByID method is called:
+     * - With a valid taskID, a Task object is returned and not null.
+     * - The returned Task object has a matching taskID with the input taskID.
+     * - With an invalid taskID, null is returned.
+     * Note: This test assumes the existence of a database with tasks, and requires
+     * valid and invalid taskIDs to be replaced accordingly for accurate testing.
+     */
+    @Test
+    public void testGetTaskByID() {
+        RescueCenter rescueCenter = new RescueCenter();
+        // Test case 1: Task with valid taskID
+        int validTaskID = 1; // Replace with a valid taskID from your database
+        Task task = rescueCenter.getTaskByID(validTaskID);
+        assertNotNull("Task should not be null", task);
+        assertEquals("TaskID should match", validTaskID, task.getTaskID());
+
+        // Test case 2: Task with invalid taskID
+        int invalidTaskID = -1; // Replace with an invalid taskID that does not exist in your database
+        Task invalidTask = rescueCenter.getTaskByID(invalidTaskID);
+        assertNull("Task should be null", invalidTask);
+    }
+
+    /*
+     * Tests the getAnimalByID method of the RescueCenter class.
+     * This test ensures that when the getAnimalByID method is called:
+     * - With a valid animalID, an Animal object is returned and not null.
+     * - The returned Animal object has a matching animalID with the input animalID.
+     * - With an invalid animalID, null is returned.
+     * Note: This test assumes the existence of a database with animals, and requires
+     * valid and invalid animalIDs to be replaced accordingly for accurate testing.
+     */
+    @Test
+    public void testGetAnimalByID() {
+        RescueCenter rescueCenter = new RescueCenter();
+        // Test case 1: Animal with valid animalID
+        int validAnimalID = 1; // Replace with a valid animalID from your database
+        Animal animal = rescueCenter.getAnimalByID(validAnimalID);
+        assertNotNull("Animal should not be null", animal);
+        assertEquals("AnimalID should match", validAnimalID, animal.getAnimalID());
+
+        // Test case 2: Animal with invalid animalID
+        int invalidAnimalID = -1; // Replace with an invalid animalID that does not exist in your database
+        Animal invalidAnimal = rescueCenter.getAnimalByID(invalidAnimalID);
+        assertNull("Animal should be null", invalidAnimal);
+    }
 
     //SCHEDULE FORMATTER TEST
     /*
@@ -477,7 +635,7 @@ public class WildlifeRescueTests {
         scheduleFormatterImpl.scheduleFormatter();
 
         // Assert that the method was called by checking the value of the flag
-        assertTrue(scheduleFormatterImpl.isCalled);
+        assertTrue("scheduleFormatter() method should have been called", scheduleFormatterImpl.isCalled);
     }
     
 }
