@@ -194,6 +194,8 @@ public class GUIController implements ScheduleFormatter{
             boolean unfedDiurnalAnimals = false;
             boolean unfedCrepuscularAnimals = false;
 
+
+            // appends treatments from sql file
             for (Treatment treatment : rescueCenter.getTreatmentList()) {
                 if (treatment.getStartHour() == hour) {
                     int taskID = treatment.getTaskID();
@@ -207,13 +209,16 @@ public class GUIController implements ScheduleFormatter{
                     hasTasks = true;
                 }
             }
- 
+            
+            
             ArrayList<String> foxesFed = new ArrayList<>();
             ArrayList<String> raccoonsFed = new ArrayList<>();
             ArrayList<String> beaversFed = new ArrayList<>();
             ArrayList<String> porcupinesFed = new ArrayList<>();
             ArrayList<String> coyotesFed = new ArrayList<>();
 
+
+            // adds feeding times into schedule - not in sql file
             for (Animal animal : rescueCenter.getAnimalList()) {
                 boolean printed = animal.isFeedingPrinted();
                 if (animal.getActiveType() == "nocturnal") {
@@ -295,6 +300,7 @@ public class GUIController implements ScheduleFormatter{
                 }
             }
  
+            // prints amount of animals from each species that are able to be fed in that hour
             if (foxesFed.size() > 0) {
                 hourSchedule.append("* Feeding - foxes (" + foxesFed.size() + ": " + String.join(", ", foxesFed) + ")\n");
             }
@@ -321,6 +327,8 @@ public class GUIController implements ScheduleFormatter{
                 errors.add("Invalid Schedule: Not all crepuscular animals have been fed.\nContact staff vet or modify start hours");
             }
 
+
+            // add cage cleaning times to schedule - not in sql file
             ArrayList<String> foxesCleaned = new ArrayList<>();
             ArrayList<String> raccoonsCleaned = new ArrayList<>();
             ArrayList<String> beaversCleaned = new ArrayList<>();
@@ -408,6 +416,7 @@ public class GUIController implements ScheduleFormatter{
                 hourSchedule.append("* Cage Cleaning - porcupines (" + porcupinesCleaned.size() + ": " + String.join(", ", porcupinesCleaned) + ")\n");
             }
 
+            // checks if backup volunteers are required is time exceeds an hour
             if (duration > 60) {
                 backup = true; 
                 hourSchedule.append(" [ + backup volunteer]\n");
@@ -415,6 +424,7 @@ public class GUIController implements ScheduleFormatter{
             if (backup == true && duration > 120){
                 errors.add("Invalid Schedule: Too many tasks at " + hour + ":00.\nContact staff vet or modify start hours");
             }
+            // total task time for convenience
             hourSchedule.append("Total task duration: " + duration + "\n");
             if (hasTasks) {
                 hourTextArea.append(hourSchedule.toString());
@@ -603,6 +613,7 @@ public class GUIController implements ScheduleFormatter{
         }
     }
 
+    // used to run GUI
     public static void main (String [] args){
         GUIController gui = new GUIController();
         gui.mainMenu();

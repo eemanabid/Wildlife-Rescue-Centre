@@ -97,16 +97,6 @@ public class RescueCenter {
         return this.treatments;
     }
 
-    public ArrayList<Animal> getOrphanedAnimalsList(){
-        ArrayList<Animal> orphanedAnimals = new ArrayList<>();
-        for (Animal animal: animals){
-            if (animal.getAnimalNickname().contains(",")){
-                orphanedAnimals.add(animal);
-            }
-        }
-        return orphanedAnimals;
-    }
-
     public Task getTaskByID(int taskID) {
         for (Task task : tasks) {
             if (task.getTaskID() == taskID) {

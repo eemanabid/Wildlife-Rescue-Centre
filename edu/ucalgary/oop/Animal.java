@@ -23,6 +23,8 @@ public class Animal {
     private boolean crepuscularPrinted;
     private int cleanCageTime;
 
+
+    // Animal Constructor
     public Animal(int animalID, String animalNickname, String animalSpecies){
         this.animalID = animalID;
         this.animalNickname = animalNickname;
@@ -119,7 +121,7 @@ public class Animal {
         this.crepuscularPrinted = printed;
     }
 
-    // helper functions
+    // helper functions to check if animal is already printed in schedule
     public boolean isFeedingPrinted() {
         return this.feedingPrinted;
     }
