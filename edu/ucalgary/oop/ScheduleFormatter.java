@@ -11,5 +11,8 @@ package edu.ucalgary.oop;
  */
 
 public interface ScheduleFormatter {
+    /*
+    Formats the schedule according to a specific implementation.
+    */
     void scheduleFormatter();
 }
