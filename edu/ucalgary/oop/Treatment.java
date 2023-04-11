@@ -7,7 +7,7 @@ package edu.ucalgary.oop;
  * @author Sahiti Akella <a href="mailto:sahiti.akella@ucalgary.ca">sahiti.akella@ucalgary.ca</a>
  * @author Eeman Abid <a href="mailto:eeman.abid@ucalgary.ca">eeman.abid@ucalgary.ca</a>
  * @author Hareem Khan <a href="mailto:hareem.khan@ucalgary.ca">hareem.khan@ucalgary.ca</a>
- * @version 1.2
+ * @version 1.6
  */
 
 public class Treatment {
@@ -32,7 +32,7 @@ public class Treatment {
     }
 
     /*
-    Returns the unique ID of this Treatment object.
+    Getter returns the unique ID of the Treatment.
     @return the treatment ID
     */
     public int getTreatmentID(){
@@ -40,7 +40,7 @@ public class Treatment {
     }
 
     /*
-    Returns the ID of the animal of this Treatment object.
+    Getter returns the ID of the animal of this Treatment.
     @return the animal ID
     */
     public int getAnimalID(){
@@ -48,7 +48,7 @@ public class Treatment {
     }
 
     /*
-    Returns the ID of the task of this Treatment object.
+    Getter returns the ID of the task of this Treatment.
     @return the task ID
     */
     public int getTaskID(){
@@ -56,7 +56,7 @@ public class Treatment {
     }
 
     /*
-    Returns the start hour of this Treatment object.
+    Getter returns the start hour of this Treatment.
     @return the start hour
     */
     public int getStartHour(){
