@@ -28,7 +28,7 @@ public class Animal {
     private boolean crepuscularPrinted;
     private int cleanCageTime;
 
-    /*
+    /**
      * Creates an Animal object with the animal ID, animal nickname, and
      * animalspecies
      * Sets the timings for feeding, preparation, and cage cleaning based on the
@@ -47,7 +47,7 @@ public class Animal {
         setTimings();
     }
 
-    /*
+    /**
      * Sets the feeding time, preparation time, cage cleaning time,
      * and active type based on the animal's species.
      */
@@ -89,7 +89,7 @@ public class Animal {
         }
     }
 
-    /*
+    /**
      * Getter returns the ID of the animal.
      * 
      * @return The ID of the animal
@@ -98,7 +98,7 @@ public class Animal {
         return this.animalID;
     }
 
-    /*
+    /**
      * Getter returns the nickname of the animal.
      * 
      * @return The nickname of the animal
@@ -107,7 +107,7 @@ public class Animal {
         return this.animalNickname;
     }
 
-    /*
+    /**
      * Getter returns the species of the animal.
      * 
      * @return The species of the animal
@@ -116,7 +116,7 @@ public class Animal {
         return this.animalSpecies;
     }
 
-    /*
+    /**
      * Getter returns the task of the animal.
      * 
      * @return The task of the animal
@@ -125,7 +125,7 @@ public class Animal {
         return this.task;
     }
 
-    /*
+    /**
      * Getter returns the feed time of the animal.
      * 
      * @return The feed time of the animal
@@ -134,7 +134,7 @@ public class Animal {
         return this.feedTime;
     }
 
-    /*
+    /**
      * Getter returns the prep time D of the animal.
      * 
      * @return The prep time of the animal
@@ -143,7 +143,7 @@ public class Animal {
         return this.prepTime;
     }
 
-    /*
+    /**
      * Getter returns the cage cleaning time of the animal.
      * 
      * @return The cage cleaning time of the animal
@@ -152,7 +152,7 @@ public class Animal {
         return this.cleanCageTime;
     }
 
-    /*
+    /**
      * Getter returns the active type of the animal.
      * 
      * @return The active type of the animal
@@ -161,7 +161,7 @@ public class Animal {
         return this.activeType;
     }
 
-    /*
+    /**
      * Sets whether or not the animal's feeding time has been printed in the
      * schedule.
      * 
@@ -171,7 +171,7 @@ public class Animal {
         this.feedingPrinted = printed;
     }
 
-    /*
+    /**
      * Sets whether or not nocturnal animal have been printed in the schedule.
      * 
      * @param printed true if nocturnal animal have been printed, false otherwise
@@ -180,7 +180,7 @@ public class Animal {
         this.nocturnalPrinted = printed;
     }
 
-    /*
+    /**
      * Sets whether or not diurnal animal have been printed in the schedule.
      * 
      * @param printed true if diurnal animal have been printed, false otherwise
@@ -189,7 +189,7 @@ public class Animal {
         this.diurnalPrinted = printed;
     }
 
-    /*
+    /**
      * Sets whether or not crepuscular animal have been printed in the schedule.
      * 
      * @param printed true if crepuscular animal have been printed, false otherwise
@@ -198,7 +198,7 @@ public class Animal {
         this.crepuscularPrinted = printed;
     }
 
-    /*
+    /**
      * Determines whether or not the animal's feeding time has been printed in the
      * schedule.
      * 
@@ -208,7 +208,7 @@ public class Animal {
         return this.feedingPrinted;
     }
 
-    /*
+    /**
      * Determines whether or not the nocturnal animal's have been printed in the
      * schedule.
      * 
@@ -218,7 +218,7 @@ public class Animal {
         return this.nocturnalPrinted;
     }
 
-    /*
+    /**
      * Determines whether or not the diurnal animal's have been printed in the
      * schedule.
      * 
@@ -228,7 +228,7 @@ public class Animal {
         return this.diurnalPrinted;
     }
 
-    /*
+    /**
      * Determines whether or not the crepuscular animal's have been printed in the
      * schedule.
      * 

@@ -695,7 +695,7 @@ public class GUIController implements ScheduleFormatter {
         }
     }
 
-    /*
+    /**
      * This is the main method that starts the program.
      * It creates a new instance of the GUIController class
      * and calls its mainMenu() method to display the main menu of the program.

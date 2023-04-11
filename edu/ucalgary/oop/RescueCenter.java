@@ -95,7 +95,7 @@ public class RescueCenter {
         }
     }
 
-    /*
+    /**
      * Getter method returns the SQL Connection object.
      * 
      * @return the Connection object to the SQL database.
@@ -104,7 +104,7 @@ public class RescueCenter {
         return dbConnect;
     }
 
-    /*
+    /**
      * Getter method returns the list of Animal objects.
      * 
      * @return an ArrayList containing all Animal objects in the rescue center.
@@ -113,7 +113,7 @@ public class RescueCenter {
         return this.animals;
     }
 
-    /*
+    /**
      * Getter method returns the list of Task objects.
      * 
      * @return an ArrayList containing all Task objects in the rescue center.
@@ -122,7 +122,7 @@ public class RescueCenter {
         return this.tasks;
     }
 
-    /*
+    /**
      * Getter method returns the list of Treatment objects.
      * 
      * @return an ArrayList containing all Treatment objects in the rescue center.
@@ -131,7 +131,7 @@ public class RescueCenter {
         return this.treatments;
     }
 
-    /*
+    /**
      * Retrieves the task with the specified task ID from the list of tasks.
      * 
      * @param taskID the ID of the task to retrieve
@@ -147,7 +147,7 @@ public class RescueCenter {
         return null;
     }
 
-    /*
+    /**
      * Retrieves the animal with the specified animal ID from the list of animals.
      * 
      * @param animalID the ID of the animal to retrieve

@@ -22,7 +22,7 @@ public class Task {
     private String description;
     private int maxWindow;
 
-    /*
+    /**
      * Creates a new Task object with the given taskID, description, duration, and
      * maxWindow.
      * 
@@ -41,7 +41,7 @@ public class Task {
         this.maxWindow = maxWindow;
     }
 
-    /*
+    /**
      * Getter returns the unique ID of the Task.
      * 
      * @return the unique ID of the task.
@@ -50,7 +50,7 @@ public class Task {
         return taskID;
     }
 
-    /*
+    /**
      * Getter returns the duration of the Task in minutes.
      * 
      * @return the duration of the Task in minutes.
@@ -59,7 +59,7 @@ public class Task {
         return this.duration;
     }
 
-    /*
+    /**
      * Getter returns the description of the Task.
      * 
      * @return the description of the Task.
@@ -68,7 +68,7 @@ public class Task {
         return this.description;
     }
 
-    /*
+    /**
      * Getter returns the maximum time window in which the Task can be scheduled.
      * 
      * @return the maximum time window in which the Task can be scheduled.

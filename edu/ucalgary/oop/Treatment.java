@@ -23,7 +23,7 @@ public class Treatment {
     private int taskID;
     private int startHour;
 
-    /*
+    /**
      * Constructs a Treatment object with the given animal ID, task ID, and start
      * hour.
      * The treatment ID is automatically generated and assigned.
@@ -41,7 +41,7 @@ public class Treatment {
         this.startHour = startHour;
     }
 
-    /*
+    /**
      * Getter returns the unique ID of the Treatment.
      * 
      * @return the treatment ID
@@ -50,7 +50,7 @@ public class Treatment {
         return this.treatmentID;
     }
 
-    /*
+    /**
      * Getter returns the ID of the animal of this Treatment.
      * 
      * @return the animal ID
@@ -59,7 +59,7 @@ public class Treatment {
         return this.animalID;
     }
 
-    /*
+    /**
      * Getter returns the ID of the task of this Treatment.
      * 
      * @return the task ID
@@ -68,7 +68,7 @@ public class Treatment {
         return this.taskID;
     }
 
-    /*
+    /**
      * Getter returns the start hour of this Treatment.
      * 
      * @return the start hour
