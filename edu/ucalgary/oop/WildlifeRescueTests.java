@@ -1,93 +1,103 @@
 package edu.ucalgary.oop;
 
 import org.junit.Test;
-import org.junit.validator.PublicClassValidator;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
 import static org.junit.Assert.*;
 import org.junit.*;
 
 /**
- * Class WidlifeRescueTests: 
+ * Class WildlifeRescueTests: Testing WRC application
+ * 
  * @since 1.0
- * @author Hooriya Amjad <a href="mailto:hooriya.amjad@ucalgary.ca">hooriya.amjad@ucalgary.ca</a>
- * @author Sahiti Akella <a href="mailto:sahiti.akella@ucalgary.ca">sahiti.akella@ucalgary.ca</a>
- * @author Eeman Abid <a href="mailto:eeman.abid@ucalgary.ca">eeman.abid@ucalgary.ca</a>
- * @author Hareem Khan <a href="mailto:hareem.khan@ucalgary.ca">hareem.khan@ucalgary.ca</a>
- * @version 1.2
+ * @author Hooriya Amjad <a href=
+ *         "mailto:hooriya.amjad@ucalgary.ca">hooriya.amjad@ucalgary.ca</a>
+ * @author Sahiti Akella <a href=
+ *         "mailto:sahiti.akella@ucalgary.ca">sahiti.akella@ucalgary.ca</a>
+ * @author Eeman Abid
+ *         <a href="mailto:eeman.abid@ucalgary.ca">eeman.abid@ucalgary.ca</a>
+ * @author Hareem Khan
+ *         <a href="mailto:hareem.khan@ucalgary.ca">hareem.khan@ucalgary.ca</a>
+ * @version 3.2
  */
 
 public class WildlifeRescueTests {
 
-    public WildlifeRescueTests() {}
+    public WildlifeRescueTests() {
+    }
 
-    //Task Tests
+    // TASK TESTS
+
     /*
      * Test case for testing the getTaskID() method of the Task class.
      * It creates a new Task object with specific values using the constructor,
-     * then calls getTaskID() method and compares the returned value with the expected result.
+     * then calls getTaskID() method and compares the returned value with the
+     * expected result.
      */
     @Test
     public void getTaskIDTest() {
-        Task newTask = new Task(1,"Rebandage fox leg wound", 20, 40);
+        Task newTask = new Task(1, "Rebandage fox leg wound", 20, 40);
 
         int taskGetID = newTask.getTaskID();
         int expectedResult = 1;
         assertEquals("Incorrect Task ID", expectedResult, taskGetID);
-        
+
     }
 
     /*
      * Test case for testing the getDuration() method of the Task class.
      * It creates a new Task object with specific values using the constructor,
-     * then calls getDuration() method and compares the returned value with the expected result.
+     * then calls getDuration() method and compares the returned value with the
+     * expected result.
      */
     @Test
     public void getDurationTest() {
-        Task newTask = new Task(1,"Rebandage fox leg wound", 20, 40);
+        Task newTask = new Task(1, "Rebandage fox leg wound", 20, 40);
 
         int taskGetDuration = newTask.getDuration();
         int expectedResult = 20;
         assertEquals("Incorrect Duration", expectedResult, taskGetDuration);
-        
+
     }
 
     /*
      * Test case for testing the getDescription() method of the Task class.
      * It creates a new Task object with specific values using the constructor,
-     * then calls getDescription() method and compares the returned value with the expected result.
+     * then calls getDescription() method and compares the returned value with the
+     * expected result.
      */
     @Test
     public void getDescriptionTest() {
-        Task newTask = new Task(1,"Rebandage fox leg wound", 20, 40);
+        Task newTask = new Task(1, "Rebandage fox leg wound", 20, 40);
 
         String taskGetDescription = newTask.getDescription();
         String expectedResult = "Rebandage fox leg wound";
         assertEquals("Incorrect Description", expectedResult, taskGetDescription);
-        
+
     }
 
     /*
      * Test case for testing the getMaxWindow() method of the Task class.
      * It creates a new Task object with specific values using the constructor,
-     * then calls getMaxWindow() method and compares the returned value with the expected result.
+     * then calls getMaxWindow() method and compares the returned value with the
+     * expected result.
      */
     @Test
     public void getMaxWindow() {
-        Task newTask = new Task(1,"Rebandage fox leg wound", 20, 40);
+        Task newTask = new Task(1, "Rebandage fox leg wound", 20, 40);
 
         int taskGetMaxWindow = newTask.getMaxWindow();
         int expectedResult = 40;
         assertEquals("Incorrect Max Window", expectedResult, taskGetMaxWindow);
-        
+
     }
 
     /*
      * Test case for testing the constructor of the Task class.
      * It creates a new Task object with specific values using the constructor,
-     * then calls getter methods to check if the values are properly set in the object.
+     * then calls getter methods to check if the values are properly set in the
+     * object.
      */
     @Test
     public void testTaskConstructor() {
@@ -105,8 +115,8 @@ public class WildlifeRescueTests {
         assertEquals("Incorrect Max Window", maxWindow, newTask.getMaxWindow());
     }
 
+    // TREATMENT TESTS
 
-    //Treatment Tests
     /*
      * Test for the getTreatmentID() method in the Treatment class.
      * Creates a new Treatment object and calls getTreatmentID() method.
@@ -122,7 +132,7 @@ public class WildlifeRescueTests {
 
         // Assert that the returned value is not null
         assertNotNull("Returned treatment ID should not be null", result);
-        
+
     }
 
     /*
@@ -176,10 +186,10 @@ public class WildlifeRescueTests {
     public void getStartHourTest() {
         Treatment newTreatment = new Treatment(1, 2, 3);
 
-        int getStartHour =  newTreatment.getStartHour();
+        int getStartHour = newTreatment.getStartHour();
         int expectedResult = 3;
         assertEquals("Returned start hour should match the expected result", expectedResult, getStartHour);
-        
+
     }
 
     /*
@@ -192,13 +202,15 @@ public class WildlifeRescueTests {
         // Create a new Treatment object with the given parameters
         Treatment newTreatment = new Treatment(1, 2, 3);
 
-        // Assert that the treatmentID, animalID, and taskID are set correctly in the constructor
+        // Assert that the treatmentID, animalID, and taskID are set correctly in the
+        // constructor
         assertEquals("Animal ID should match the expected value", 1, newTreatment.getAnimalID());
         assertEquals("Task ID should match the expected value", 2, newTreatment.getTaskID());
         assertEquals("Start hour should match the expected value", 3, newTreatment.getStartHour());
     }
 
-    //ANIMAL TESTS
+    // ANIMAL TESTS
+
     /*
      * Test case to verify the Animal constructor.
      * It checks if the Animal object is created with the correct attributes.
@@ -208,9 +220,9 @@ public class WildlifeRescueTests {
         int animalID = 1;
         String animalNickname = "Eraser";
         String animalSpecies = "Fox";
-        
+
         Animal animal = new Animal(animalID, animalNickname, animalSpecies);
-        
+
         assertEquals("Incorrect animal ID", animalID, animal.getAnimalID());
         assertEquals("Incorrect animal nickname", animalNickname, animal.getAnimalNickname());
         assertEquals("Incorrect animal species", animalSpecies, animal.getAnimalSpecies());
@@ -222,7 +234,7 @@ public class WildlifeRescueTests {
      * It checks if the returned animal ID matches the expected value.
      */
     public void getAnimalIDTest() {
-        Animal newAnimal = new Animal (1, "Eraser", "Fox" );
+        Animal newAnimal = new Animal(1, "Eraser", "Fox");
 
         int taskGetAnimalID = newAnimal.getAnimalID();
         int expectedResult = 1;
@@ -235,11 +247,11 @@ public class WildlifeRescueTests {
      */
     @Test
     public void getAnimalNicknameTest() {
-        Animal newAnimal = new Animal (1, "Eraser", "Fox" );
+        Animal newAnimal = new Animal(1, "Eraser", "Fox");
 
         String taskGetAnimalNickname = newAnimal.getAnimalNickname();
         String expectedResult = "Eraser";
-        assertEquals("Incorrect animal nickname", expectedResult, taskGetAnimalNickname); 
+        assertEquals("Incorrect animal nickname", expectedResult, taskGetAnimalNickname);
     }
 
     /*
@@ -248,13 +260,13 @@ public class WildlifeRescueTests {
      */
     @Test
     public void getAnimalSpeciesTest() {
-        Animal newAnimal = new Animal (1, "Eraser", "Fox" );
+        Animal newAnimal = new Animal(1, "Eraser", "Fox");
 
         String taskGetAnimalSpecies = newAnimal.getAnimalSpecies();
         String expectedResult = "Fox";
         assertEquals("Incorrect animal species", expectedResult, taskGetAnimalSpecies);
     }
-    
+
     /*
      * Test case to verify the getTask() method of the Animal class.
      * It checks if the returned task value is false, indicating no pending tasks.
@@ -268,11 +280,13 @@ public class WildlifeRescueTests {
     }
 
     /*
-    * Test case for getFeedTime() method of Animal class.
-    * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
-    * Retrieves the feed time using getFeedTime() method and compares it with expected value.
-    * Expected feed time is 5.
-    */
+     * Test case for getFeedTime() method of Animal class.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
+     * and animalSpecies="fox".
+     * Retrieves the feed time using getFeedTime() method and compares it with
+     * expected value.
+     * Expected feed time is 5.
+     */
     @Test
     public void testGetFeedTime() {
         Animal animal = new Animal(1, "Eraser", "fox");
@@ -282,8 +296,10 @@ public class WildlifeRescueTests {
 
     /*
      * Test case for getPrepTime() method of Animal class.
-     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
-     * Retrieves the prep time using getPrepTime() method and compares it with expected value.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
+     * and animalSpecies="fox".
+     * Retrieves the prep time using getPrepTime() method and compares it with
+     * expected value.
      * Expected prep time is 5.
      */
     @Test
@@ -295,8 +311,10 @@ public class WildlifeRescueTests {
 
     /*
      * Test case for getCageCleanTime() method of Animal class.
-     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
-     * Retrieves the cage clean time using getCageCleanTime() method and compares it with expected value.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
+     * and animalSpecies="fox".
+     * Retrieves the cage clean time using getCageCleanTime() method and compares it
+     * with expected value.
      * Expected cage clean time is 5.
      */
     @Test
@@ -308,8 +326,10 @@ public class WildlifeRescueTests {
 
     /*
      * Test case for getActiveType() method of Animal class.
-     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
-     * Retrieves the active type using getActiveType() method and compares it with expected value.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
+     * and animalSpecies="fox".
+     * Retrieves the active type using getActiveType() method and compares it with
+     * expected value.
      * Expected active type is "nocturnal".
      */
     @Test
@@ -321,28 +341,32 @@ public class WildlifeRescueTests {
 
     /*
      * Test case for setFeedingPrinted() method of Animal class.
-     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
-     * Tests the setting of feedingPrinted to true and false using setFeedingPrinted() method.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
+     * and animalSpecies="fox".
+     * Tests the setting of feedingPrinted to true and false using
+     * setFeedingPrinted() method.
      * Asserts that the values are set correctly using isFeedingPrinted() method.
      */
     @Test
     public void testSetFeedingPrinted() {
         // Create a new instance of the class
         Animal animal = new Animal(1, "Eraser", "fox");
-    
+
         // Test case 1: Set feedingPrinted to true
         animal.setFeedingPrinted(true);
         assertTrue("Failed to set feedingPrinted to true", animal.isFeedingPrinted());
-    
+
         // Test case 2: Set feedingPrinted to false
         animal.setFeedingPrinted(false);
         assertFalse("Failed to set feedingPrinted to false", animal.isFeedingPrinted());
     }
 
-     /*
+    /*
      * Test case for setNocturnalPrinted() method of Animal class.
-     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
-     * Tests the setting of nocturnalPrinted to true and false using setNocturnalPrinted() method.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
+     * and animalSpecies="fox".
+     * Tests the setting of nocturnalPrinted to true and false using
+     * setNocturnalPrinted() method.
      * Asserts that the values are set correctly using isNocturnalPrinted() method.
      */
     @Test
@@ -361,8 +385,10 @@ public class WildlifeRescueTests {
 
     /*
      * Test case for setDiurnalPrinted() method of Animal class.
-     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
-     * Tests the setting of diurnalPrinted to true and false using setDiurnalPrinted() method.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
+     * and animalSpecies="fox".
+     * Tests the setting of diurnalPrinted to true and false using
+     * setDiurnalPrinted() method.
      * Asserts that the values are set correctly using isDiurnalPrinted() method.
      */
     @Test
@@ -381,9 +407,12 @@ public class WildlifeRescueTests {
 
     /*
      * Test case for setCrepuscularPrinted() method of Animal class.
-     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
-     * Tests the setting of crepuscularPrinted to true and false using setCrepuscularPrinted() method.
-     * Asserts that the values are set correctly using isCrepuscularPrinted() method.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
+     * and animalSpecies="fox".
+     * Tests the setting of crepuscularPrinted to true and false using
+     * setCrepuscularPrinted() method.
+     * Asserts that the values are set correctly using isCrepuscularPrinted()
+     * method.
      */
     @Test
     public void testSetCrepuscularPrinted() {
@@ -399,56 +428,68 @@ public class WildlifeRescueTests {
         assertFalse("Failed to set crepuscularPrinted to false", animal.isCrepuscularPrinted());
     }
 
-
     /*
-    * Test case for isFeedingPrinted() method of Animal class.
-    * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
-    * Asserts that the initial value of feedingPrinted is false using isFeedingPrinted() method.
-    */
+     * Test case for isFeedingPrinted() method of Animal class.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
+     * and animalSpecies="fox".
+     * Asserts that the initial value of feedingPrinted is false using
+     * isFeedingPrinted() method.
+     */
     @Test
     public void testIsFeedingPrinted() {
         Animal animal = new Animal(1, "Eraser", "fox");
         boolean feedingPrinted = animal.isFeedingPrinted();
-        Assert.assertFalse("Feeding should not be printed", feedingPrinted); // Since feedingPrinted is not set, it should be false
+        Assert.assertFalse("Feeding should not be printed", feedingPrinted); // Since feedingPrinted is not set, it
+                                                                             // should be false
     }
 
     /*
-    * Test case for isNocturnalPrinted() method of Animal class.
-    * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
-    * Asserts that the initial value of nocturnalPrinted is false using isNocturnalPrinted() method.
-    */
+     * Test case for isNocturnalPrinted() method of Animal class.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
+     * and animalSpecies="fox".
+     * Asserts that the initial value of nocturnalPrinted is false using
+     * isNocturnalPrinted() method.
+     */
     @Test
     public void testIsNocturnalPrinted() {
         Animal animal = new Animal(1, "Eraser", "fox");
         boolean nocturnalPrinted = animal.isNocturnalPrinted();
-        Assert.assertFalse("Nocturnal should not be printed", nocturnalPrinted); // Since nocturnalPrinted is not set, it should be false
+        Assert.assertFalse("Nocturnal should not be printed", nocturnalPrinted); // Since nocturnalPrinted is not set,
+                                                                                 // it should be false
     }
 
     /*
-    * Test case for isDiurnalPrinted() method of Animal class.
-    * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
-    * Asserts that the initial value of diurnalPrinted is false using isDiurnalPrinted() method.
-    */
+     * Test case for isDiurnalPrinted() method of Animal class.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
+     * and animalSpecies="fox".
+     * Asserts that the initial value of diurnalPrinted is false using
+     * isDiurnalPrinted() method.
+     */
     @Test
     public void testIsDiurnalPrinted() {
         Animal animal = new Animal(1, "Eraser", "fox");
         boolean diurnalPrinted = animal.isDiurnalPrinted();
-        Assert.assertFalse("Diurnal should not be printed", diurnalPrinted); // Since diurnalPrinted is not set, it should be false
+        Assert.assertFalse("Diurnal should not be printed", diurnalPrinted); // Since diurnalPrinted is not set, it
+                                                                             // should be false
     }
 
     /*
-    * Test case for isCrepuscularPrinted() method of Animal class.
-    * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
-    * Asserts that the initial value of crepuscularPrinted is false using isCrepuscularPrinted() method.
-    */
+     * Test case for isCrepuscularPrinted() method of Animal class.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
+     * and animalSpecies="fox".
+     * Asserts that the initial value of crepuscularPrinted is false using
+     * isCrepuscularPrinted() method.
+     */
     @Test
     public void testIsCrepuscularPrinted() {
         Animal animal = new Animal(1, "Eraser", "fox");
         boolean crepuscularPrinted = animal.isCrepuscularPrinted();
-        Assert.assertFalse("Crepuscular should not be printed", crepuscularPrinted); // Since crepuscularPrinted is not set, it should be false
+        Assert.assertFalse("Crepuscular should not be printed", crepuscularPrinted); // Since crepuscularPrinted is not
+                                                                                     // set, it should be false
     }
 
-    //RESCUE CENTER TESTS
+    // RESCUE CENTER TESTS
+
     /*
      * Tests the constructor of the RescueCenter class.
      * This test ensures that when a new RescueCenter object is created:
@@ -491,7 +532,7 @@ public class WildlifeRescueTests {
         // Ensure that a valid connection is created
         Connection connection = rescueCenter.getConnection();
         assertNotNull("Connection should not be null", connection);
-        
+
         // Ensure that the connection is valid and not closed
         try {
             assertFalse("Connection should not be closed", connection.isClosed());
@@ -505,7 +546,8 @@ public class WildlifeRescueTests {
      * Tests the getConnection method of the RescueCenter class.
      * This test ensures that when the getConnection method is called:
      * - A valid connection object is returned and not null.
-     * - The returned connection object can be further tested for additional properties if needed.
+     * - The returned connection object can be further tested for additional
+     * properties if needed.
      */
     @Test
     public void testGetConnection() {
@@ -520,8 +562,9 @@ public class WildlifeRescueTests {
      * Tests the getAnimalList method of the RescueCenter class.
      * This test ensures that when the getAnimalList method is called:
      * - A valid ArrayList of Animal objects is returned and not null.
-     * - The returned animal list can be further tested for additional properties if needed,
-     *   such as size, contents, or other list-related properties.
+     * - The returned animal list can be further tested for additional properties if
+     * needed,
+     * such as size, contents, or other list-related properties.
      */
     @Test
     public void testGetAnimalList() {
@@ -534,8 +577,9 @@ public class WildlifeRescueTests {
      * Tests the getTaskList method of the RescueCenter class.
      * This test ensures that when the getTaskList method is called:
      * - A valid ArrayList of Task objects is returned and not null.
-     * - The returned task list can be further tested for additional properties if needed,
-     *   such as size, contents, or other list-related properties.
+     * - The returned task list can be further tested for additional properties if
+     * needed,
+     * such as size, contents, or other list-related properties.
      */
     @Test
     public void testGetTaskList() {
@@ -548,8 +592,9 @@ public class WildlifeRescueTests {
      * Tests the getTreatmentList method of the RescueCenter class.
      * This test ensures that when the getTreatmentList method is called:
      * - A valid ArrayList of Treatment objects is returned and not null.
-     * - The returned treatment list can be further tested for additional properties if needed,
-     *   such as size, contents, or other list-related properties.
+     * - The returned treatment list can be further tested for additional properties
+     * if needed,
+     * such as size, contents, or other list-related properties.
      */
     @Test
     public void testGetTreatmentList() {
@@ -588,7 +633,8 @@ public class WildlifeRescueTests {
      * - With a valid animalID, an Animal object is returned and not null.
      * - The returned Animal object has a matching animalID with the input animalID.
      * - With an invalid animalID, null is returned.
-     * Note: This test assumes the existence of a database with animals, and requires
+     * Note: This test assumes the existence of a database with animals, and
+     * requires
      * valid and invalid animalIDs to be replaced accordingly for accurate testing.
      */
     @Test
@@ -606,17 +652,23 @@ public class WildlifeRescueTests {
         assertNull("Animal should be null", invalidAnimal);
     }
 
-    //SCHEDULE FORMATTER TEST
+    // SCHEDULE FORMATTER TEST
+    
     /*
-     * Implement a test for the scheduleFormatter() method of the ScheduleFormatter interface
-     * Since ScheduleFormatter is an interface, the test would need to be implemented by a class that implements the interface
-     * In this case, we can create a test class that implements the ScheduleFormatter interface and override the scheduleFormatter() method
-     * In the overridden method, we can define the desired behavior and assert the expected result 
+     * Implement a test for the scheduleFormatter() method of the ScheduleFormatter
+     * interface
+     * Since ScheduleFormatter is an interface, the test would need to be
+     * implemented by a class that implements the interface
+     * In this case, we can create a test class that implements the
+     * ScheduleFormatter interface and override the scheduleFormatter() method
+     * In the overridden method, we can define the desired behavior and assert the
+     * expected result
      */
     @Test
     public void testScheduleFormatter() {
 
-        // Example implementation of a test class that implements ScheduleFormatter interface
+        // Example implementation of a test class that implements ScheduleFormatter
+        // interface
         class ScheduleFormatterImpl implements ScheduleFormatter {
             boolean isCalled = false;
 
@@ -637,5 +689,5 @@ public class WildlifeRescueTests {
         // Assert that the method was called by checking the value of the flag
         assertTrue("scheduleFormatter() method should have been called", scheduleFormatterImpl.isCalled);
     }
-    
+
 }
