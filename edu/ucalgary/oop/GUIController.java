@@ -311,13 +311,13 @@ public class GUIController implements ScheduleFormatter{
             }
 
             if (unfedNocturnalAnimals == true){
-                errors.add("Not all nocturnal animals have been fed.\n");
+                errors.add("Invalid Schedule: Not all nocturnal animals have been fed.\nContact staff vet or modify start hours");
             }
             if (unfedDiurnalAnimals == true){
-                errors.add("Not all diurnal animals have been fed.\n");
+                errors.add("Invalid Schedule: Not all diurnal animals have been fed.\nContact staff vet or modify start hours");
             }
             if (unfedCrepuscularAnimals == true){
-                errors.add("Not all crepuscular animals have been fed.\n");
+                errors.add("Invalid Schedule: Not all crepuscular animals have been fed.\nContact staff vet or modify start hours");
             }
 
             ArrayList<String> foxesCleaned = new ArrayList<>();
@@ -412,7 +412,7 @@ public class GUIController implements ScheduleFormatter{
                 hourSchedule.append(" [ + backup volunteer]\n");
             }
             if (backup == true && duration > 120){
-                errors.add("Too many tasks at " + hour + ":00. Contact staff vet or modify start hours.\n");
+                errors.add("Invalid Schedule: Too many tasks at " + hour + ":00.\nContact staff vet or modify start hours");
             }
             if (hasTasks) {
                 hourTextArea.append(hourSchedule.toString());
