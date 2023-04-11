@@ -4,7 +4,7 @@ import java.util.*;
 import java.sql.*;
 
 /**
- * Class RescueCenter: 
+ * Class RescueCenter: reads required data from the sql database, contains necessary methods
  * @since 1.0
  * @author Hooriya Amjad <a href="mailto:hooriya.amjad@ucalgary.ca">hooriya.amjad@ucalgary.ca</a>
  * @author Sahiti Akella <a href="mailto:sahiti.akella@ucalgary.ca">sahiti.akella@ucalgary.ca</a>

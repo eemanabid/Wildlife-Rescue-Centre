@@ -1,7 +1,7 @@
 package edu.ucalgary.oop;
 
 /**
- * Class Treatment: 
+ * Class Treatment: treatment object and treatment methods for executing application
  * @since 1.0
  * @author Hooriya Amjad <a href="mailto:hooriya.amjad@ucalgary.ca">hooriya.amjad@ucalgary.ca</a>
  * @author Sahiti Akella <a href="mailto:sahiti.akella@ucalgary.ca">sahiti.akella@ucalgary.ca</a>
@@ -17,7 +17,13 @@ public class Treatment {
     private int taskID; 
     private int startHour;  
 
-    // constructor
+    /*
+    Constructs a Treatment object with the given animal ID, task ID, and start hour.
+    The treatment ID is automatically generated and assigned.
+    @param animalID the ID of the animal receiving the treatment
+    @param taskID the ID of the task associated with the treatment
+    @param startHour the hour at which the treatment is scheduled to begin
+    */
     public Treatment(int animalID, int taskID, int startHour){
         this.treatmentID = nextTreatmentID++;
         this.animalID = animalID;
@@ -25,19 +31,34 @@ public class Treatment {
         this.startHour = startHour;
     }
 
-    // getters
+    /*
+    Returns the unique ID of this Treatment object.
+    @return the treatment ID
+    */
     public int getTreatmentID(){
         return this.treatmentID;
     }
 
+    /*
+    Returns the ID of the animal of this Treatment object.
+    @return the animal ID
+    */
     public int getAnimalID(){
         return this.animalID;
     }
 
+    /*
+    Returns the ID of the task of this Treatment object.
+    @return the task ID
+    */
     public int getTaskID(){
         return this.taskID;
     }
 
+    /*
+    Returns the start hour of this Treatment object.
+    @return the start hour
+    */
     public int getStartHour(){
         return this.startHour;
     }
