@@ -11,7 +11,7 @@ import java.util.*;
 import java.sql.*;
 
 /**
- * Class GUIController: creates the Graphic User Interface
+ * Class GUIController: creates the Graphic User Interface, and creates the schedule y
  * @since 1.0
  * @author Hooriya Amjad <a href="mailto:hooriya.amjad@ucalgary.ca">hooriya.amjad@ucalgary.ca</a>
  * @author Sahiti Akella <a href="mailto:sahiti.akella@ucalgary.ca">sahiti.akella@ucalgary.ca</a>
@@ -113,9 +113,7 @@ public class GUIController implements ScheduleFormatter{
     }
 
     /* When the user clicks the "Generate Schedule" button, 
-     * the program will attempt to generate a schedule based on the animal and medical task data
-     * If the schedule cannot be generated, an error message will be displayed in the status bar.
-     * needs to be able to modify the start hour of one or more of the treatments 
+     * user is able to modify the start hour of one or more of the treatments 
      * based on the error received. 
      */
     public void generateSchedule(){
@@ -128,7 +126,7 @@ public class GUIController implements ScheduleFormatter{
         scrollPanel.removeAll();
         scheduleArea.setText("");
         hourTextArea.setText("");
-        // this is just testing code: the schedule will be called here
+        
         scheduleArea.setLineWrap(true);
         scheduleArea.setText("Schedule for " + formattedDate);
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
@@ -180,7 +178,10 @@ public class GUIController implements ScheduleFormatter{
         FRM.add(menu);
     }
     
-    // make the schedule for the user 
+    /*
+     * The program will attempt to generate a schedule based on the animal and medical task data
+     * If the schedule cannot be generated, an error message will be displayed in the status bar.
+     */
     @Override
     public void scheduleFormatter(){
         for (int hour = 0; hour <= 23; hour++) {
@@ -311,13 +312,13 @@ public class GUIController implements ScheduleFormatter{
             }
 
             if (unfedNocturnalAnimals == true){
-                errors.add("Not all nocturnal animals have been fed.\n");
+                errors.add("Invalid Schedule: Not all nocturnal animals have been fed.\nContact staff vet or modify start hours");
             }
             if (unfedDiurnalAnimals == true){
-                errors.add("Not all diurnal animals have been fed.\n");
+                errors.add("Invalid Schedule: Not all diurnal animals have been fed.\nContact staff vet or modify start hours");
             }
             if (unfedCrepuscularAnimals == true){
-                errors.add("Not all crepuscular animals have been fed.\n");
+                errors.add("Invalid Schedule: Not all crepuscular animals have been fed.\nContact staff vet or modify start hours");
             }
 
             ArrayList<String> foxesCleaned = new ArrayList<>();
@@ -412,7 +413,7 @@ public class GUIController implements ScheduleFormatter{
                 hourSchedule.append(" [ + backup volunteer]\n");
             }
             if (backup == true && duration > 120){
-                errors.add("Too many tasks at " + hour + ":00. Contact staff vet or modify start hours.\n");
+                errors.add("Invalid Schedule: Too many tasks at " + hour + ":00.\nContact staff vet or modify start hours");
             }
             if (hasTasks) {
                 hourTextArea.append(hourSchedule.toString());
@@ -454,7 +455,7 @@ public class GUIController implements ScheduleFormatter{
         // create JTable to display treatments data
         JTable table = new JTable(model);
     
-        // allow user to edit start hour by double-clicking on a cell
+        // allow user to edit start hour by clicking on a cell
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -465,6 +466,9 @@ public class GUIController implements ScheduleFormatter{
                     int newStartHour = Integer.parseInt(JOptionPane.showInputDialog(FRM, "Enter new start hour for Treatment " + treatmentID + ":", currentStartHour));
                     if (newStartHour > currentStartHour + maxWindow - 1 || newStartHour < currentStartHour) { // check if the new start hour is outside the max window
                         JOptionPane.showMessageDialog(FRM, "New start hour is outside the maximum window for Treatment " + treatmentID + " (max window is " + maxWindow + " hours).", "Error", JOptionPane.ERROR_MESSAGE);
+                    if (newStartHour > 23 || newStartHour < 0){
+                        JOptionPane.showMessageDialog(FRM, "New start hour is invalid, please input an hour from 0-23", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                     } else {
                         try {
                             String sql = "UPDATE TREATMENTS SET StartHour = ? WHERE TreatmentID = ?";
