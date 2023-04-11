@@ -113,9 +113,7 @@ public class GUIController implements ScheduleFormatter{
     }
 
     /* When the user clicks the "Generate Schedule" button, 
-     * the program will attempt to generate a schedule based on the animal and medical task data
-     * If the schedule cannot be generated, an error message will be displayed in the status bar.
-     * needs to be able to modify the start hour of one or more of the treatments 
+     * user is able to modify the start hour of one or more of the treatments 
      * based on the error received. 
      */
     public void generateSchedule(){
@@ -128,7 +126,7 @@ public class GUIController implements ScheduleFormatter{
         scrollPanel.removeAll();
         scheduleArea.setText("");
         hourTextArea.setText("");
-        // this is just testing code: the schedule will be called here
+        
         scheduleArea.setLineWrap(true);
         scheduleArea.setText("Schedule for " + formattedDate);
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
@@ -180,7 +178,10 @@ public class GUIController implements ScheduleFormatter{
         FRM.add(menu);
     }
     
-    // make the schedule for the user 
+    /*
+     * The program will attempt to generate a schedule based on the animal and medical task data
+     * If the schedule cannot be generated, an error message will be displayed in the status bar.
+     */
     @Override
     public void scheduleFormatter(){
         for (int hour = 0; hour <= 23; hour++) {
@@ -454,7 +455,7 @@ public class GUIController implements ScheduleFormatter{
         // create JTable to display treatments data
         JTable table = new JTable(model);
     
-        // allow user to edit start hour by double-clicking on a cell
+        // allow user to edit start hour by clicking on a cell
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
