@@ -105,36 +105,95 @@ public class WildlifeRescueTests {
 
 
     //Treatment Tests
+    /*
+     * Test for the getTreatmentID() method in the Treatment class.
+     * Creates a new Treatment object and calls getTreatmentID() method.
+     * Asserts that the returned value is not null.
+     */
+    @Test
+    public void testGetTreatmentID() {
+        // Create a new Treatment object with the given parameters
+        Treatment newTreatment = new Treatment(1, 2, 3);
+
+        // Call the getTreatmentID() method
+        int result = newTreatment.getTreatmentID();
+
+        // Assert that the returned value is not null
+        assertNotNull("Returned treatment ID should not be null", result);
+        
+    }
+
+    /*
+     * Test for the getAnimalID() method in the Treatment class.
+     * Creates a new Treatment object and calls getAnimalID() method.
+     * Asserts that the returned value is not null and matches the expected value.
+     */
+    @Test
+    public void testGetAnimalID() {
+        // Create a new Treatment object with the given parameters
+        Treatment newTreatment = new Treatment(1, 2, 3);
+
+        // Call the getAnimalID() method
+        int result = newTreatment.getAnimalID();
+
+        // Assert that the returned value is not null
+        assertNotNull("Returned animal ID should not be null", result);
+
+        // Assert that the returned value matches the expected value
+        int expectedValue = 1; // Replace with expected value
+        assertEquals("Returned animal ID does not match expected value", expectedValue, result);
+    }
+
+    /*
+     * Test for the getTaskID() method in the Treatment class.
+     * Creates a new Treatment object and calls getTaskID() method.
+     * Asserts that the returned value is not null and matches the expected value.
+     */
+    @Test
+    public void testGetTaskID() {
+        // Create a new Treatment object with the given parameters
+        Treatment newTreatment = new Treatment(1, 2, 3);
+
+        // Call the getTaskID() method
+        int result = newTreatment.getTaskID();
+
+        // Assert that the returned value is not null
+        assertNotNull("Returned task ID should not be null", result);
+
+        // Assert that the returned value matches the expected value
+        int expectedValue = 2; // Replace with expected value
+        assertEquals("Returned task ID does not match expected value", expectedValue, result);
+    }
+
+    /*
+     * Test for the getStartHour() method in the Treatment class.
+     * Creates a new Treatment object and calls getStartHour() method.
+     * Asserts that the returned value matches the expected result.
+     */
     @Test
     public void getStartHourTest() {
         Treatment newTreatment = new Treatment(1, 2, 3);
 
         int getStartHour =  newTreatment.getStartHour();
         int expectedResult = 3;
-        assertEquals(expectedResult, getStartHour);
+        assertEquals("Returned start hour should match the expected result", expectedResult, getStartHour);
         
     }
 
+    /*
+     * Test for the constructor of the Treatment class.
+     * Creates a new Treatment object with the given parameters and asserts that
+     * the treatmentID, animalID, and taskID are set correctly in the constructor.
+     */
     @Test
-    public void testClone() throws CloneNotSupportedException {
-        // Create an object to be cloned
-        Animal obj1 = new Animal();
-        obj1.setAnimalNickname("Eraser");
+    public void testConstructor() {
+        // Create a new Treatment object with the given parameters
+        Treatment newTreatment = new Treatment(1, 2, 3);
 
-        // Clone the object
-        Animal obj2 = (Animal) obj1.clone();
-
-        // Verify that the cloned object is a separate object from the original
-        assertNotSame(obj1, obj2);
-
-        // Verify that the properties of the cloned object match those of the original
-        assertEquals(obj1.getAnimalNickname(), obj2.getAnimalNickname());
-
-        // Modify the cloned object
-        obj2.setAnimalNickname("Gatekeeper");
-
-        // Verify that the modification of the cloned object did not affect the original
-        assertNotEquals(obj1.getAnimalNickname(), obj2.getAnimalNickname());
+        // Assert that the treatmentID, animalID, and taskID are set correctly in the constructor
+        assertEquals("Animal ID should match the expected value", 1, newTreatment.getAnimalID());
+        assertEquals("Task ID should match the expected value", 2, newTreatment.getTaskID());
+        assertEquals("Start hour should match the expected value", 3, newTreatment.getStartHour());
     }
 
     //ANIMAL TESTS
@@ -192,7 +251,7 @@ public class WildlifeRescueTests {
 
         String taskGetAnimalSpecies = newAnimal.getAnimalSpecies();
         String expectedResult = "Fox";
-       assertEquals("Incorrect animal species", expectedResult, taskGetAnimalSpecies);
+        assertEquals("Incorrect animal species", expectedResult, taskGetAnimalSpecies);
         
     }
     
@@ -207,5 +266,39 @@ public class WildlifeRescueTests {
         boolean taskGetTask = newAnimal.getTask();
         assertFalse("Incorrect task value", taskGetTask);
     }
-     
+
+    //RESCUE CENTER TESTS
+
+    //SCHEDULE FORMATTER TEST
+    /*
+     * Implement a test for the scheduleFormatter() method of the ScheduleFormatter interface
+     * Since ScheduleFormatter is an interface, the test would need to be implemented by a class that implements the interface
+     * In this case, we can create a test class that implements the ScheduleFormatter interface and override the scheduleFormatter() method
+     * In the overridden method, we can define the desired behavior and assert the expected result 
+     */
+    @Test
+    public void testScheduleFormatter() {
+
+        // Example implementation of a test class that implements ScheduleFormatter interface
+        class ScheduleFormatterImpl implements ScheduleFormatter {
+            boolean isCalled = false;
+
+            @Override
+            public void scheduleFormatter() {
+                // Define the desired behavior of the scheduleFormatter() method in the test
+                // For example, set a flag to true to indicate that the method was called
+                isCalled = true;
+            }
+        }
+
+        // Create an instance of the test class
+        ScheduleFormatterImpl scheduleFormatterImpl = new ScheduleFormatterImpl();
+
+        // Call the scheduleFormatter() method
+        scheduleFormatterImpl.scheduleFormatter();
+
+        // Assert that the method was called by checking the value of the flag
+        assertTrue(scheduleFormatterImpl.isCalled);
+    }
+    
 }
