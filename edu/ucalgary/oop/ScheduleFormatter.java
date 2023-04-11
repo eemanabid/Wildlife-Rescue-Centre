@@ -12,7 +12,7 @@ package edu.ucalgary.oop;
  *         <a href="mailto:eeman.abid@ucalgary.ca">eeman.abid@ucalgary.ca</a>
  * @author Hareem Khan
  *         <a href="mailto:hareem.khan@ucalgary.ca">hareem.khan@ucalgary.ca</a>
- * @version 1.2
+ * @version 1.1
  */
 
 public interface ScheduleFormatter {
