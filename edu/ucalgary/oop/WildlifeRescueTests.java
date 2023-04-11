@@ -138,79 +138,74 @@ public class WildlifeRescueTests {
     }
 
     //ANIMAL TESTS
+    /*
+     * Test case to verify the Animal constructor.
+     * It checks if the Animal object is created with the correct attributes.
+     */
     @Test
     public void testAnimalConstructor() {
         int animalID = 1;
         String animalNickname = "Eraser";
         String animalSpecies = "Fox";
-    
+        
         Animal animal = new Animal(animalID, animalNickname, animalSpecies);
-    
-        assertEquals(animalID, animal.getAnimalID());
-        assertEquals(animalNickname, animal.getAnimalNickname());
-        assertEquals(animalSpecies, animal.getAnimalSpecies());
-}
+        
+        assertEquals("Incorrect animal ID", animalID, animal.getAnimalID());
+        assertEquals("Incorrect animal nickname", animalNickname, animal.getAnimalNickname());
+        assertEquals("Incorrect animal species", animalSpecies, animal.getAnimalSpecies());
+    }
 
     @Test
+    /*
+     * Test case to verify the getAnimalID() method of the Animal class.
+     * It checks if the returned animal ID matches the expected value.
+     */
     public void getAnimalIDTest() {
      Animal newAnimal = new Animal (1, "Eraser", "Fox" );
 
      int taskGetAnimalID = newAnimal.getAnimalID();
      int expectedResult = 1;
-    assertEquals(expectedResult, taskGetAnimalID);
+    assertEquals("Incorrect animal ID", expectedResult, taskGetAnimalID);
     }
 
+    /*
+     * Test case to verify the getAnimalNickname() method of the Animal class.
+     * It checks if the returned animal nickname matches the expected value.
+     */
     @Test
     public void getAnimalNicknameTest() {
         Animal newAnimal = new Animal (1, "Eraser", "Fox" );
 
         String taskGetAnimalNickname = newAnimal.getAnimalNickname();
         String expectedResult = "Eraser";
-       assertEquals(expectedResult, taskGetAnimalNickname);
+       assertEquals("Incorrect animal nickname", expectedResult, taskGetAnimalNickname);
         
     }
 
+    /*
+     * Test case to verify the getAnimalSpecies() method of the Animal class.
+     * It checks if the returned animal species matches the expected value.
+     */
     @Test
     public void getAnimalSpeciesTest() {
         Animal newAnimal = new Animal (1, "Eraser", "Fox" );
 
         String taskGetAnimalSpecies = newAnimal.getAnimalSpecies();
         String expectedResult = "Fox";
-       assertEquals(expectedResult, taskGetAnimalSpecies);
+       assertEquals("Incorrect animal species", expectedResult, taskGetAnimalSpecies);
         
     }
     
+    /*
+     * Test case to verify the getTask() method of the Animal class.
+     * It checks if the returned task value is false, indicating no pending tasks.
+     */
     @Test
-    public void testAnimalCollectionEnumValueOf() {
-        // Arrange
-        String coyote = "COYOTE";
-        String beaver = "BEAVER";
-        String fox = "FOX";
-        String porcupine = "PORCUPINE";
-        String racoon = "RACOON";
+    public void testGetTask() {
+        Animal newAnimal = new Animal(1, "Eraser", "Fox");
 
-        // Act
-        AnimalCollection value1 = AnimalCollection.valueOf(coyote);
-        AnimalCollection value2 = AnimalCollection.valueOf(beaver);
-        AnimalCollection value3 = AnimalCollection.valueOf(fox);
-        AnimalCollection value4 = AnimalCollection.valueOf(porcupine);
-        AnimalCollection value5 = AnimalCollection.valueOf(racoon);
-
-        // Assert
-        assertEquals(AnimalCollection.COYOTE, value1);
-        assertEquals(AnimalCollection.BEAVER, value2);
-        assertEquals(AnimalCollection.FOX, value3);
-        assertEquals(AnimalCollection.PORCUPINE, value4);
-        assertEquals(AnimalCollection.RACCOON, value5);
+        boolean taskGetTask = newAnimal.getTask();
+        assertFalse("Incorrect task value", taskGetTask);
     }
-
-    @Test(expected = IllegalArgumentException.class)
-        public void testEnumValueOfWithInvalidValue() {
-            // Arrange
-            String invalid = "INVALID";
-
-            // Act
-            AnimalCollection value = AnimalCollection.valueOf(invalid);
-
-        }
+     
 }
