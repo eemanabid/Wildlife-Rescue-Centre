@@ -32,7 +32,7 @@ o Usersshouldbegiventheopportunitytocorrecttheirmistakes,andopportunitiesfor mis
 § Normalization of input
 § Limiting choices to only valid options
 
-## Team Members
+## Group 66 Team Members
 Hooriya Amjad
 
 Sahiti Akella
