@@ -162,34 +162,4 @@ public class RescueCenter {
         }
         return null;
     }
-
-    /*
-     * The main method creates a new RescueCenter object and retrieves the list of
-     * animals, tasks, and treatments from it.
-     * It then prints the animal ID for each animal in the animal list, the string
-     * representation of each task in the task list,
-     * and the animal ID for each treatment in the treatment list.
-     * 
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        RescueCenter rescueCenter = new RescueCenter();
-        // rescueCenter.createConnection();
-
-        ArrayList<Animal> animals = rescueCenter.getAnimalList();
-        for (Animal animal : animals) {
-            System.out.println(animal.getAnimalID());
-        }
-
-        ArrayList<Task> tasks = rescueCenter.getTaskList();
-        for (Task task : tasks) {
-            System.out.println(task.toString());
-        }
-
-        ArrayList<Treatment> treatments = rescueCenter.getTreatmentList();
-        for (Treatment treatment : treatments) {
-            System.out.println(treatment.getAnimalID());
-        }
-    }
-
 }
