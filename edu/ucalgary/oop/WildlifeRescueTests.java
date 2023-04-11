@@ -22,102 +22,87 @@ public class WildlifeRescueTests {
     public WildlifeRescueTests() {}
 
     //Task Tests
+    /*
+     * Test case for testing the getTaskID() method of the Task class.
+     * It creates a new Task object with specific values using the constructor,
+     * then calls getTaskID() method and compares the returned value with the expected result.
+     */
     @Test
     public void getTaskIDTest() {
         Task newTask = new Task(1,"Rebandage fox leg wound", 20, 40);
 
         int taskGetID = newTask.getTaskID();
         int expectedResult = 1;
-        assertEquals(expectedResult, taskGetID);
+        assertEquals("Incorrect Task ID", expectedResult, taskGetID);
         
     }
 
     /*
-     * 
-     @Test
-     public void setTaskIDTest() {
-         Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
- 
-         newTask.setTaskID(2);
-         int getTaskID =  newTask.getTaskID();
-         int expectedResult = 2;
-         assertEquals(expectedResult, getTaskID);
-         
-     }
-     * 
+     * Test case for testing the getDuration() method of the Task class.
+     * It creates a new Task object with specific values using the constructor,
+     * then calls getDuration() method and compares the returned value with the expected result.
      */
-
     @Test
     public void getDurationTest() {
         Task newTask = new Task(1,"Rebandage fox leg wound", 20, 40);
 
         int taskGetDuration = newTask.getDuration();
         int expectedResult = 20;
-        assertEquals(expectedResult, taskGetDuration);
+        assertEquals("Incorrect Duration", expectedResult, taskGetDuration);
         
     }
 
     /*
-     * 
-     @Test
-     public void setDurationTest() {
-         Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
- 
-         newTask.setDuration(30);
-         int getTaskDuration =  newTask.getDuration();
-         int expectedResult = 30;
-         assertEquals(expectedResult, getTaskDuration);
-         
-     }
+     * Test case for testing the getDescription() method of the Task class.
+     * It creates a new Task object with specific values using the constructor,
+     * then calls getDescription() method and compares the returned value with the expected result.
      */
-
     @Test
     public void getDescriptionTest() {
         Task newTask = new Task(1,"Rebandage fox leg wound", 20, 40);
 
         String taskGetDescription = newTask.getDescription();
         String expectedResult = "Rebandage fox leg wound";
-        assertEquals(expectedResult, taskGetDescription);
+        assertEquals("Incorrect Description", expectedResult, taskGetDescription);
         
     }
 
     /*
-     * 
-     @Test
-     public void setDescriptionTest() {
-         Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
- 
-         newTask.setDescription("Feed kits");
-         String getTaskDescription =  newTask.getDescription();
-         String expectedResult = "Feed kits";
-         assertEquals(expectedResult, getTaskDescription);
-         
-     }
+     * Test case for testing the getMaxWindow() method of the Task class.
+     * It creates a new Task object with specific values using the constructor,
+     * then calls getMaxWindow() method and compares the returned value with the expected result.
      */
-
     @Test
     public void getMaxWindow() {
         Task newTask = new Task(1,"Rebandage fox leg wound", 20, 40);
 
         int taskGetMaxWindow = newTask.getMaxWindow();
         int expectedResult = 40;
-        assertEquals(expectedResult, taskGetMaxWindow);
+        assertEquals("Incorrect Max Window", expectedResult, taskGetMaxWindow);
         
     }
 
     /*
-     * 
-     @Test
-     public void setMaxWindow() {
-         Task newTask = new Task(1, 20, "Rebandage fox leg wound", 40);
- 
-         newTask.setMaxWindow(50);
-         int getMaxWindow =  newTask.getMaxWindow();
-         int expectedResult = 50;
-         assertEquals(expectedResult, getMaxWindow);
-         
-     }
+     * Test case for testing the constructor of the Task class.
+     * It creates a new Task object with specific values using the constructor,
+     * then calls getter methods to check if the values are properly set in the object.
      */
+    @Test
+    public void testTaskConstructor() {
+        int taskID = 1;
+        String description = "Rebandage fox leg wound";
+        int duration = 20;
+        int maxWindow = 40;
+
+        Task newTask = new Task(taskID, description, duration, maxWindow);
+
+        // Check if the values are properly set in the constructor
+        assertEquals("Incorrect Task ID", taskID, newTask.getTaskID());
+        assertEquals("Incorrect Description", description, newTask.getDescription());
+        assertEquals("Incorrect Duration", duration, newTask.getDuration());
+        assertEquals("Incorrect Max Window", maxWindow, newTask.getMaxWindow());
+    }
+
 
     //Treatment Tests
     @Test
@@ -129,20 +114,6 @@ public class WildlifeRescueTests {
         assertEquals(expectedResult, getStartHour);
         
     }
-
-    /*
-     * 
-     @Test
-     public void setStartHourTest() {
-         Treatment newTreatment = new Treatment(1, 2, 3);
- 
-         newTreatment.setStartHour(2);
-         int getStartHour =  newTreatment.getStartHour();
-         int expectedResult = 2;
-         assertEquals(expectedResult, getStartHour);
-         
-     }
-     */
 
     @Test
     public void testClone() throws CloneNotSupportedException {
