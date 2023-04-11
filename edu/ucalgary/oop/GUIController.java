@@ -203,7 +203,7 @@ public class GUIController implements ScheduleFormatter{
                     Animal animal = rescueCenter.getAnimalByID(animalID);
                     String animalNickname = animal.getAnimalNickname();
                     duration += task.getDuration();
-                    hourSchedule.append("* " + taskDescription + " " + "(" + animalNickname + ")" + duration + "\n");
+                    hourSchedule.append("* " + taskDescription + " " + "(" + animalNickname + ")\n");
                     hasTasks = true;
                 }
             }
@@ -296,19 +296,19 @@ public class GUIController implements ScheduleFormatter{
             }
  
             if (foxesFed.size() > 0) {
-                hourSchedule.append("* Feeding - foxes (" + foxesFed.size() + ": " + String.join(", ", foxesFed) + ") " + duration + "\n");
+                hourSchedule.append("* Feeding - foxes (" + foxesFed.size() + ": " + String.join(", ", foxesFed) + ")\n");
             }
             if (raccoonsFed.size() > 0) {
-                hourSchedule.append("* Feeding - raccoons (" + raccoonsFed.size() + ": " + String.join(", ", raccoonsFed) + ") " + duration + "\n");
+                hourSchedule.append("* Feeding - raccoons (" + raccoonsFed.size() + ": " + String.join(", ", raccoonsFed) + ")\n");
             }
             if (beaversFed.size() > 0) {
-                hourSchedule.append("* Feeding - beavers (" + beaversFed.size() + ": " + String.join(", ", beaversFed) + ") " + duration + "\n");
+                hourSchedule.append("* Feeding - beavers (" + beaversFed.size() + ": " + String.join(", ", beaversFed) + ")\n");
             }
             if (coyotesFed.size() > 0) {
-                hourSchedule.append("* Feeding - coyotes (" + coyotesFed.size() + ": " + String.join(", ", coyotesFed) + ") " + duration + "\n");
+                hourSchedule.append("* Feeding - coyotes (" + coyotesFed.size() + ": " + String.join(", ", coyotesFed) + ")\n");
             }
             if (porcupinesFed.size() > 0) {
-                hourSchedule.append("* Feeding - porcupines (" + porcupinesFed.size() + ": " + String.join(", ", porcupinesFed) + ") " + duration + "\n");
+                hourSchedule.append("* Feeding - porcupines (" + porcupinesFed.size() + ": " + String.join(", ", porcupinesFed) + ")\n");
             }
 
             if (unfedNocturnalAnimals == true){
@@ -393,19 +393,19 @@ public class GUIController implements ScheduleFormatter{
             }
             
             if (foxesCleaned.size() > 0) {
-                hourSchedule.append("* Cage Cleaning - foxes (" + foxesCleaned.size() + ": " + String.join(", ", foxesCleaned) + ") " + duration + "\n");
+                hourSchedule.append("* Cage Cleaning - foxes (" + foxesCleaned.size() + ": " + String.join(", ", foxesCleaned) + ")\n");
             }
             if (raccoonsCleaned.size() > 0) {
-                hourSchedule.append("* Cage Cleaning - raccoons (" + raccoonsCleaned.size() + ": " + String.join(", ", raccoonsCleaned) + ") " + duration + "\n");
+                hourSchedule.append("* Cage Cleaning - raccoons (" + raccoonsCleaned.size() + ": " + String.join(", ", raccoonsCleaned) + ")\n");
             }
             if (beaversCleaned.size() > 0) {
-                hourSchedule.append("* Cage Cleaning - beavers (" + beaversCleaned.size() + ": " + String.join(", ", beaversCleaned) + ") " + duration + "\n");
+                hourSchedule.append("* Cage Cleaning - beavers (" + beaversCleaned.size() + ": " + String.join(", ", beaversCleaned) + ")\n");
             }
             if (coyotesCleaned.size() > 0) {
-                hourSchedule.append("* Cage Cleaning - coyotes (" + coyotesCleaned.size() + ": " + String.join(", ", coyotesCleaned) + ") " + duration + "\n");
+                hourSchedule.append("* Cage Cleaning - coyotes (" + coyotesCleaned.size() + ": " + String.join(", ", coyotesCleaned) + ")\n");
             }
             if (porcupinesCleaned.size() > 0) {
-                hourSchedule.append("* Cage Cleaning - porcupines (" + porcupinesCleaned.size() + ": " + String.join(", ", porcupinesCleaned) + ") " + duration + "\n");
+                hourSchedule.append("* Cage Cleaning - porcupines (" + porcupinesCleaned.size() + ": " + String.join(", ", porcupinesCleaned) + ")\n");
             }
 
             if (duration > 60) {
@@ -415,6 +415,7 @@ public class GUIController implements ScheduleFormatter{
             if (backup == true && duration > 120){
                 errors.add("Invalid Schedule: Too many tasks at " + hour + ":00.\nContact staff vet or modify start hours");
             }
+            hourSchedule.append("Total task duration: " + duration + "\n");
             if (hasTasks) {
                 hourTextArea.append(hourSchedule.toString());
                 hourTextArea.setEditable(false);
@@ -468,7 +469,7 @@ public class GUIController implements ScheduleFormatter{
                     int currentStartHour = (int) model.getValueAt(table.getSelectedRow(), 3);
                     int maxWindow = (int) model.getValueAt(table.getSelectedRow(), 4);
                     int newStartHour = Integer.parseInt(JOptionPane.showInputDialog(FRM, "Enter new start hour for Treatment " + treatmentID + ":", currentStartHour));
-                    if (newStartHour > currentStartHour + maxWindow - 1 || newStartHour < currentStartHour) { // check if the new start hour is outside the max window
+                    if (newStartHour > currentStartHour + maxWindow - 1) { // check if the new start hour is outside the max window
                         JOptionPane.showMessageDialog(FRM, "New start hour is outside the maximum window for Treatment " + treatmentID + " (max window is " + maxWindow + " hours).", "Error", JOptionPane.ERROR_MESSAGE);
                     if (newStartHour > 23 || newStartHour < 0){
                         JOptionPane.showMessageDialog(FRM, "New start hour is invalid, please input an hour from 0-23", "Error", JOptionPane.ERROR_MESSAGE);
