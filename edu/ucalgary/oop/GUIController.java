@@ -466,6 +466,9 @@ public class GUIController implements ScheduleFormatter{
                     int newStartHour = Integer.parseInt(JOptionPane.showInputDialog(FRM, "Enter new start hour for Treatment " + treatmentID + ":", currentStartHour));
                     if (newStartHour > currentStartHour + maxWindow - 1 || newStartHour < currentStartHour) { // check if the new start hour is outside the max window
                         JOptionPane.showMessageDialog(FRM, "New start hour is outside the maximum window for Treatment " + treatmentID + " (max window is " + maxWindow + " hours).", "Error", JOptionPane.ERROR_MESSAGE);
+                    if (newStartHour > 23 || newStartHour < 0){
+                        JOptionPane.showMessageDialog(FRM, "New start hour is invalid, please input an hour from 0-23", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                     } else {
                         try {
                             String sql = "UPDATE TREATMENTS SET StartHour = ? WHERE TreatmentID = ?";
