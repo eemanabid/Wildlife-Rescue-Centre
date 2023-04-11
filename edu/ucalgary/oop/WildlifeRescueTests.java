@@ -220,11 +220,11 @@ public class WildlifeRescueTests {
      * It checks if the returned animal ID matches the expected value.
      */
     public void getAnimalIDTest() {
-     Animal newAnimal = new Animal (1, "Eraser", "Fox" );
+        Animal newAnimal = new Animal (1, "Eraser", "Fox" );
 
-     int taskGetAnimalID = newAnimal.getAnimalID();
-     int expectedResult = 1;
-    assertEquals("Incorrect animal ID", expectedResult, taskGetAnimalID);
+        int taskGetAnimalID = newAnimal.getAnimalID();
+        int expectedResult = 1;
+        assertEquals("Incorrect animal ID", expectedResult, taskGetAnimalID);
     }
 
     /*
@@ -237,8 +237,7 @@ public class WildlifeRescueTests {
 
         String taskGetAnimalNickname = newAnimal.getAnimalNickname();
         String expectedResult = "Eraser";
-       assertEquals("Incorrect animal nickname", expectedResult, taskGetAnimalNickname);
-        
+        assertEquals("Incorrect animal nickname", expectedResult, taskGetAnimalNickname); 
     }
 
     /*
@@ -252,7 +251,6 @@ public class WildlifeRescueTests {
         String taskGetAnimalSpecies = newAnimal.getAnimalSpecies();
         String expectedResult = "Fox";
         assertEquals("Incorrect animal species", expectedResult, taskGetAnimalSpecies);
-        
     }
     
     /*
@@ -265,6 +263,187 @@ public class WildlifeRescueTests {
 
         boolean taskGetTask = newAnimal.getTask();
         assertFalse("Incorrect task value", taskGetTask);
+    }
+
+    /*
+    * Test case for getFeedTime() method of Animal class.
+    * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
+    * Retrieves the feed time using getFeedTime() method and compares it with expected value.
+    * Expected feed time is 5.
+    */
+    @Test
+    public void testGetFeedTime() {
+        Animal animal = new Animal(1, "Eraser", "fox");
+        int feedTime = animal.getFeedTime();
+        Assert.assertEquals("Incorrect feed time", 5, feedTime);
+    }
+
+    /*
+     * Test case for getPrepTime() method of Animal class.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
+     * Retrieves the prep time using getPrepTime() method and compares it with expected value.
+     * Expected prep time is 5.
+     */
+    @Test
+    public void testGetPrepTime() {
+        Animal animal = new Animal(1, "Eraser", "fox");
+        int prepTime = animal.getPrepTime();
+        Assert.assertEquals("Incorrect prep time", 5, prepTime);
+    }
+
+    /*
+     * Test case for getCageCleanTime() method of Animal class.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
+     * Retrieves the cage clean time using getCageCleanTime() method and compares it with expected value.
+     * Expected cage clean time is 5.
+     */
+    @Test
+    public void testGetCageCleanTime() {
+        Animal animal = new Animal(1, "Eraser", "fox");
+        int cageCleanTime = animal.getCageCleanTime();
+        Assert.assertEquals("Incorrect cage clean time", 5, cageCleanTime);
+    }
+
+    /*
+     * Test case for getActiveType() method of Animal class.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
+     * Retrieves the active type using getActiveType() method and compares it with expected value.
+     * Expected active type is "nocturnal".
+     */
+    @Test
+    public void testGetActiveType() {
+        Animal animal = new Animal(1, "Eraser", "fox");
+        String activeType = animal.getActiveType();
+        Assert.assertEquals("Incorrect active type", "nocturnal", activeType);
+    }
+
+    /*
+     * Test case for setFeedingPrinted() method of Animal class.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
+     * Tests the setting of feedingPrinted to true and false using setFeedingPrinted() method.
+     * Asserts that the values are set correctly using isFeedingPrinted() method.
+     */
+    @Test
+    public void testSetFeedingPrinted() {
+        // Create a new instance of the class
+        Animal animal = new Animal(1, "Eraser", "fox");
+    
+        // Test case 1: Set feedingPrinted to true
+        animal.setFeedingPrinted(true);
+        assertTrue("Failed to set feedingPrinted to true", animal.isFeedingPrinted());
+    
+        // Test case 2: Set feedingPrinted to false
+        animal.setFeedingPrinted(false);
+        assertFalse("Failed to set feedingPrinted to false", animal.isFeedingPrinted());
+    }
+
+     /*
+     * Test case for setNocturnalPrinted() method of Animal class.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
+     * Tests the setting of nocturnalPrinted to true and false using setNocturnalPrinted() method.
+     * Asserts that the values are set correctly using isNocturnalPrinted() method.
+     */
+    @Test
+    public void testSetNocturnalPrinted() {
+        // Create a new instance of the class
+        Animal animal = new Animal(1, "Eraser", "fox");
+
+        // Test case 1: Set nocturnalPrinted to true
+        animal.setNocturnalPrinted(true);
+        assertTrue("Failed to set nocturnalPrinted to true", animal.isNocturnalPrinted());
+
+        // Test case 2: Set nocturnalPrinted to false
+        animal.setNocturnalPrinted(false);
+        assertFalse("Failed to set nocturnalPrinted to false", animal.isNocturnalPrinted());
+    }
+
+    /*
+     * Test case for setDiurnalPrinted() method of Animal class.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
+     * Tests the setting of diurnalPrinted to true and false using setDiurnalPrinted() method.
+     * Asserts that the values are set correctly using isDiurnalPrinted() method.
+     */
+    @Test
+    public void testSetDiurnalPrinted() {
+        // Create a new instance of the class
+        Animal animal = new Animal(1, "Eraser", "fox");
+
+        // Test case 1: Set diurnalPrinted to true
+        animal.setDiurnalPrinted(true);
+        assertTrue("Failed to set diurnalPrinted to true", animal.isDiurnalPrinted());
+
+        // Test case 2: Set diurnalPrinted to false
+        animal.setDiurnalPrinted(false);
+        assertFalse("Failed to set diurnalPrinted to false", animal.isDiurnalPrinted());
+    }
+
+    /*
+     * Test case for setCrepuscularPrinted() method of Animal class.
+     * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
+     * Tests the setting of crepuscularPrinted to true and false using setCrepuscularPrinted() method.
+     * Asserts that the values are set correctly using isCrepuscularPrinted() method.
+     */
+    @Test
+    public void testSetCrepuscularPrinted() {
+        // Create a new instance of the class
+        Animal animal = new Animal(1, "Eraser", "fox");
+
+        // Test case 1: Set crepuscularPrinted to true
+        animal.setCrepuscularPrinted(true);
+        assertTrue("Failed to set crepuscularPrinted to true", animal.isCrepuscularPrinted());
+
+        // Test case 2: Set crepuscularPrinted to false
+        animal.setCrepuscularPrinted(false);
+        assertFalse("Failed to set crepuscularPrinted to false", animal.isCrepuscularPrinted());
+    }
+
+
+    /*
+    * Test case for isFeedingPrinted() method of Animal class.
+    * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
+    * Asserts that the initial value of feedingPrinted is false using isFeedingPrinted() method.
+    */
+    @Test
+    public void testIsFeedingPrinted() {
+        Animal animal = new Animal(1, "Eraser", "fox");
+        boolean feedingPrinted = animal.isFeedingPrinted();
+        Assert.assertFalse("Feeding should not be printed", feedingPrinted); // Since feedingPrinted is not set, it should be false
+    }
+
+    /*
+    * Test case for isNocturnalPrinted() method of Animal class.
+    * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
+    * Asserts that the initial value of nocturnalPrinted is false using isNocturnalPrinted() method.
+    */
+    @Test
+    public void testIsNocturnalPrinted() {
+        Animal animal = new Animal(1, "Eraser", "fox");
+        boolean nocturnalPrinted = animal.isNocturnalPrinted();
+        Assert.assertFalse("Nocturnal should not be printed", nocturnalPrinted); // Since nocturnalPrinted is not set, it should be false
+    }
+
+    /*
+    * Test case for isDiurnalPrinted() method of Animal class.
+    * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
+    * Asserts that the initial value of diurnalPrinted is false using isDiurnalPrinted() method.
+    */
+    @Test
+    public void testIsDiurnalPrinted() {
+        Animal animal = new Animal(1, "Eraser", "fox");
+        boolean diurnalPrinted = animal.isDiurnalPrinted();
+        Assert.assertFalse("Diurnal should not be printed", diurnalPrinted); // Since diurnalPrinted is not set, it should be false
+    }
+
+    /*
+    * Test case for isCrepuscularPrinted() method of Animal class.
+    * Creates a new instance of Animal with animalID=1, animalNickname="Eraser", and animalSpecies="fox".
+    * Asserts that the initial value of crepuscularPrinted is false using isCrepuscularPrinted() method.
+    */
+    @Test
+    public void testIsCrepuscularPrinted() {
+        Animal animal = new Animal(1, "Eraser", "fox");
+        boolean crepuscularPrinted = animal.isCrepuscularPrinted();
+        Assert.assertFalse("Crepuscular should not be printed", crepuscularPrinted); // Since crepuscularPrinted is not set, it should be false
     }
 
     //RESCUE CENTER TESTS
