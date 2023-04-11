@@ -84,7 +84,6 @@ public class Animal {
                 this.activeType = "nocturnal";
                 break;
             default:
-                System.out.println("Error: Animal species not found");
                 break;
         }
     }

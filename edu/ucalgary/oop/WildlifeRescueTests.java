@@ -29,7 +29,7 @@ public class WildlifeRescueTests {
 
     // TASK TESTS
 
-    /*
+    /**
      * Test case for testing the getTaskID() method of the Task class.
      * It creates a new Task object with specific values using the constructor,
      * then calls getTaskID() method and compares the returned value with the
@@ -45,7 +45,7 @@ public class WildlifeRescueTests {
 
     }
 
-    /*
+    /**
      * Test case for testing the getDuration() method of the Task class.
      * It creates a new Task object with specific values using the constructor,
      * then calls getDuration() method and compares the returned value with the
@@ -61,7 +61,7 @@ public class WildlifeRescueTests {
 
     }
 
-    /*
+    /**
      * Test case for testing the getDescription() method of the Task class.
      * It creates a new Task object with specific values using the constructor,
      * then calls getDescription() method and compares the returned value with the
@@ -77,7 +77,7 @@ public class WildlifeRescueTests {
 
     }
 
-    /*
+    /**
      * Test case for testing the getMaxWindow() method of the Task class.
      * It creates a new Task object with specific values using the constructor,
      * then calls getMaxWindow() method and compares the returned value with the
@@ -93,7 +93,7 @@ public class WildlifeRescueTests {
 
     }
 
-    /*
+    /**
      * Test case for testing the constructor of the Task class.
      * It creates a new Task object with specific values using the constructor,
      * then calls getter methods to check if the values are properly set in the
@@ -117,7 +117,7 @@ public class WildlifeRescueTests {
 
     // TREATMENT TESTS
 
-    /*
+    /**
      * Test for the getTreatmentID() method in the Treatment class.
      * Creates a new Treatment object and calls getTreatmentID() method.
      * Asserts that the returned value is not null.
@@ -135,7 +135,7 @@ public class WildlifeRescueTests {
 
     }
 
-    /*
+    /**
      * Test for the getAnimalID() method in the Treatment class.
      * Creates a new Treatment object and calls getAnimalID() method.
      * Asserts that the returned value is not null and matches the expected value.
@@ -156,7 +156,7 @@ public class WildlifeRescueTests {
         assertEquals("Returned animal ID does not match expected value", expectedValue, result);
     }
 
-    /*
+    /**
      * Test for the getTaskID() method in the Treatment class.
      * Creates a new Treatment object and calls getTaskID() method.
      * Asserts that the returned value is not null and matches the expected value.
@@ -177,7 +177,7 @@ public class WildlifeRescueTests {
         assertEquals("Returned task ID does not match expected value", expectedValue, result);
     }
 
-    /*
+    /**
      * Test for the getStartHour() method in the Treatment class.
      * Creates a new Treatment object and calls getStartHour() method.
      * Asserts that the returned value matches the expected result.
@@ -192,7 +192,7 @@ public class WildlifeRescueTests {
 
     }
 
-    /*
+    /**
      * Test for the constructor of the Treatment class.
      * Creates a new Treatment object with the given parameters and asserts that
      * the treatmentID, animalID, and taskID are set correctly in the constructor.
@@ -211,7 +211,7 @@ public class WildlifeRescueTests {
 
     // ANIMAL TESTS
 
-    /*
+    /**
      * Test case to verify the Animal constructor.
      * It checks if the Animal object is created with the correct attributes.
      */
@@ -229,7 +229,7 @@ public class WildlifeRescueTests {
     }
 
     @Test
-    /*
+    /**
      * Test case to verify the getAnimalID() method of the Animal class.
      * It checks if the returned animal ID matches the expected value.
      */
@@ -241,7 +241,7 @@ public class WildlifeRescueTests {
         assertEquals("Incorrect animal ID", expectedResult, taskGetAnimalID);
     }
 
-    /*
+    /**
      * Test case to verify the getAnimalNickname() method of the Animal class.
      * It checks if the returned animal nickname matches the expected value.
      */
@@ -254,7 +254,7 @@ public class WildlifeRescueTests {
         assertEquals("Incorrect animal nickname", expectedResult, taskGetAnimalNickname);
     }
 
-    /*
+    /**
      * Test case to verify the getAnimalSpecies() method of the Animal class.
      * It checks if the returned animal species matches the expected value.
      */
@@ -267,7 +267,7 @@ public class WildlifeRescueTests {
         assertEquals("Incorrect animal species", expectedResult, taskGetAnimalSpecies);
     }
 
-    /*
+    /**
      * Test case to verify the getTask() method of the Animal class.
      * It checks if the returned task value is false, indicating no pending tasks.
      */
@@ -279,7 +279,7 @@ public class WildlifeRescueTests {
         assertFalse("Incorrect task value", taskGetTask);
     }
 
-    /*
+    /**
      * Test case for getFeedTime() method of Animal class.
      * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
      * and animalSpecies="fox".
@@ -294,7 +294,7 @@ public class WildlifeRescueTests {
         Assert.assertEquals("Incorrect feed time", 5, feedTime);
     }
 
-    /*
+    /**
      * Test case for getPrepTime() method of Animal class.
      * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
      * and animalSpecies="fox".
@@ -309,7 +309,7 @@ public class WildlifeRescueTests {
         Assert.assertEquals("Incorrect prep time", 5, prepTime);
     }
 
-    /*
+    /**
      * Test case for getCageCleanTime() method of Animal class.
      * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
      * and animalSpecies="fox".
@@ -324,7 +324,7 @@ public class WildlifeRescueTests {
         Assert.assertEquals("Incorrect cage clean time", 5, cageCleanTime);
     }
 
-    /*
+    /**
      * Test case for getActiveType() method of Animal class.
      * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
      * and animalSpecies="fox".
@@ -339,7 +339,7 @@ public class WildlifeRescueTests {
         Assert.assertEquals("Incorrect active type", "nocturnal", activeType);
     }
 
-    /*
+    /**
      * Test case for setFeedingPrinted() method of Animal class.
      * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
      * and animalSpecies="fox".
@@ -361,7 +361,7 @@ public class WildlifeRescueTests {
         assertFalse("Failed to set feedingPrinted to false", animal.isFeedingPrinted());
     }
 
-    /*
+    /**
      * Test case for setNocturnalPrinted() method of Animal class.
      * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
      * and animalSpecies="fox".
@@ -383,7 +383,7 @@ public class WildlifeRescueTests {
         assertFalse("Failed to set nocturnalPrinted to false", animal.isNocturnalPrinted());
     }
 
-    /*
+    /**
      * Test case for setDiurnalPrinted() method of Animal class.
      * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
      * and animalSpecies="fox".
@@ -405,7 +405,7 @@ public class WildlifeRescueTests {
         assertFalse("Failed to set diurnalPrinted to false", animal.isDiurnalPrinted());
     }
 
-    /*
+    /**
      * Test case for setCrepuscularPrinted() method of Animal class.
      * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
      * and animalSpecies="fox".
@@ -428,7 +428,7 @@ public class WildlifeRescueTests {
         assertFalse("Failed to set crepuscularPrinted to false", animal.isCrepuscularPrinted());
     }
 
-    /*
+    /**
      * Test case for isFeedingPrinted() method of Animal class.
      * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
      * and animalSpecies="fox".
@@ -443,7 +443,7 @@ public class WildlifeRescueTests {
                                                                              // should be false
     }
 
-    /*
+    /**
      * Test case for isNocturnalPrinted() method of Animal class.
      * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
      * and animalSpecies="fox".
@@ -458,7 +458,7 @@ public class WildlifeRescueTests {
                                                                                  // it should be false
     }
 
-    /*
+    /**
      * Test case for isDiurnalPrinted() method of Animal class.
      * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
      * and animalSpecies="fox".
@@ -473,7 +473,7 @@ public class WildlifeRescueTests {
                                                                              // should be false
     }
 
-    /*
+    /**
      * Test case for isCrepuscularPrinted() method of Animal class.
      * Creates a new instance of Animal with animalID=1, animalNickname="Eraser",
      * and animalSpecies="fox".
@@ -490,7 +490,7 @@ public class WildlifeRescueTests {
 
     // RESCUE CENTER TESTS
 
-    /*
+    /**
      * Tests the constructor of the RescueCenter class.
      * This test ensures that when a new RescueCenter object is created:
      * - The connection is created and not null.
@@ -519,7 +519,7 @@ public class WildlifeRescueTests {
         assertFalse("Treatment list should not be empty", treatments.isEmpty());
     }
 
-    /*
+    /**
      * Tests the createConnection method of the RescueCenter class.
      * This test ensures that when the createConnection method is called:
      * - A valid connection is created and not null.
@@ -603,7 +603,7 @@ public class WildlifeRescueTests {
         // You can also test the size or contents of the treatment list if needed
     }
 
-    /*
+    /**
      * Tests the getTaskByID method of the RescueCenter class.
      * This test ensures that when the getTaskByID method is called:
      * - With a valid taskID, a Task object is returned and not null.
@@ -627,7 +627,7 @@ public class WildlifeRescueTests {
         assertNull("Task should be null", invalidTask);
     }
 
-    /*
+    /**
      * Tests the getAnimalByID method of the RescueCenter class.
      * This test ensures that when the getAnimalByID method is called:
      * - With a valid animalID, an Animal object is returned and not null.
@@ -654,7 +654,7 @@ public class WildlifeRescueTests {
 
     // SCHEDULE FORMATTER TEST
     
-    /*
+    /**
      * Implement a test for the scheduleFormatter() method of the ScheduleFormatter
      * interface
      * Since ScheduleFormatter is an interface, the test would need to be

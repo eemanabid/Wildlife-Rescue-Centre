@@ -30,7 +30,7 @@ public class RescueCenter {
     private final String USERNAME = "oop";
     private final String PASSWORD = "password";
 
-    /*
+    /**
      * Constructor of the RescueCenter class.
      * Creates a connection to thesqldatabase.
      * Fetches data from the 'Animals', 'Tasks', and 'Treatments' tables.
@@ -84,7 +84,7 @@ public class RescueCenter {
         }
     }
 
-    /*
+    /**
      * This method creates a connection to the SQL database.
      */
     public void createConnection() {

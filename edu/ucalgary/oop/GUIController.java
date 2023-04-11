@@ -38,7 +38,7 @@ public class GUIController implements ScheduleFormatter {
     JPanel scrollPanel = new JPanel();
     ArrayList<String> errors = new ArrayList<>();
 
-    /*
+    /**
      * This is the constructor of the GUIController class.
      * It creates a new instance of RescueCenter and assigns it to the rescueCenter
      * instance variable.
@@ -47,7 +47,7 @@ public class GUIController implements ScheduleFormatter {
         this.rescueCenter = new RescueCenter();
     }
 
-    /*
+    /**
      * Displays the main menu of the program, which includes buttons for
      * getting a schedule, accessing the about page, and quitting the program.
      */
@@ -94,7 +94,7 @@ public class GUIController implements ScheduleFormatter {
         FRM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    /*
+    /**
      * Displays information about the program, including the names of the authors.
      * Allows the user to return to the main menu or quit the program.
      */
@@ -128,7 +128,7 @@ public class GUIController implements ScheduleFormatter {
         FRM.add(menu);
     }
 
-    /*
+    /**
      * Generates the schedule for the specified date and displays it on the GUI.
      * If any errors are encountered, displays an error message to the user.
      * If user saves before confirming backups, an error message is displayed
@@ -200,7 +200,7 @@ public class GUIController implements ScheduleFormatter {
         FRM.add(menu);
     }
 
-    /*
+    /**
      * Creates a schedule for the entire day, detailing animal feeding times and
      * treatment schedules.
      * If any errors are encountered, displays an error message to the user.
@@ -484,7 +484,7 @@ public class GUIController implements ScheduleFormatter {
         }
     }
 
-    /*
+    /**
      * This method creates a JPanel menu to modify the start hour of treatments for
      * animals.
      * It fetches the treatments data from the SQL database/
@@ -610,7 +610,7 @@ public class GUIController implements ScheduleFormatter {
         FRM.setLocationRelativeTo(null);
     }
 
-    /*
+    /**
      * Displays a confirmation message at the top of the window.
      * Allows the user to save the schedule to a file or quit the program.
      */
@@ -667,7 +667,7 @@ public class GUIController implements ScheduleFormatter {
         FRM.add(menu);
     }
 
-    /*
+    /**
      * Saves the schedule to a user-selected file.
      * Prompts the user to choose a location to save the schedule file.
      * If the user selects a location, the schedule is saved to the selected file.
