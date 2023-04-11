@@ -184,9 +184,6 @@ public class GUIController implements ScheduleFormatter{
      */
     @Override
     public void scheduleFormatter(){
-        boolean nocPrepTimeAdded = false;
-        boolean diurPrepTimeAdded = false;
-        boolean crepPrepTimeAdded = false;
         for (int hour = 0; hour <= 23; hour++) {
             StringBuilder hourSchedule = new StringBuilder();
             hourSchedule.append("\n" + hour + ":00" + "\n");
@@ -219,6 +216,9 @@ public class GUIController implements ScheduleFormatter{
             ArrayList<String> beaversFed = new ArrayList<>();
             ArrayList<String> porcupinesFed = new ArrayList<>();
             ArrayList<String> coyotesFed = new ArrayList<>();
+            boolean nocPrepTimeAdded = false;
+            boolean diurPrepTimeAdded = false;
+            boolean crepPrepTimeAdded = false;
 
             // adds feeding times into schedule - not in sql file
             for (Animal animal : rescueCenter.getAnimalList()) {
