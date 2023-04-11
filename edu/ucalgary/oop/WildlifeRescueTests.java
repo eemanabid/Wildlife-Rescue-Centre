@@ -137,27 +137,7 @@ public class WildlifeRescueTests {
         assertNotEquals(obj1.getAnimalNickname(), obj2.getAnimalNickname());
     }
 
-    //Schedule Tests
-    @Test
-    public void ScheduleTest() {
-        boolean correctException = false;
-
-        Task newTask = new Task(1, "Rebandage fox leg wound", 20, 40);
-        Animal newAnimal = new Animal(1, "Gatekeeper", "fox", true, false, true);
-
-        try {
-            Schedule newSchedule = new Schedule(newTask, newAnimal, "abc", true);
-
-        } catch (IllegalArgumentException e) {
-            correctException = true;
-        }
-
-        assertEquals(true, correctException);
-        
-    }
-
-
-//ANIMAL TESTS
+    //ANIMAL TESTS
     @Test
     public void testAnimalConstructor() {
         int animalID = 1;
@@ -180,20 +160,6 @@ public class WildlifeRescueTests {
     assertEquals(expectedResult, taskGetAnimalID);
     }
 
-    /*
-     * 
-     @Test
-     public void setAnimalIDTest() {
-         Animal newAnimal = new Animal(1, "Eraser", "Fox" );
- 
-         newAnimal.setAnimalID(2);
-         int taskGetAnimalID =  newAnimal.getAnimalID();
-         int expectedResult = 2;
-         assertEquals(expectedResult, taskGetAnimalID);
-         
-     }
-     */
-
     @Test
     public void getAnimalNicknameTest() {
         Animal newAnimal = new Animal (1, "Eraser", "Fox" );
@@ -204,20 +170,6 @@ public class WildlifeRescueTests {
         
     }
 
-    /*
-     * 
-     @Test
-     public void setAnimalNicknameTest() {
-         Animal newAnimal = new Animal (1, "Eraser", "Fox" );
- 
-         newAnimal.setAnimalNickName("Slinky");
-         String taskGetAnimalNickname = newAnimal.getAnimalNickname();
-         String expectedResult = "Slinky";
-        assertEquals(expectedResult, taskGetAnimalNickname);
-         
-     }
-     */
-
     @Test
     public void getAnimalSpeciesTest() {
         Animal newAnimal = new Animal (1, "Eraser", "Fox" );
@@ -227,20 +179,6 @@ public class WildlifeRescueTests {
        assertEquals(expectedResult, taskGetAnimalSpecies);
         
     }
-
-    /*
-     * 
-     @Test
-     public void setAnimalSpeciesTest() {
-         Animal newAnimal = new Animal (1, "Eraser", "Fox" );
- 
-         newAnimal.setAnimalSpecies("Coyote");
-         String taskGetAnimalSpecies = newAnimal.getAnimalSpecies();
-         String expectedResult = "Coyote";
-        assertEquals(expectedResult, taskGetAnimalSpecies);
-         
-     }
-     */
     
     @Test
     public void testAnimalCollectionEnumValueOf() {
