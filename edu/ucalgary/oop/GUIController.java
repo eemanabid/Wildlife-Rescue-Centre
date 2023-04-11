@@ -184,6 +184,9 @@ public class GUIController implements ScheduleFormatter{
      */
     @Override
     public void scheduleFormatter(){
+        boolean nocPrepTimeAdded = false;
+        boolean diurPrepTimeAdded = false;
+        boolean crepPrepTimeAdded = false;
         for (int hour = 0; hour <= 23; hour++) {
             StringBuilder hourSchedule = new StringBuilder();
             hourSchedule.append("\n" + hour + ":00" + "\n");
@@ -217,7 +220,6 @@ public class GUIController implements ScheduleFormatter{
             ArrayList<String> porcupinesFed = new ArrayList<>();
             ArrayList<String> coyotesFed = new ArrayList<>();
 
-
             // adds feeding times into schedule - not in sql file
             for (Animal animal : rescueCenter.getAnimalList()) {
                 boolean printed = animal.isFeedingPrinted();
@@ -226,7 +228,12 @@ public class GUIController implements ScheduleFormatter{
                         if (!printed){
                             String animalNickname = animal.getAnimalNickname();
                             String animalSpecies = animal.getAnimalSpecies();
-                            duration += animal.getFeedTime() + animal.getPrepTime();
+                           
+                            if (!nocPrepTimeAdded){
+                                duration += animal.getPrepTime();
+                                nocPrepTimeAdded = true;
+                            }
+                            duration += animal.getFeedTime();
                             if (duration < 60){
                                 if (animalSpecies.equals("fox")){
                                     foxesFed.add(animalNickname);
@@ -237,7 +244,7 @@ public class GUIController implements ScheduleFormatter{
                                 animal.setFeedingPrinted(true);
                             }
                             else {
-                                duration -= animal.getFeedTime() + animal.getPrepTime();
+                                duration -= animal.getFeedTime();
                                 if (hour == 2){
                                     unfedNocturnalAnimals = true;
                                 }
@@ -253,7 +260,12 @@ public class GUIController implements ScheduleFormatter{
                         if (!printed){
                             String animalNickname = animal.getAnimalNickname();
                             String animalSpecies = animal.getAnimalSpecies();
-                            duration += animal.getFeedTime() + animal.getPrepTime();
+                            
+                            if (!diurPrepTimeAdded){
+                                duration += animal.getPrepTime();
+                                diurPrepTimeAdded = true;
+                            }
+                            duration += animal.getFeedTime();
                             if (duration < 60){
                                 if (animalSpecies.equals("beaver")){
                                     beaversFed.add(animalNickname);
@@ -261,7 +273,7 @@ public class GUIController implements ScheduleFormatter{
                                 animal.setFeedingPrinted(true);
                             }
                             else {
-                                duration -= animal.getFeedTime() + animal.getPrepTime();
+                                duration -= animal.getFeedTime();
                                 if (hour == 10){
                                     unfedDiurnalAnimals = true;
                                 }
@@ -277,7 +289,12 @@ public class GUIController implements ScheduleFormatter{
                         if (!printed){
                             String animalNickname = animal.getAnimalNickname();
                             String animalSpecies = animal.getAnimalSpecies();
-                            duration += animal.getFeedTime() + animal.getPrepTime();
+                            
+                            if (!crepPrepTimeAdded){
+                                duration += animal.getPrepTime();
+                                crepPrepTimeAdded = true;
+                            }
+                            duration += animal.getFeedTime();
                             if (duration < 60){
                                 if (animalSpecies.equals("coyote")){
                                     coyotesFed.add(animalNickname);
@@ -288,7 +305,7 @@ public class GUIController implements ScheduleFormatter{
                                 animal.setFeedingPrinted(true);
                             }
                             else {
-                                duration -= animal.getFeedTime() + animal.getPrepTime();
+                                duration -= animal.getFeedTime();
                                 if (hour == 21){
                                     unfedCrepuscularAnimals = true;
                                 }
